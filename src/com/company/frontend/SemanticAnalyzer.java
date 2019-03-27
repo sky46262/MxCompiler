@@ -185,6 +185,12 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             case e_gt:
             case e_le:
             case e_lt:
+                if (checkSubExprType(node,SymbolType.intSymbolType, 2))
+                node.resultType = SymbolType.boolSymbolType;
+                else if (checkSubExprType(node,SymbolType.strSymbolType, 2))
+                    node.resultType = SymbolType.boolSymbolType;
+                else ce.add(CompileError.ceType.ce_type,"invalid type of:"+node.nodeType.toString(),node.pos);
+                break;
             case e_band:
             case e_bor:
             case e_bxor:
@@ -222,10 +228,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 break;
             case e_eq:
             case e_ne:
-                if (checkSubExprType(node,SymbolType.strSymbolType, 2))
-                    node.resultType = SymbolType.strSymbolType;
-                else
-                if (checkSubExprType(node,SymbolType.boolSymbolType,2))
+                if (node.exprList.elementAt(0).resultType.equals(node.exprList.elementAt(1).resultType))
                     node.resultType = SymbolType.boolSymbolType;
                 else ce.add(CompileError.ceType.ce_type,"invalid type of:"+node.nodeType.toString(),node.pos);
                 break;

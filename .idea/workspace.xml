@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.mx" beforeDir="false" afterPath="$PROJECT_DIR$/main.mx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/SemanticAnalyzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/SemanticAnalyzer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="10" column="54" lean-forward="true" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+            <state relative-caret-position="-158">
+              <caret line="197" column="23" lean-forward="true" selection-start-line="197" selection-start-column="23" selection-end-line="197" selection-end-column="23" />
               <folding>
                 <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
                 <element signature="method#checkLvalue#0;class#SemanticAnalyzer#0" />
@@ -44,13 +47,72 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+            <state relative-caret-position="38">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1561">
+              <caret line="350" column="21" lean-forward="true" selection-start-line="350" selection-start-column="21" selection-end-line="350" selection-end-column="21" />
+              <folding>
+                <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
+                <element signature="method#getScopeName#0;class#SemanticAnalyzer#0" />
+                <element signature="e#1869#1896#0" />
+                <element signature="method#checkFuncParam#0;class#SemanticAnalyzer#0" />
+                <element signature="e#2454#2497#1" />
+                <element signature="method#assertExprType#0;class#SemanticAnalyzer#0" />
+                <element signature="method#assertExprType#1;class#SemanticAnalyzer#0" />
+                <element signature="method#visitCUNode#0;class#SemanticAnalyzer#0" />
+                <element signature="method#visitClassDeclNode#0;class#SemanticAnalyzer#0" />
+                <element signature="method#visitFuncDeclNode#0;class#SemanticAnalyzer#0" />
+                <element signature="e#4123#4211#1" />
+                <element signature="method#visitVarDeclNode#0;class#SemanticAnalyzer#0" />
+                <element signature="e#4565#4665#1" />
+                <element signature="method#visitTypeNode#0;class#SemanticAnalyzer#0" />
+                <element signature="e#4996#5093#1" />
+                <element signature="method#visitStmtNode#0;class#SemanticAnalyzer#0" />
+                <element signature="e#6524#6658#1" />
+                <element signature="e#6816#6926#1" />
+                <element signature="e#7276#7386#1" />
+                <element signature="e#7649#7761#1" />
+                <element signature="e#7850#8206#1" />
+                <element signature="e#8017#8188#1" />
+                <element signature="e#8826#8966#1" />
+                <element signature="e#9122#9262#1" />
+                <element signature="e#9268#9373#1" />
+                <element signature="e#9835#9972#1" />
+                <element signature="e#9978#10083#1" />
+                <element signature="e#10496#10636#1" />
+                <element signature="e#10642#10785#1" />
+                <element signature="e#10916#11056#1" />
+                <element signature="e#11062#11205#1" />
+                <element signature="e#11637#11708#1" />
+                <element signature="e#11714#11819#1" />
+                <element signature="e#12038#12149#1" />
+                <element signature="e#12231#12394#1" />
+                <element signature="e#12542#12943#1" />
+                <element signature="e#12631#12799#1" />
+                <element signature="e#12805#12925#1" />
+                <element signature="e#12949#13061#1" />
+                <element signature="e#14424#14558#1" />
+                <element signature="e#14631#14765#1" />
+                <element signature="e#14771#14916#1" />
+                <element signature="e#15698#15778#1" />
+                <element signature="e#15803#15924#1" />
+                <element signature="e#15948#16061#1" />
+                <element signature="method#visitPrimNode#0;class#SemanticAnalyzer#0" />
+                <element signature="e#19035#20963#0" />
+                <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
               </folding>
             </state>
           </provider>
@@ -81,7 +143,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/common/CompileError.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
+            <state relative-caret-position="218">
               <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
             </state>
           </provider>
@@ -90,8 +152,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="73" column="79" selection-start-line="73" selection-start-column="79" selection-end-line="73" selection-end-column="79" />
+            <state relative-caret-position="-170">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
               <folding>
                 <element signature="method#visitProgram#0;class#ASTBuilder#0" />
                 <element signature="e#486#539#1" />
@@ -131,8 +193,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.mx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="1167">
+              <caret line="81" column="14" lean-forward="true" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -142,15 +204,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="181">
               <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/common/Position.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -194,8 +247,8 @@
       <find>hasReturn</find>
       <find>ce_noreturn</find>
       <find>return&quot;</find>
-      <find>cw_n</find>
       <find>noreturn</find>
+      <find>cw_n</find>
     </findStrings>
     <replaceStrings>
       <replace>expression</replace>
@@ -237,10 +290,10 @@
         <option value="$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java" />
         <option value="$PROJECT_DIR$/src/com/company/common/Position.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/com/company/common/CompileError.java" />
-        <option value="$PROJECT_DIR$/main.mx" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/main.mx" />
+        <option value="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" />
       </list>
     </option>
   </component>
@@ -312,7 +365,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553664658009" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553666783758" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -386,12 +439,12 @@
       <workItem from="1553415394368" duration="13111000" />
       <workItem from="1553513085145" duration="5114000" />
       <workItem from="1553590766968" duration="11625000" />
-      <workItem from="1553655702268" duration="7997000" />
+      <workItem from="1553655702268" duration="8963000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109320000" />
+    <option name="totallyTimeSpent" value="110286000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -416,7 +469,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32809773" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.33041957" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.30944055" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.57167834" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -489,6 +542,12 @@
           <line>136</line>
           <properties />
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java</url>
+          <line>216</line>
+          <properties />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java</url>
@@ -806,66 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="152" column="48" selection-start-line="152" selection-start-column="48" selection-end-line="152" selection-end-column="48" />
-          <folding>
-            <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
-            <element signature="method#getScopeName#0;class#SemanticAnalyzer#0" />
-            <element signature="e#1869#1896#0" />
-            <element signature="method#checkFuncParam#0;class#SemanticAnalyzer#0" />
-            <element signature="e#2454#2497#1" />
-            <element signature="method#assertExprType#0;class#SemanticAnalyzer#0" />
-            <element signature="method#assertExprType#1;class#SemanticAnalyzer#0" />
-            <element signature="method#visitCUNode#0;class#SemanticAnalyzer#0" />
-            <element signature="method#visitClassDeclNode#0;class#SemanticAnalyzer#0" />
-            <element signature="method#visitFuncDeclNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#4123#4211#1" />
-            <element signature="method#visitVarDeclNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#4565#4665#1" />
-            <element signature="method#visitTypeNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#4996#5093#1" />
-            <element signature="method#visitStmtNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#6524#6658#1" />
-            <element signature="e#6816#6926#1" />
-            <element signature="e#7276#7386#1" />
-            <element signature="e#7649#7761#1" />
-            <element signature="e#7850#8206#1" />
-            <element signature="e#8017#8188#1" />
-            <element signature="method#visitExprNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#8826#8966#1" />
-            <element signature="e#9122#9262#1" />
-            <element signature="e#9268#9373#1" />
-            <element signature="e#9835#9972#1" />
-            <element signature="e#9978#10083#1" />
-            <element signature="e#10496#10636#1" />
-            <element signature="e#10642#10785#1" />
-            <element signature="e#10916#11056#1" />
-            <element signature="e#11062#11205#1" />
-            <element signature="e#11637#11708#1" />
-            <element signature="e#11714#11819#1" />
-            <element signature="e#12038#12149#1" />
-            <element signature="e#12231#12394#1" />
-            <element signature="e#12542#12943#1" />
-            <element signature="e#12631#12799#1" />
-            <element signature="e#12805#12925#1" />
-            <element signature="e#12949#13061#1" />
-            <element signature="e#14424#14558#1" />
-            <element signature="e#14631#14765#1" />
-            <element signature="e#14771#14916#1" />
-            <element signature="e#15078#15198#1" />
-            <element signature="e#15366#15942#1" />
-            <element signature="e#15698#15778#1" />
-            <element signature="e#15803#15924#1" />
-            <element signature="e#15948#16061#1" />
-            <element signature="method#visitPrimNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#19035#20963#0" />
-            <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -919,6 +918,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/parser/mx.tokens">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/Symbol/SymbolType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="92" column="110" selection-start-line="92" selection-start-column="110" selection-end-line="92" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/ASTBaseVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/common/CompileError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SyntaxErrorListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -926,13 +959,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/parser/mx.tokens">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="73" column="79" selection-start-line="73" selection-start-column="79" selection-end-line="73" selection-end-column="79" />
+        <state relative-caret-position="-170">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="method#visitProgram#0;class#ASTBuilder#0" />
             <element signature="e#486#539#1" />
@@ -968,26 +998,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/ASTBaseVisitor.java">
+    <entry file="file://$PROJECT_DIR$/main.mx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="1167">
+          <caret line="81" column="14" lean-forward="true" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/Symbol/SymbolType.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="92" column="110" selection-start-line="92" selection-start-column="110" selection-end-line="92" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state relative-caret-position="38">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1561">
+          <caret line="350" column="21" lean-forward="true" selection-start-line="350" selection-start-column="21" selection-end-line="350" selection-end-column="21" />
+          <folding>
+            <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
+            <element signature="method#getScopeName#0;class#SemanticAnalyzer#0" />
+            <element signature="e#1869#1896#0" />
+            <element signature="method#checkFuncParam#0;class#SemanticAnalyzer#0" />
+            <element signature="e#2454#2497#1" />
+            <element signature="method#assertExprType#0;class#SemanticAnalyzer#0" />
+            <element signature="method#assertExprType#1;class#SemanticAnalyzer#0" />
+            <element signature="method#visitCUNode#0;class#SemanticAnalyzer#0" />
+            <element signature="method#visitClassDeclNode#0;class#SemanticAnalyzer#0" />
+            <element signature="method#visitFuncDeclNode#0;class#SemanticAnalyzer#0" />
+            <element signature="e#4123#4211#1" />
+            <element signature="method#visitVarDeclNode#0;class#SemanticAnalyzer#0" />
+            <element signature="e#4565#4665#1" />
+            <element signature="method#visitTypeNode#0;class#SemanticAnalyzer#0" />
+            <element signature="e#4996#5093#1" />
+            <element signature="method#visitStmtNode#0;class#SemanticAnalyzer#0" />
+            <element signature="e#6524#6658#1" />
+            <element signature="e#6816#6926#1" />
+            <element signature="e#7276#7386#1" />
+            <element signature="e#7649#7761#1" />
+            <element signature="e#7850#8206#1" />
+            <element signature="e#8017#8188#1" />
+            <element signature="e#8826#8966#1" />
+            <element signature="e#9122#9262#1" />
+            <element signature="e#9268#9373#1" />
+            <element signature="e#9835#9972#1" />
+            <element signature="e#9978#10083#1" />
+            <element signature="e#10496#10636#1" />
+            <element signature="e#10642#10785#1" />
+            <element signature="e#10916#11056#1" />
+            <element signature="e#11062#11205#1" />
+            <element signature="e#11637#11708#1" />
+            <element signature="e#11714#11819#1" />
+            <element signature="e#12038#12149#1" />
+            <element signature="e#12231#12394#1" />
+            <element signature="e#12542#12943#1" />
+            <element signature="e#12631#12799#1" />
+            <element signature="e#12805#12925#1" />
+            <element signature="e#12949#13061#1" />
+            <element signature="e#14424#14558#1" />
+            <element signature="e#14631#14765#1" />
+            <element signature="e#14771#14916#1" />
+            <element signature="e#15698#15778#1" />
+            <element signature="e#15803#15924#1" />
+            <element signature="e#15948#16061#1" />
+            <element signature="method#visitPrimNode#0;class#SemanticAnalyzer#0" />
+            <element signature="e#19035#20963#0" />
+            <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
           </folding>
         </state>
       </provider>
@@ -1005,37 +1085,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="10" column="54" lean-forward="true" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
+        <state relative-caret-position="-158">
+          <caret line="197" column="23" lean-forward="true" selection-start-line="197" selection-start-column="23" selection-end-line="197" selection-end-column="23" />
           <folding>
             <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
             <element signature="method#checkLvalue#0;class#SemanticAnalyzer#0" />
             <element signature="method#visitClassDeclNode#0;class#SemanticAnalyzer#0" />
             <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/common/CompileError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.mx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
