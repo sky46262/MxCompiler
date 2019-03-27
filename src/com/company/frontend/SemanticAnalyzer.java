@@ -13,7 +13,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
     private CompileError ce;
     private String currentClass;
     private String currentFunc;
-    private StringBuilder currentMember;
+    private StringBuilder currentMember = new StringBuilder();
     private boolean hasReturn;
     private SymbolType currentReturnType;
     private int loopCnt;
@@ -27,6 +27,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
     }
     private boolean checkExprType(ASTExprNode node, SymbolType type){
         if (node == null || type == null) return false;
+        if (node.resultType == null) return false;
         return node.resultType.equals(type);
     }
     private boolean checkSubExprType(ASTExprNode node, SymbolType type, int num){
@@ -35,10 +36,13 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         return false;
     }
     private boolean checkFunc(Vector<SymbolType> memList, Vector<SymbolType> params){
-        for (int i = 0; i < params.size();i++)
+        for (int i = 0; i < params.size();i++){
+            if (memList.elementAt(i+1) == null) return false;
             if (!memList.elementAt(i+1).equals(params.elementAt(i))){
                 return false;
             }
+        }
+
         return true;
     }
     private boolean checkLvalue(ASTExprNode node){

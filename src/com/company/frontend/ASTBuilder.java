@@ -73,6 +73,14 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
     }
     @Override public ASTStmtNode visitStatement(mxParser.StatementContext ctx) {
         if (ctx.block() != null) return visitBlock(ctx.block());
+        if (ctx.type == null) {
+            if (ctx.expression(0) != null) {
+                //v.add(visitExpression(ctx.expression(0)));
+                return visitExpression(ctx.expression(0));
+            }
+            else
+                return new ASTStmtNode(new Position(ctx), ASTNodeType.s_empty, null);
+        }
         Vector<ASTStmtNode> v = new Vector<>();
         switch (ctx.type.getText()){
             case "if":
@@ -105,12 +113,7 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
             case "continue":
                 return new ASTStmtNode(new Position(ctx), ASTNodeType.s_continue, v);
             default:
-                if (ctx.expression(0) != null) {
-                    //v.add(visitExpression(ctx.expression(0)));
-                    return visitExpression(ctx.expression(0));
-                }
-                else
-                return new ASTStmtNode(new Position(ctx), ASTNodeType.s_empty, null);
+                return new ASTStmtNode(new Position(ctx), ASTNodeType.s_empty, v);
         }
     }
 
@@ -132,7 +135,8 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
     }
 
     @Override public ASTExprNode visitExpression(mxParser.ExpressionContext ctx) {
-        if (ctx.Identifier() != null) return new ASTPrimNode(new Position(ctx), ASTNodeType.p_id, 0, "");
+        if (ctx == null) return null;
+        if (ctx.Identifier() != null) return new ASTPrimNode(new Position(ctx), ASTNodeType.p_id, 0, ctx.Identifier().getText());
         if (ctx.constant() != null) return visitConstant(ctx.constant());
         if (ctx.creator() != null) return visitCreator(ctx.creator());
         // expression = '(' expression ')'

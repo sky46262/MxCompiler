@@ -74,10 +74,13 @@ public class SymbolType {
     }
 
     public boolean equals(SymbolType _t){
+        if (_t == null) return false;
         if (type == symbolType.NULL)  return _t.arrayDim >0 || _t.type == symbolType.NULL || _t.type == symbolType.CLASS;
         if (_t.type == symbolType.NULL) return arrayDim >0 || type == symbolType.CLASS;
-        if (type != _t.type || arrayDim != _t.arrayDim) return false;
-        if (type == symbolType.CLASS) return name.equals(_t.name);
+        if ((type == _t.type) && (arrayDim == _t.arrayDim)) {
+            if (type == symbolType.CLASS) return name.equals(_t.name);
+            else return true;
+        }
         return false;
     }
 

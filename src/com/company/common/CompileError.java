@@ -28,7 +28,7 @@ public class CompileError {
     }
 
     public void add(ceType type, String msg, Position pos){
-        String m = pos.toString() + ("error:") + type.toString() + ":" + msg +"\n";
+        String m = pos.toString() + (" error: ") + type.toString() + ":" + msg +"\n";
         msgList.add(m);
         //System.out.println(m);
         counter++;

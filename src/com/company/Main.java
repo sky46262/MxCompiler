@@ -9,10 +9,7 @@ import com.company.frontend.SymbolTable.SymbolTable;
 import com.company.frontend.SyntaxErrorListener;
 import com.company.frontend.parser.mxLexer;
 import com.company.frontend.parser.mxParser;
-import org.antlr.v4.runtime.ANTLRFileStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonToken;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.*;
 
 import java.io.IOException;
 
@@ -23,7 +20,8 @@ public class Main {
         mxParser.ProgramContext root = null;
         mxParser parser = null;
         try{
-            mxLexer lexer = new mxLexer(CharStreams.fromStream(System.in));
+            //mxLexer lexer = new mxLexer(CharStreams.fromStream(System.in));
+            mxLexer lexer = new mxLexer(CharStreams.fromFileName("main.mx"));
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             parser = new mxParser(tokens);
             SyntaxErrorListener errorListener = new SyntaxErrorListener(compileError);
@@ -34,8 +32,10 @@ public class Main {
         catch (IOException e) {
             throw new Error();
         }
-
-        if (compileError.getCounter() > 0) throw new  Error();
+        catch (RecognitionException e){
+            compileError.print();
+            throw  new Error();
+        }
 
         ASTCompilationUnitNode cu = new ASTBuilder().visitProgram(root);
 
@@ -43,7 +43,10 @@ public class Main {
         new GlobalSymbolTableBuilder(ST, compileError).visitCompilationUnitNode(cu);
         new SemanticAnalyzer(ST, compileError).visitCompilationUnitNode(cu);
 
-        if (compileError.getCounter() > 0) throw new Error();
+        if (compileError.getCounter() > 0) {
+            compileError.print();
+            throw new Error();
+        }
 	// write your code here
     }
 }

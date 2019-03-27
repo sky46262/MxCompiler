@@ -31,6 +31,7 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
 
          Vector<SymbolType> list = new Vector<>();
          list.add(SymbolType.voidSymbolType);
+         list.add(SymbolType.strSymbolType);
         ST.pushSymbol("print", new SymbolType(new Vector<>(list)), node);
         ST.pushSymbol("println", new SymbolType(new Vector<>(list)), node);
         list.clear();
