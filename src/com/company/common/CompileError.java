@@ -18,9 +18,6 @@ public class CompileError {
         ce_outofclass,
         ce_type,
         ce_lvalue,
-
-        cw_noreturn,
-        cw_shadow,
     }
 
     public int getCounter() {

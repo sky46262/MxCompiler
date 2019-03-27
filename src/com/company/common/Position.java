@@ -36,7 +36,7 @@ public class Position {
     }
 
     public String toString(){
-        return "line" + startLine + ":" + startColumn + ((startLine != endLine || startColumn != endColumn)?
+        return "line " + startLine + ":" + startColumn + ((startLine != endLine || startColumn != endColumn)?
                 (" to line " + endLine + ":" + endColumn) : "");
     }
 }

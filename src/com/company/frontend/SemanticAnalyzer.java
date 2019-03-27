@@ -14,7 +14,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
     private String currentClass;
     private String currentFunc;
     private StringBuilder currentMember = new StringBuilder();
-    private boolean hasReturn;
+   // private boolean hasReturn;
     private SymbolType currentReturnType;
     private int loopCnt;
 
@@ -82,13 +82,14 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         visitTypeNode(node.returnType);
         currentFunc = node.funcName;
         ST.push(node.funcName);
-        hasReturn = false;
+        //hasReturn = false;
         currentReturnType = new SymbolType(node.returnType);
         ST.pushSymbol(node.funcName, ST.findSymbol(getScopeName(node.isConstructor?"_init":node.funcName)));
         visitStmt(node.paramList);
         for (ASTStmtNode i: node.funcBody.StmtList) visitStmt(i);
-        if (!hasReturn && currentReturnType.type != SymbolType.symbolType.VOID)
-            ce.add(CompileError.ceType.cw_noreturn, node.funcName, node.pos);
+       // if (!hasReturn && currentReturnType.type != SymbolType.symbolType.VOID)
+          //  ce.add(CompileError.ceType.ce_noreturn, node.funcName, node.pos);
+        //warning
         currentFunc = null;
         currentReturnType = null;
         ST.pop();
@@ -136,7 +137,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 visitStmt(node.StmtList.elementAt(0));
                 if (!checkExprType((ASTExprNode) node.StmtList.elementAt(0), currentReturnType))
                     ce.add(CompileError.ceType.ce_type, "return:" + currentFunc, node.pos);
-                hasReturn = true;
+                //hasReturn = true;
                 return;
             case s_paramlist:
                 for (ASTStmtNode i: node.StmtList) visitStmt(i);
