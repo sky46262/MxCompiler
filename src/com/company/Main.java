@@ -23,7 +23,7 @@ public class Main {
         mxParser.ProgramContext root = null;
         mxParser parser = null;
         try{
-            mxLexer lexer = new mxLexer(CharStreams.fromFileName("main.mx"));
+            mxLexer lexer = new mxLexer(CharStreams.fromStream(System.in));
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             parser = new mxParser(tokens);
             SyntaxErrorListener errorListener = new SyntaxErrorListener(compileError);
