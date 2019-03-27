@@ -42,11 +42,11 @@ public class Main {
         SymbolTable ST = new SymbolTable(compileError);
         new GlobalSymbolTableBuilder(ST, compileError).visitCompilationUnitNode(cu);
         new SemanticAnalyzer(ST, compileError).visitCompilationUnitNode(cu);
-
+/*
         if (compileError.getCounter() > 0) {
             compileError.print();
             throw new Error();
-        }
+        }*/
 	// write your code here
     }
 }

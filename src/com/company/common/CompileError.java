@@ -28,7 +28,9 @@ public class CompileError {
         String m = pos.toString() + (" error: ") + type.toString() + ":" + msg +"\n";
         msgList.add(m);
         //System.out.println(m);
-        counter++;
+        //counter++;
+        print();
+        throw new Error();
     }
     public void print(){
         msgList.forEach(System.err::println);
