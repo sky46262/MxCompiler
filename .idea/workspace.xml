@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.mx" beforeDir="false" afterPath="$PROJECT_DIR$/main.mx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/SemanticAnalyzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/SemanticAnalyzer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,22 +17,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-158">
-              <caret line="197" column="23" lean-forward="true" selection-start-line="197" selection-start-column="23" selection-end-line="197" selection-end-column="23" />
+            <state relative-caret-position="70">
+              <caret line="230" column="62" lean-forward="true" selection-start-line="230" selection-start-column="62" selection-end-line="230" selection-end-column="62" />
               <folding>
                 <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
                 <element signature="method#checkLvalue#0;class#SemanticAnalyzer#0" />
@@ -48,10 +32,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="81" column="29" lean-forward="true" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Object.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
+              <folding>
+                <element signature="e#5877#5878#0" expanded="true" />
+                <element signature="e#5913#5914#0" expanded="true" />
+                <element signature="e#10225#10226#0" expanded="true" />
+                <element signature="e#10308#10309#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="152">
+              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1561">
-              <caret line="350" column="21" lean-forward="true" selection-start-line="350" selection-start-column="21" selection-end-line="350" selection-end-column="21" />
+            <state relative-caret-position="117">
+              <caret line="345" column="86" lean-forward="true" selection-start-line="345" selection-start-column="86" selection-end-line="345" selection-end-column="86" />
               <folding>
                 <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
                 <element signature="method#getScopeName#0;class#SemanticAnalyzer#0" />
@@ -107,9 +118,6 @@
                 <element signature="e#14424#14558#1" />
                 <element signature="e#14631#14765#1" />
                 <element signature="e#14771#14916#1" />
-                <element signature="e#15698#15778#1" />
-                <element signature="e#15803#15924#1" />
-                <element signature="e#15948#16061#1" />
                 <element signature="method#visitPrimNode#0;class#SemanticAnalyzer#0" />
                 <element signature="e#19035#20963#0" />
                 <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
@@ -127,15 +135,6 @@
                 <element signature="imports" expanded="true" />
                 <element signature="n#!!block;n#getScopeName#0;n#GlobalSymbolTableBuilder#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/ASTBaseVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -247,8 +246,8 @@
       <find>hasReturn</find>
       <find>ce_noreturn</find>
       <find>return&quot;</find>
-      <find>noreturn</find>
       <find>cw_n</find>
+      <find>noreturn</find>
     </findStrings>
     <replaceStrings>
       <replace>expression</replace>
@@ -291,9 +290,9 @@
         <option value="$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java" />
         <option value="$PROJECT_DIR$/src/com/company/common/Position.java" />
         <option value="$PROJECT_DIR$/src/com/company/common/CompileError.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/main.mx" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
       </list>
     </option>
   </component>
@@ -365,7 +364,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553666783758" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553666865621" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -439,12 +438,12 @@
       <workItem from="1553415394368" duration="13111000" />
       <workItem from="1553513085145" duration="5114000" />
       <workItem from="1553590766968" duration="11625000" />
-      <workItem from="1553655702268" duration="8963000" />
+      <workItem from="1553655702268" duration="9211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110286000" />
+    <option name="totallyTimeSpent" value="110534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -716,19 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
-          <folding>
-            <element signature="e#5877#5878#0" expanded="true" />
-            <element signature="e#5913#5914#0" expanded="true" />
-            <element signature="e#10225#10226#0" expanded="true" />
-            <element signature="e#10308#10309#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/AST/ASTBaseNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -928,16 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/ASTBaseVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
@@ -1005,20 +981,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="150">
+          <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="n#!!block;n#getScopeName#0;n#GlobalSymbolTableBuilder#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1561">
-          <caret line="350" column="21" lean-forward="true" selection-start-line="350" selection-start-column="21" selection-end-line="350" selection-end-column="21" />
+        <state relative-caret-position="117">
+          <caret line="345" column="86" lean-forward="true" selection-start-line="345" selection-start-column="86" selection-end-line="345" selection-end-column="86" />
           <folding>
             <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
             <element signature="method#getScopeName#0;class#SemanticAnalyzer#0" />
@@ -1062,9 +1039,6 @@
             <element signature="e#14424#14558#1" />
             <element signature="e#14631#14765#1" />
             <element signature="e#14771#14916#1" />
-            <element signature="e#15698#15778#1" />
-            <element signature="e#15803#15924#1" />
-            <element signature="e#15948#16061#1" />
             <element signature="method#visitPrimNode#0;class#SemanticAnalyzer#0" />
             <element signature="e#19035#20963#0" />
             <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
@@ -1072,26 +1046,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java">
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+        <state relative-caret-position="123">
+          <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="n#!!block;n#getScopeName#0;n#GlobalSymbolTableBuilder#0" />
+            <element signature="e#5877#5878#0" expanded="true" />
+            <element signature="e#5913#5914#0" expanded="true" />
+            <element signature="e#10225#10226#0" expanded="true" />
+            <element signature="e#10308#10309#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-158">
-          <caret line="197" column="23" lean-forward="true" selection-start-line="197" selection-start-column="23" selection-end-line="197" selection-end-column="23" />
+        <state relative-caret-position="70">
+          <caret line="230" column="62" lean-forward="true" selection-start-line="230" selection-start-column="62" selection-end-line="230" selection-end-column="62" />
           <folding>
             <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
             <element signature="method#checkLvalue#0;class#SemanticAnalyzer#0" />
             <element signature="method#visitClassDeclNode#0;class#SemanticAnalyzer#0" />
             <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="81" column="29" lean-forward="true" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
