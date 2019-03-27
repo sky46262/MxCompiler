@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.mx" beforeDir="false" afterPath="$PROJECT_DIR$/main.mx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/ASTBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/ASTBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/GlobalSymbolTableBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/GlobalSymbolTableBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/SemanticAnalyzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/SemanticAnalyzer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mx.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mx.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxLexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$ClassTypeNameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$ClassTypeNameContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$ConstantContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$ConstantContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$CreatorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$CreatorContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$DeclaratorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$DeclaratorContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$NotArrayTypeNameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$NotArrayTypeNameContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$PrimitiveTypeNameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$PrimitiveTypeNameContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$TypeNameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser$TypeNameContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/parser/mxParser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/parser/mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/parser/mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/parser/mx.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/parser/mx.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/parser/mxLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/parser/mxLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/parser/mxLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/parser/mxLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/parser/mxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/parser/mxParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -480,7 +455,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553674789243" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553675009566" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -557,12 +532,12 @@
       <workItem from="1553655702268" duration="13655000" />
       <workItem from="1553671353200" duration="2006000" />
       <workItem from="1553673374487" duration="832000" />
-      <workItem from="1553674209597" duration="579000" />
+      <workItem from="1553674209597" duration="652000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118395000" />
+    <option name="totallyTimeSpent" value="118468000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1250,7 +1225,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

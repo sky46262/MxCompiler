@@ -206,6 +206,11 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 else ce.add(CompileError.ceType.ce_type,"invalid type of:"+node.nodeType.toString(),node.pos);
                 break;
             case e_asgn:
+                if (!checkLvalue(node.exprList.elementAt(0)))
+                    ce.add(CompileError.ceType.ce_lvalue, "not lvalue",node.pos);
+                if (node.exprList.elementAt(0).resultType.equals(node.exprList.elementAt(1).resultType))
+                    node.resultType = node.exprList.elementAt(0).resultType;
+                else ce.add(CompileError.ceType.ce_type, "invalid type of:" + node.nodeType.toString(), node.pos);
                 break;
             case e_pos:
             case e_neg:
