@@ -89,15 +89,15 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
                 if (ctx.statement(1) != null) v.add(visitStatement(ctx.statement(1))); // else
                 return new ASTStmtNode(new Position(ctx), ASTNodeType.s_if, v);
             case "for":
-                v.add(visitExpression(ctx.expression(0)));
-                if (ctx.expression(2) != null) {
-                    v.add(visitExpression(ctx.expression(1)));
-                    v.add(visitExpression(ctx.expression(2)));
-                }
-                else {
-                    v.add(new ASTExprNode(new Position(ctx),ASTNodeType.e_empty,null));
-                    v.add(visitExpression(ctx.expression(1)));
-                }
+                if (ctx.init != null)
+                v.add(visitExpression(ctx.init));
+                else v.add(new ASTExprNode(new Position(ctx),ASTNodeType.e_empty,null));
+                if (ctx.cond != null)
+                    v.add(visitExpression(ctx.cond));
+                else v.add(new ASTExprNode(new Position(ctx),ASTNodeType.e_empty,null));
+                if (ctx.step != null)
+                    v.add(visitExpression(ctx.step));
+                else v.add(new ASTExprNode(new Position(ctx),ASTNodeType.e_empty,null));
                 v.add(visitStatement(ctx.statement(0)));
                 return new ASTStmtNode(new Position(ctx), ASTNodeType.s_for, v);
             case "return":
@@ -206,6 +206,7 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
                 break;
             case "^":
                 type = ASTNodeType.e_bxor;
+                break;
             case "&&":
                 type = ASTNodeType.e_land;
                 break;

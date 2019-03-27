@@ -32,7 +32,7 @@ statement:
     block
 	| type='if' '(' expression ')' statement  ('else' statement)?
 	| type='while' '(' expression ')' statement
-	| type='for' '(' expression';' (expression)? ';'  expression')' statement
+	| type='for' '(' init=expression?';' cond=expression? ';'  step=expression?')' statement
 	| type='return' expression? ';'
 	| type='break' ';'
 	| type='continue'';'
@@ -70,7 +70,7 @@ expression:
 	;
     
 creator:
-	classTypeName '(' ')'
+	classTypeName ('(' ')')?
 	| notArrayTypeName (LB expression RB)* (LB RB)*;
 
 

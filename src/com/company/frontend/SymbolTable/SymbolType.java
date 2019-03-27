@@ -78,7 +78,10 @@ public class SymbolType {
         if (type == symbolType.NULL)  return _t.arrayDim >0 || _t.type == symbolType.NULL || _t.type == symbolType.CLASS;
         if (_t.type == symbolType.NULL) return arrayDim >0 || type == symbolType.CLASS;
         if ((type == _t.type) && (arrayDim == _t.arrayDim)) {
-            if (type == symbolType.CLASS) return name.equals(_t.name);
+            if (type == symbolType.CLASS) {
+                if (name != null) return name.equals(_t.name);
+                else return _t.name == null;
+            }
             else return true;
         }
         return false;

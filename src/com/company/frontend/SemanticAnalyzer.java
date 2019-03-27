@@ -58,9 +58,6 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 return checkLvalue(node.exprList.elementAt(1));
             case e_inc_p:
             case e_dec_p:
-            case e_inc_s:
-            case e_dec_s:
-                //suffix???
                 return true;
             default:
                 return false;
@@ -105,7 +102,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         }
         if (currentClass == null || currentFunc != null)
             ST.pushSymbol(node.name,new SymbolType(node.type), node);
-        else if (currentFunc != null)
+        else
             ST.pushSymbol(getScopeName(node.name), new SymbolType(node.type), node);
         //What if class member???
         //TODO
@@ -311,7 +308,8 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         if (node.type.className != null){
             SymbolInfo symbol = ST.findSymbol(node.type.className);
             if (symbol == null) ce.add(CompileError.ceType.ce_nodecl, "class creator:"+node.type.className, node.pos);
-            node.resultType = symbol.type;
+            if (!symbol.type.equals(SymbolType.classSymbolType)) ce.add(CompileError.ceType.ce_type, "not class creator:"+node.type.className, node.pos);
+            node.resultType = new SymbolType(node.type);
         }
         //TODO array of class
     }

@@ -1,17 +1,16 @@
-int[] f() {
-    return new int[20];
+class A{
+	int a;
 }
-
+A a;
 int main() {
-    f() = new int[16];
+    A b = new a();
+	return 0;
 }
-
-
 
 
 /*!! metadata:
 === comment ===
-test lvalue-asiop-5-5100379071-puyouer.mx
+李江贝 AimAlex test new
 === is_public ===
 True
 === assert ===
@@ -25,7 +24,7 @@ semantic pretest
 === output ===
 
 === exitcode ===
-
+0
 
 !!*/
 
