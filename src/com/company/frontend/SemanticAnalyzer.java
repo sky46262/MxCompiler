@@ -103,11 +103,12 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             if (!checkExprType(node.initExpr, new SymbolType(node.type)))
                 ce.add(CompileError.ceType.ce_type, "invalid init:"+node.name, node.pos);
         }
-        if (currentClass == null)
+        if (currentClass == null || currentFunc != null)
             ST.pushSymbol(node.name,new SymbolType(node.type), node);
         else if (currentFunc != null)
             ST.pushSymbol(getScopeName(node.name), new SymbolType(node.type), node);
         //What if class member???
+        //TODO
     }
     //check type
     @Override
@@ -225,6 +226,9 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             case e_inc_s:
                 if (!checkLvalue(node.exprList.elementAt(0)))
                     ce.add(CompileError.ceType.ce_lvalue, "not lvalue",node.pos);
+                if (checkSubExprType(node, SymbolType.intSymbolType, 1))
+                    node.resultType = SymbolType.intSymbolType;
+                else ce.add(CompileError.ceType.ce_type, "invalid type of:" + node.nodeType.toString(), node.pos);
                 break;
             case e_eq:
             case e_ne:
@@ -323,15 +327,11 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 node.resultType = SymbolType.nullSymbolType;
                 break;
             case p_id:
-                String Name;
-                if (currentMember.length() == 0)
-                    Name = getScopeName(node.stringValue);
-                else {
-                    Name = currentMember.toString() + node.stringValue;
-                    currentMember = new StringBuilder();
-                }
+                String Name = currentMember.toString() + node.stringValue;
+                currentMember = new StringBuilder();
                 SymbolInfo symbol = ST.findSymbol(Name);
-                if (symbol == null) symbol = ST.findSymbol(node.stringValue);
+                if (symbol == null) symbol = ST.findSymbol(getScopeName(Name));
+                //if (symbol == null) symbol = ST.findSymbol(node.stringValue);
                 if (symbol == null)
                     ce.add(CompileError.ceType.ce_nodecl, "no decl of" + Name, node.pos);
                 else {

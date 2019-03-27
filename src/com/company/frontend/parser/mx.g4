@@ -70,7 +70,9 @@ expression:
 	;
     
 creator:
-	notArrayTypeName (LB expression RB)* (LB RB)*;
+	classTypeName '(' ')'
+	| notArrayTypeName (LB expression RB)* (LB RB)*;
+
 
 declarator:
 	typeName Identifier ('=' expression)?;
@@ -97,14 +99,14 @@ IntegerConstant:
 	([1-9] [0-9]*)
 	| '0' ;
 StringConstant:
-	'"' ( ~('"'|'\\')+ | EscapeSequence)? '"';
+	'"' ( EscapeSequence|~('"'|'\\') )*'"';
 Identifier:
 	[a-zA-Z] ([0-9a-zA-Z_])*;
 
 fragment
 
 EscapeSequence:
-	'\\'('n'|'"'|'\\');
+    '\\'('n'|'"'|'\\');
 
 LB    : '[' ;
 RB    : ']' ;

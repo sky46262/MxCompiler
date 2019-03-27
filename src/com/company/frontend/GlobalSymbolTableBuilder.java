@@ -76,7 +76,10 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
             if (!node.funcName.equals(currentClass))
                 ce.add(CompileError.ceType.ce_invalid_constructor, "the name of constructor must be" + currentClass, node.pos);
             else {
-                ST.pushSymbol(getScopeName() + "_init", new SymbolType(new Vector<>(currentPara)),node);
+                SymbolType t = new SymbolType(new Vector<>(currentPara));
+                ST.pushSymbol(getScopeName() + "_init",t ,node);
+                SymbolInfo curClass = ST.findSymbol(currentClass);
+                curClass.type.memList.add(t);
             }
         }
         else ST.pushSymbol(getScopeName()+node.funcName, new SymbolType(new Vector<>(currentPara)), node);

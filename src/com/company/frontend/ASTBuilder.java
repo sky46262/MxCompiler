@@ -37,7 +37,7 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
 
     @Override public ASTFuncDeclNode visitConstructFunction(mxParser.ConstructFunctionContext ctx) {
             return new ASTFuncDeclNode(new Position(ctx), ASTNodeType.s_funcdecl,
-                    ctx.Identifier().getText(), null, null, visitBlock(ctx.block()));
+                    ctx.Identifier().getText(), new ASTTypeNode(new Position(ctx),ASTNodeType.t_void,null,0), null, visitBlock(ctx.block()));
     }
 
     @Override public ASTFuncDeclNode visitFunctionDeclaration(mxParser.FunctionDeclarationContext ctx) {
@@ -138,7 +138,8 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
         if (ctx == null) return null;
         if (ctx.Identifier() != null) return new ASTPrimNode(new Position(ctx), ASTNodeType.p_id, 0, ctx.Identifier().getText());
         if (ctx.constant() != null) return visitConstant(ctx.constant());
-        if (ctx.creator() != null) return visitCreator(ctx.creator());
+        if (ctx.creator() != null)
+            return visitCreator(ctx.creator());
         // expression = '(' expression ')'
         if (ctx.op == null) return visitExpression(ctx.expression(0));
         Vector<ASTExprNode> v = new Vector<>();
@@ -240,7 +241,10 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
     }
 
     @Override public ASTExprNode visitCreator(mxParser.CreatorContext ctx) {
-        ASTTypeNode type = visitNotArrayTypeName(ctx.notArrayTypeName());
+        ASTTypeNode type;
+        if (ctx.notArrayTypeName() != null) type = visitNotArrayTypeName(ctx.notArrayTypeName());
+        else if (ctx.classTypeName() != null) type = visitClassTypeName(ctx.classTypeName());
+        else return null;
         type.dimension = ctx.LB().size();
         Vector<ASTExprNode> v = new Vector<>();
         for (mxParser.ExpressionContext i : ctx.expression()){
@@ -254,24 +258,27 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
         t.dimension = ctx.LB().size();
         return t;
     }
-
-    @Override public ASTTypeNode visitNotArrayTypeName(mxParser.NotArrayTypeNameContext ctx) {
-        if (ctx.classTypeName() != null) return new ASTTypeNode(new Position(ctx), ASTNodeType.t_class, ctx.classTypeName().getText(), 0);;
-        if (ctx.primitiveTypeName() != null) {
-            ASTNodeType type = null;
-            switch (ctx.primitiveTypeName().getText()){
-                case "bool":
-                    type = ASTNodeType.t_bool;
-                    break;
-                case "int":
-                    type = ASTNodeType.t_int;
-                    break;
-                case "string":
-                    type  = ASTNodeType.t_str;
-            }
-            return new ASTTypeNode(new Position(ctx), type, "", 0);
+    @Override public ASTTypeNode visitNotArrayTypeName(mxParser.NotArrayTypeNameContext ctx){
+        if (ctx.classTypeName() != null) return visitClassTypeName(ctx.classTypeName());
+        else if (ctx.primitiveTypeName() != null) return visitPrimitiveTypeName(ctx.primitiveTypeName());
+        else return null;
+    }
+    @Override public ASTTypeNode visitPrimitiveTypeName(mxParser.PrimitiveTypeNameContext ctx){
+        ASTNodeType type = null;
+        switch (ctx.getText()){
+            case "bool":
+                type = ASTNodeType.t_bool;
+                break;
+            case "int":
+                type = ASTNodeType.t_int;
+                break;
+            case "string":
+                type  = ASTNodeType.t_str;
         }
-        return null;
+        return new ASTTypeNode(new Position(ctx), type, "", 0);
+    }
+    @Override public ASTTypeNode visitClassTypeName(mxParser.ClassTypeNameContext ctx) {
+        return new ASTTypeNode(new Position(ctx), ASTNodeType.t_class, ctx.getText(), 0);
      }
     @Override public ASTPrimNode visitConstant(mxParser.ConstantContext ctx) {
         if (ctx.BoolConstant() != null)
