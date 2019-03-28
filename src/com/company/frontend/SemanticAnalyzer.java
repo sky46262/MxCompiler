@@ -330,11 +330,14 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 node.resultType = SymbolType.nullSymbolType;
                 break;
             case p_id:
-                String Name = currentMember.toString() + node.stringValue;
-                currentMember = new StringBuilder();
+                String Name;
+                if (currentMember.toString().equals("")) Name = getScopeName(node.stringValue);
+                else {
+                    Name = currentMember.toString() + node.stringValue;
+                    currentMember = new StringBuilder();
+                }
                 SymbolInfo symbol = ST.findSymbol(Name);
-                if (symbol == null) symbol = ST.findSymbol(getScopeName(Name));
-                //if (symbol == null) symbol = ST.findSymbol(node.stringValue);
+                if (symbol == null) symbol = ST.findSymbol(node.stringValue);
                 if (symbol == null)
                     ce.add(CompileError.ceType.ce_nodecl, "no decl of" + Name, node.pos);
                 else {
