@@ -71,17 +71,31 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
     @Override
     public void visitClassDeclNode(ASTClassDeclNode node) {
         currentClass = node.className;
+        //TODO push?
+        ST.push(node.className);
+        for (ASTStmtNode i : node.StmtList)
+            if (i instanceof ASTFuncDeclNode) visitFuncDecl_m((ASTFuncDeclNode)i);
+            else if (i instanceof ASTDeclNode) visitVarDecl_m((ASTDeclNode)i);
+
         for (ASTStmtNode i : node.StmtList) visitStmt(i);
         currentClass = null;
+        ST.pop();
+    }
+    public void visitFuncDecl_m(ASTFuncDeclNode node){
+        if (!node.isConstructor)
+        ST.pushSymbol(node.funcName, ST.findSymbol(getScopeName(node.isConstructor?"_init":node.funcName)));
+    }
+    public void visitVarDecl_m(ASTDeclNode node){
+        ST.pushSymbol(node.name,new SymbolType(node.type), node);
     }
     @Override
     public void visitFuncDeclNode(ASTFuncDeclNode node) {
         visitTypeNode(node.returnType);
         currentFunc = node.funcName;
+
         ST.push(node.funcName);
         //hasReturn = false;
         currentReturnType = new SymbolType(node.returnType);
-        ST.pushSymbol(node.funcName, ST.findSymbol(getScopeName(node.isConstructor?"_init":node.funcName)));
         visitStmt(node.paramList);
         for (ASTStmtNode i: node.funcBody.StmtList) visitStmt(i);
        // if (!hasReturn && currentReturnType.type != SymbolType.symbolType.VOID)
@@ -100,11 +114,9 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             if (!checkExprType(node.initExpr, new SymbolType(node.type)))
                 ce.add(CompileError.ceType.ce_type, "invalid init:"+node.name, node.pos);
         }
+        //if not in class or in function
         if (currentClass == null || currentFunc != null)
             ST.pushSymbol(node.name,new SymbolType(node.type), node);
-        //else
-            //ST.pushSymbol(getScopeName(node.name), new SymbolType(node.type), node);
-        //What if class member???
         //TODO
     }
     //check type
@@ -331,13 +343,19 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 break;
             case p_id:
                 String Name;
-                if (currentMember.toString().equals("")) Name = getScopeName(node.stringValue);
+                /*
+                if (currentMember.length() == 0) Name = getScopeName(node.stringValue);
                 else {
                     Name = currentMember.toString() + node.stringValue;
                     currentMember = new StringBuilder();
                 }
                 SymbolInfo symbol = ST.findSymbol(Name);
                 if (symbol == null) symbol = ST.findSymbol(node.stringValue);
+                */
+                    Name = currentMember.toString() + node.stringValue;
+                    currentMember = new StringBuilder();
+                SymbolInfo symbol = ST.findSymbol(Name);
+                if (symbol == null) symbol = ST.findSymbol(getScopeName(node.stringValue));
                 if (symbol == null)
                     ce.add(CompileError.ceType.ce_nodecl, "no decl of" + Name, node.pos);
                 else {

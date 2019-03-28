@@ -36,8 +36,10 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
     }
 
     @Override public ASTFuncDeclNode visitConstructFunction(mxParser.ConstructFunctionContext ctx) {
-            return new ASTFuncDeclNode(new Position(ctx), ASTNodeType.s_funcdecl,
+            ASTFuncDeclNode node =  new ASTFuncDeclNode(new Position(ctx), ASTNodeType.s_funcdecl,
                     ctx.Identifier().getText(), new ASTTypeNode(new Position(ctx),ASTNodeType.t_void,null,0), null, visitBlock(ctx.block()));
+            node.setConstructor();
+            return node;
     }
 
     @Override public ASTFuncDeclNode visitFunctionDeclaration(mxParser.FunctionDeclarationContext ctx) {

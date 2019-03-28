@@ -17,9 +17,11 @@ public class ASTFuncDeclNode extends ASTStmtNode{
         returnType = _t;
         paramList = _p;
         funcBody = _b;
-        if (_t == null) isConstructor = true;
     }
     public void setMember(){
         isMember = true;
+    }
+    public void setConstructor(){
+        isConstructor = true;
     }
 }

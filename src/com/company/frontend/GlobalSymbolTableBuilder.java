@@ -78,8 +78,8 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
             else {
                 SymbolType t = new SymbolType(new Vector<>(currentPara));
                 ST.pushSymbol(getScopeName() + "_init",t ,node);
-                SymbolInfo curClass = ST.findSymbol(currentClass);
-                curClass.type.memList.add(t);
+                //SymbolInfo curClass = ST.findSymbol(currentClass);
+                //curClass.type.memList.add(t);
             }
         }
         else ST.pushSymbol(getScopeName()+node.funcName, new SymbolType(new Vector<>(currentPara)), node);
@@ -104,5 +104,4 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
             ST.pushSymbol(getScopeName() + node.name, new SymbolType(node.type), node);
         }
     }
-
 }
