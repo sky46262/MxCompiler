@@ -100,7 +100,7 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
         if (currentFunc != null) {
             currentPara.add(new SymbolType(node.type));
         }
-        else if (ST.tableStack.size() > 1 && currentClass != null){
+        else if (ST.tableStack.size() > 1 || currentClass != null){
             ST.pushSymbol(getScopeName() + node.name, new SymbolType(node.type), node);
         }
     }

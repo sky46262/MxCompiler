@@ -242,14 +242,16 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
     }
 
     @Override public ASTExprNode visitCreator(mxParser.CreatorContext ctx) {
-        ASTTypeNode type;
-        if (ctx.notArrayTypeName() != null) type = visitNotArrayTypeName(ctx.notArrayTypeName());
-        else if (ctx.classTypeName() != null) type = visitClassTypeName(ctx.classTypeName());
-        else return null;
-        type.dimension = ctx.LB().size();
+        ASTTypeNode type = visitNotArrayTypeName(ctx.notArrayTypeName());
         Vector<ASTExprNode> v = new Vector<>();
-        for (mxParser.ExpressionContext i : ctx.expression()){
-            v.add(visitExpression(i));
+        if (ctx.arrayInit() != null){
+            type.dimension = ctx.arrayInit().LB().size();
+            for (mxParser.ExpressionContext i : ctx.arrayInit().expression()){
+                v.add(visitExpression(i));
+            }
+        }
+        else {
+            type.dimension = 0;
         }
         return new ASTCreatorNode(new Position(ctx), ASTNodeType.e_creator, v, type);
     }

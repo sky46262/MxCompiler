@@ -70,8 +70,11 @@ expression:
 	;
     
 creator:
-	classTypeName ('(' ')')?
-	| notArrayTypeName (LB expression RB)* (LB RB)*;
+	notArrayTypeName (classInit | arrayInit);
+classInit:
+    '(' ')';
+arrayInit:
+	(LB expression RB)* (LB RB)*;
 
 
 declarator:

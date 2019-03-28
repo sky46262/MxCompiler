@@ -102,8 +102,8 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         }
         if (currentClass == null || currentFunc != null)
             ST.pushSymbol(node.name,new SymbolType(node.type), node);
-        else
-            ST.pushSymbol(getScopeName(node.name), new SymbolType(node.type), node);
+        //else
+            //ST.pushSymbol(getScopeName(node.name), new SymbolType(node.type), node);
         //What if class member???
         //TODO
     }
