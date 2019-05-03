@@ -148,7 +148,7 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
         for (mxParser.ExpressionContext i : ctx.expression()){
             v.add(visitExpression(i));
         }
-        ASTNodeType type = null;
+        ASTNodeType type = ASTNodeType.e_empty;
         switch (ctx.op.getText()) {
             case ".":
                 type = ASTNodeType.e_member;

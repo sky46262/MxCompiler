@@ -43,13 +43,14 @@ public class CFGBuilder extends ASTBaseVisitor{
                 break;
             }
             case e_land:
-                visitLogicalExprNode(node.exprList.get(0),node.exprList.get(1).startNode, fN);
                 visitLogicalExprNode(node.exprList.get(1), tN, fN);
+                visitLogicalExprNode(node.exprList.get(0),node.exprList.get(1).startNode, fN);
                 node.startNode = node.exprList.get(0).startNode;
                 break;
             case e_lor:
-                visitLogicalExprNode(node.exprList.get(0), tN, node.exprList.get(1).startNode);
                 visitLogicalExprNode(node.exprList.get(1), tN, fN);
+                visitLogicalExprNode(node.exprList.get(0), tN, node.exprList.get(1).startNode);
+                //order is important
                 node.startNode = node.exprList.get(0).startNode;
                 break;
             case e_not:
@@ -360,9 +361,9 @@ public class CFGBuilder extends ASTBaseVisitor{
                 }
                 return;
             }
-            case e_creator:
+            /*case e_creator:
                 node.instAddr = node.exprList.firstElement().instAddr;
-                return;
+                return;*/
             case e_list:
                 return;
             case e_empty:
