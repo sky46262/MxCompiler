@@ -181,7 +181,7 @@ public class CFGBuilder extends ASTBaseVisitor{
             node.startNode = node.endNode = curNode;
         }
         if (curFuncName == null && curClassName == null) {
-            int size = node.reg.addr1.lit3;//??？
+            int size = node.reg.addr1.lit3;//???
             if (node.initExpr.nodeType == ASTNodeType.p_int || node.initExpr.nodeType == ASTNodeType.p_bool) {
                 cfg.dataList.add(new CFGData("_global_"+node.name, ((ASTPrimNode)node.initExpr).intValue, true));
             } else {

@@ -14,9 +14,8 @@ import com.company.frontend.parser.mxLexer;
 import com.company.frontend.parser.mxParser;
 import org.antlr.v4.runtime.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -24,8 +23,8 @@ public class Main {
         mxParser.ProgramContext root = null;
         mxParser parser = null;
         try{
-            //mxLexer lexer = new mxLexer(CharStreams.fromStream(System.in));
-            mxLexer lexer = new mxLexer(CharStreams.fromFileName("main.mx"));
+            mxLexer lexer = new mxLexer(CharStreams.fromStream(System.in));
+            //mxLexer lexer = new mxLexer(CharStreams.fromFileName("main.mx"));
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             parser = new mxParser(tokens);
             SyntaxErrorListener errorListener = new SyntaxErrorListener(compileError);
@@ -61,12 +60,13 @@ public class Main {
         new NASMAdapter(cfg);
 
         BufferedWriter writer = null;
-        try {
+        writer = new BufferedWriter(new PrintWriter(System.out));
+       /* try {
             writer = new BufferedWriter(new FileWriter("test.asm"));
         } catch (IOException e) {
             e.printStackTrace();
             return;
-        }
+        }*/
         NASM nasm = new NASM(writer);
         new NASMBuilder(cfg, nasm);
         writer.close();
