@@ -280,7 +280,7 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
             case "string":
                 type  = ASTNodeType.t_str;
         }
-        return new ASTTypeNode(new Position(ctx), type, "", 0);
+        return new ASTTypeNode(new Position(ctx), type, null, 0);
     }
     @Override public ASTTypeNode visitClassTypeName(mxParser.ClassTypeNameContext ctx) {
         return new ASTTypeNode(new Position(ctx), ASTNodeType.t_class, ctx.getText(), 0);
