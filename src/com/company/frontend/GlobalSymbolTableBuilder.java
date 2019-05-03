@@ -28,27 +28,27 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
     @Override
     public void visitCompilationUnitNode(ASTCompilationUnitNode node) {
          ST.push("global");
-
+         String libName = "_lib_";
          Vector<SymbolType> list = new Vector<>();
          list.add(SymbolType.voidSymbolType);
          list.add(SymbolType.strSymbolType);
-        ST.pushSymbol("print", new SymbolType(new Vector<>(list)), node);
-        ST.pushSymbol("println", new SymbolType(new Vector<>(list)), node);
+        ST.pushSymbol("print", new SymbolType(new Vector<>(list)), node, libName, null);
+        ST.pushSymbol("println", new SymbolType(new Vector<>(list)), node, libName, null);
         list.clear();
         list.add(SymbolType.strSymbolType);
-        ST.pushSymbol("getString", new SymbolType(new Vector<>(list)), node);
+        ST.pushSymbol("getString", new SymbolType(new Vector<>(list)), node, libName, null);
         list.add(SymbolType.intSymbolType);
-        ST.pushSymbol("toString", new SymbolType(new Vector<>(list)), node);
+        ST.pushSymbol("toString", new SymbolType(new Vector<>(list)), node, libName, null);
         list.add(SymbolType.intSymbolType);
-        ST.pushSymbol("string.substring", new SymbolType(new Vector<>(list)), node);
+        ST.pushSymbol("string.substring", new SymbolType(new Vector<>(list)), node, libName, null);
         list.clear();
         list.add(SymbolType.intSymbolType);
-        ST.pushSymbol("getInt", new SymbolType(new Vector<>(list)), node);
-        ST.pushSymbol("array.size", new SymbolType(new Vector<>(list)), node);
-        ST.pushSymbol("string.length", new SymbolType(new Vector<>(list)), node);
-        ST.pushSymbol("string.parseInt", new SymbolType(new Vector<>(list)), node);
+        ST.pushSymbol("getInt", new SymbolType(new Vector<>(list)), node, libName, null);
+        ST.pushSymbol("array.size", new SymbolType(new Vector<>(list)), node, libName, null);
+        ST.pushSymbol("string.length", new SymbolType(new Vector<>(list)), node, libName, null);
+        ST.pushSymbol("string.parseInt", new SymbolType(new Vector<>(list)), node, libName, null);
         list.add(SymbolType.intSymbolType);
-        ST.pushSymbol("string.ord", new SymbolType(new Vector<>(list)), node);
+        ST.pushSymbol("string.ord", new SymbolType(new Vector<>(list)), node, libName, null);
         list.clear();
 
         for (ASTStmtNode i: node.declList) visitStmt(i);
@@ -62,7 +62,7 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
 
     @Override
     public void visitStmtNode(ASTStmtNode node){
-        for (ASTStmtNode i : node.StmtList) visitStmt(i);
+        for (ASTStmtNode i : node.stmtList) visitStmt(i);
     }
 
     @Override
@@ -77,12 +77,12 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
                 ce.add(CompileError.ceType.ce_invalid_constructor, "the name of constructor must be" + currentClass, node.pos);
             else {
                 SymbolType t = new SymbolType(new Vector<>(currentPara));
-                ST.pushSymbol(getScopeName() + "_init",t ,node);
+                node.startNode = ST.pushSymbol(getScopeName() + "_init",t ,node,currentClass, null).startNode;
                 //SymbolInfo curClass = ST.findSymbol(currentClass);
                 //curClass.type.memList.add(t);
             }
         }
-        else ST.pushSymbol(getScopeName()+node.funcName, new SymbolType(new Vector<>(currentPara)), node);
+        else node.startNode = ST.pushSymbol(getScopeName()+node.funcName, new SymbolType(new Vector<>(currentPara)), node, currentClass, null).startNode;
         currentFunc = null;
     }
 
@@ -91,7 +91,7 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
         //ST.pushSymbol(node.className, new SymbolType(SymbolType.symbolType.CLASS, node.className, 0, new Vector<>()),node);
         ST.pushSymbol(node.className, SymbolType.classSymbolType ,node);
         currentClass = node.className;
-        for (ASTStmtNode i : node.StmtList) visitStmt(i);
+        for (ASTStmtNode i : node.stmtList) visitStmt(i);
         currentClass = null;
     }
 
@@ -101,7 +101,7 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
             currentPara.add(new SymbolType(node.type));
         }
         else if (ST.tableStack.size() > 1 || currentClass != null){
-            ST.pushSymbol(getScopeName() + node.name, new SymbolType(node.type), node);
+            ST.pushSymbol(getScopeName() + node.name, new SymbolType(node.type), node, currentClass, null);
         }
     }
 }

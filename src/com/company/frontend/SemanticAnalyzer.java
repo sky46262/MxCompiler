@@ -31,14 +31,14 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         return node.resultType.equals(type);
     }
     private boolean checkSubExprType(ASTExprNode node, SymbolType type, int num){
-        if (num == 1) return checkExprType(node.exprList.elementAt(0), type);
-        else if (num == 2) return checkExprType(node.exprList.elementAt(1),type) && checkExprType(node.exprList.elementAt(0),type);
+        if (num == 1) return checkExprType(node.exprList.get(0), type);
+        else if (num == 2) return checkExprType(node.exprList.get(1),type) && checkExprType(node.exprList.get(0),type);
         return false;
     }
     private boolean checkFunc(Vector<SymbolType> memList, Vector<SymbolType> params){
         for (int i = 0; i < params.size();i++){
-            if (memList.elementAt(i+1) == null) return false;
-            if (!memList.elementAt(i+1).equals(params.elementAt(i))){
+            if (memList.get(i+1) == null) return false;
+            if (!memList.get(i+1).equals(params.get(i))){
                 return false;
             }
         }
@@ -55,7 +55,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             case e_idx:
                 return true;
             case e_member:
-                return checkLvalue(node.exprList.elementAt(1));
+                return checkLvalue(node.exprList.get(1));
             case e_inc_p:
             case e_dec_p:
                 return true;
@@ -71,13 +71,12 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
     @Override
     public void visitClassDeclNode(ASTClassDeclNode node) {
         currentClass = node.className;
-        //TODO push?
         ST.push(node.className);
-        for (ASTStmtNode i : node.StmtList)
+        for (ASTStmtNode i : node.stmtList)
             if (i instanceof ASTFuncDeclNode) visitFuncDecl_m((ASTFuncDeclNode)i);
             else if (i instanceof ASTDeclNode) visitVarDecl_m((ASTDeclNode)i);
 
-        for (ASTStmtNode i : node.StmtList) visitStmt(i);
+        for (ASTStmtNode i : node.stmtList) visitStmt(i);
         currentClass = null;
         ST.pop();
     }
@@ -86,7 +85,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         ST.pushSymbol(node.funcName, ST.findSymbol(getScopeName(node.isConstructor?"_init":node.funcName)));
     }
     public void visitVarDecl_m(ASTDeclNode node){
-        ST.pushSymbol(node.name,new SymbolType(node.type), node);
+        ST.pushSymbol(node.name,new SymbolType(node.type), node, currentClass,currentFunc);
     }
     @Override
     public void visitFuncDeclNode(ASTFuncDeclNode node) {
@@ -97,7 +96,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         //hasReturn = false;
         currentReturnType = new SymbolType(node.returnType);
         visitStmt(node.paramList);
-        for (ASTStmtNode i: node.funcBody.StmtList) visitStmt(i);
+        for (ASTStmtNode i: node.funcBody.stmtList) visitStmt(i);
        // if (!hasReturn && currentReturnType.type != SymbolType.symbolType.VOID)
           //  ce.add(CompileError.ceType.ce_noreturn, node.funcName, node.pos);
         //warning
@@ -110,14 +109,12 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         visitTypeNode(node.type);
         if (node.initExpr != null) {
             visitExpr(node.initExpr);
-            //empty expression???
-            if (!checkExprType(node.initExpr, new SymbolType(node.type)))
+            if (!node.initExpr.isEmpty() && !checkExprType(node.initExpr, new SymbolType(node.type)))
                 ce.add(CompileError.ceType.ce_type, "invalid init:"+node.name, node.pos);
         }
         //if not in class or in function
         if (currentClass == null || currentFunc != null)
-            ST.pushSymbol(node.name,new SymbolType(node.type), node);
-        //TODO
+            ST.pushSymbol(node.name,new SymbolType(node.type), node,currentClass,currentFunc);
     }
     //check type
     @Override
@@ -135,7 +132,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         switch (node.nodeType){
             case s_block:
                 ST.push(Integer.toString(node.hashCode()));
-                for (ASTStmtNode i: node.StmtList) visitStmt(i);
+                for (ASTStmtNode i: node.stmtList) visitStmt(i);
                 ST.pop();
                 return;
             case s_continue:
@@ -144,31 +141,31 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 return;
             case s_return:
                 if (currentFunc == null) ce.add(CompileError.ceType.ce_type, "no need to return", node.pos);
-                visitStmt(node.StmtList.elementAt(0));
-                if (!checkExprType((ASTExprNode) node.StmtList.elementAt(0), currentReturnType))
+                visitStmt(node.stmtList.get(0));
+                if (!checkExprType((ASTExprNode) node.stmtList.get(0), currentReturnType))
                     ce.add(CompileError.ceType.ce_type, "return:" + currentFunc, node.pos);
                 //hasReturn = true;
                 return;
             case s_paramlist:
-                for (ASTStmtNode i: node.StmtList) visitStmt(i);
+                for (ASTStmtNode i: node.stmtList) visitStmt(i);
                 return;
             case s_if:
-                for (ASTStmtNode i: node.StmtList) visitStmt(i);
-                if (!checkExprType((ASTExprNode) node.StmtList.elementAt(0), SymbolType.boolSymbolType))
+                for (ASTStmtNode i: node.stmtList) visitStmt(i);
+                if (!checkExprType((ASTExprNode) node.stmtList.get(0), SymbolType.boolSymbolType))
                     ce.add(CompileError.ceType.ce_type, "if", node.pos);
                 return;
             case s_for:
                 ++loopCnt;
-                for (ASTStmtNode i: node.StmtList) visitStmt(i);
+                for (ASTStmtNode i: node.stmtList) visitStmt(i);
                 --loopCnt;
-                if (node.StmtList.elementAt(1) != null && !checkExprType((ASTExprNode) node.StmtList.elementAt(1), SymbolType.boolSymbolType))
+                if (node.stmtList.get(1) != null && !checkExprType((ASTExprNode) node.stmtList.get(1), SymbolType.boolSymbolType))
                     ce.add(CompileError.ceType.ce_type, "for", node.pos);
                 return;
             case s_while:
                 ++loopCnt;
-                for (ASTStmtNode i: node.StmtList) visitStmt(i);
+                for (ASTStmtNode i: node.stmtList) visitStmt(i);
                 --loopCnt;
-                if (!checkExprType((ASTExprNode) node.StmtList.elementAt(0), SymbolType.boolSymbolType))
+                if (!checkExprType((ASTExprNode) node.stmtList.get(0), SymbolType.boolSymbolType))
                     ce.add(CompileError.ceType.ce_type, "while", node.pos);
                 return;
             default:
@@ -215,10 +212,10 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 else ce.add(CompileError.ceType.ce_type,"invalid type of:"+node.nodeType.toString(),node.pos);
                 break;
             case e_asgn:
-                if (!checkLvalue(node.exprList.elementAt(0)))
+                if (!checkLvalue(node.exprList.get(0)))
                     ce.add(CompileError.ceType.ce_lvalue, "not lvalue",node.pos);
-                if (node.exprList.elementAt(0).resultType.equals(node.exprList.elementAt(1).resultType))
-                    node.resultType = node.exprList.elementAt(0).resultType;
+                if (node.exprList.get(0).resultType.equals(node.exprList.get(1).resultType))
+                    node.resultType = node.exprList.get(0).resultType;
                 else ce.add(CompileError.ceType.ce_type, "invalid type of:" + node.nodeType.toString(), node.pos);
                 break;
             case e_pos:
@@ -238,7 +235,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             case e_dec_s:
             case e_inc_p:
             case e_inc_s:
-                if (!checkLvalue(node.exprList.elementAt(0)))
+                if (!checkLvalue(node.exprList.get(0)))
                     ce.add(CompileError.ceType.ce_lvalue, "not lvalue",node.pos);
                 if (checkSubExprType(node, SymbolType.intSymbolType, 1))
                     node.resultType = SymbolType.intSymbolType;
@@ -246,7 +243,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 break;
             case e_eq:
             case e_ne:
-                if (node.exprList.elementAt(0).resultType.equals(node.exprList.elementAt(1).resultType))
+                if (node.exprList.get(0).resultType.equals(node.exprList.get(1).resultType))
                     node.resultType = SymbolType.boolSymbolType;
                 else ce.add(CompileError.ceType.ce_type,"invalid type of:"+node.nodeType.toString(),node.pos);
                 break;
@@ -256,21 +253,24 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 else ce.add(CompileError.ceType.ce_type,"invalid type of:"+node.nodeType.toString(),node.pos);
                 break;
             case e_idx:
-                if (node.exprList.elementAt(0).resultType.arrayDim == 0)
-                    ce.add(CompileError.ceType.ce_type, "invalid dim", node.exprList.elementAt(0).pos);
-                else if (checkExprType(node.exprList.elementAt(1),SymbolType.intSymbolType))
-                    node.resultType = node.exprList.elementAt(0).resultType.getDerefType();
-                else ce.add(CompileError.ceType.ce_type, "invalid idx", node.exprList.elementAt(1).pos);
+                if (node.exprList.get(0).resultType.arrayDim == 0)
+                    ce.add(CompileError.ceType.ce_type, "invalid dim", node.exprList.get(0).pos);
+                else if (checkExprType(node.exprList.get(1),SymbolType.intSymbolType))
+                    node.resultType = node.exprList.get(0).resultType.getDerefType();
+                else ce.add(CompileError.ceType.ce_type, "invalid idx", node.exprList.get(1).pos);
                 break;
             case e_call:
                 if (checkSubExprType(node,SymbolType.funcSymbolType,1)){
                     Vector<SymbolType> params = new Vector<>();
                     if (node.exprList.size() > 1)
-                    for (ASTExprNode i: node.exprList.elementAt(1).exprList) params.add(i.resultType);
-                    SymbolType fType = node.exprList.elementAt(0).resultType;
+                    for (ASTExprNode i: node.exprList.get(1).exprList) params.add(i.resultType);
+                    SymbolType fType = node.exprList.get(0).resultType;
                     if (fType.memList.size()-1  == params.size()){
-                        if (checkFunc(fType.memList, params))
+                        if (checkFunc(fType.memList, params)) {
                             node.resultType = fType.memList.firstElement();
+                            node.toNode = node.exprList.firstElement().toNode;
+                            //firstElement of exprList is the name of function
+                        }
                         else ce.add(CompileError.ceType.ce_type, "wrong argument type", node.pos);
                     }
                     else ce.add(CompileError.ceType.ce_type, "wrong argumentList len", node.pos);
@@ -288,16 +288,18 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 }
                 else
                     ce.add(CompileError.ceType.ce_nodecl, "no class " + node.exprList.firstElement().resultType.name, node.pos);
-                if (node.exprList.elementAt(1).nodeType == ASTNodeType.e_member || node.exprList.elementAt(1).nodeType == ASTNodeType.p_id) {
-                    visitExpr(node.exprList.elementAt(1));
-                    node.resultType = node.exprList.elementAt(1).resultType;
+                if (node.exprList.get(1).nodeType == ASTNodeType.e_member || node.exprList.get(1).nodeType == ASTNodeType.p_id) {
+                    visitExpr(node.exprList.get(1));
+                    node.resultType = node.exprList.get(1).resultType;
+                    node.instAddr = node.exprList.get(1).instAddr;
+                    node.toNode = node.exprList.get(1).toNode;
                 }
                 else ce.add(CompileError.ceType.ce_type, "no a member of " + node.exprList.firstElement().resultType.name, node.pos);
                 break;
             case e_empty:
                 node.resultType = SymbolType.voidSymbolType;
            // case e_creator:
-            //  node.resultType = node.exprList.elementAt(0).resultType;
+            //  node.resultType = node.exprList.get(0).resultType;
             //break;
             default:
         }
@@ -314,16 +316,15 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                     break;
                 }
             }
-            node.resultType = new SymbolType(node.type);
         }
-        else
         if (node.type.className != null){
             SymbolInfo symbol = ST.findSymbol(node.type.className);
             if (symbol == null) ce.add(CompileError.ceType.ce_nodecl, "class creator:"+node.type.className, node.pos);
             if (!symbol.type.equals(SymbolType.classSymbolType)) ce.add(CompileError.ceType.ce_type, "not class creator:"+node.type.className, node.pos);
-            node.resultType = new SymbolType(node.type);
+            if (ST.findSymbol(node.type.className+"_init") != null) node.hasConstructor = true;
         }
-        //TODO array of class
+        node.resultType = new SymbolType(node.type);
+        //todo  array of class to be tested
     }
 
     @Override
@@ -360,6 +361,8 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                     ce.add(CompileError.ceType.ce_nodecl, "no decl of" + Name, node.pos);
                 else {
                     node.resultType = symbol.type;
+                    node.instAddr = symbol.reg;
+                    node.toNode= symbol.startNode;
                 }
                 break;
 

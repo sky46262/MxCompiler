@@ -1,0 +1,13 @@
+MxCompiler Report
+1. Introduction
+MxCompiler is a compiler from Mx language to Linux x86-64 Assembly. The source language is Java.
+2. FrontEnd
+	2.1 Lex and Parse
+	I use Antlr to lex and parse the code, and generate a parsetree.
+	2.2 Build AST
+	I extend the Visitor of Antlr to walk the parse tree and build the AST.(Abstract Syntax Tree)
+	2.3 Semantic Analyze
+	I walk the AST twice to build a SymbolTable. The first time I build global symboltable, and the next time I check all the statements.
+	SymbolTable is a stack of ScopedSymbolTable. ScopedSymbolTable is a hashtable with a name.
+	2.4 IR Generation
+3.BackEnd

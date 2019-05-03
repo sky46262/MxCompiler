@@ -21,6 +21,7 @@ public class SymbolType {
     public String name;
     public int arrayDim;
     public Vector<SymbolType> memList;
+    public int memSize;
     public SymbolType(symbolType _t){
         type = _t;
         name = null;
@@ -87,4 +88,7 @@ public class SymbolType {
         return false;
     }
 
+    public int getMemSize() {
+        return memSize;
+    }
 }

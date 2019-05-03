@@ -1,6 +1,7 @@
 package com.company.frontend.AST;
 
 import com.company.common.Position;
+import com.company.frontend.IR.CFGNode;
 
 import java.util.Vector;
 

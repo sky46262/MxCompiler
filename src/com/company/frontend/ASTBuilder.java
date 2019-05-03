@@ -137,7 +137,7 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
     }
 
     @Override public ASTExprNode visitExpression(mxParser.ExpressionContext ctx) {
-        if (ctx == null) return null;
+        if (ctx == null) return new ASTExprNode();
         if (ctx.Identifier() != null) return new ASTPrimNode(new Position(ctx), ASTNodeType.p_id, 0, ctx.Identifier().getText());
         if (ctx.constant() != null) return visitConstant(ctx.constant());
         if (ctx.creator() != null)
