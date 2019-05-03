@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" line="277" />
+    <bookmark url="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" line="273" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,13 +34,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+              <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+              <folding>
+                <element signature="method#NASMBuilder#0;class#NASMBuilder#0" />
+                <element signature="method#visitCFG#0;class#NASMBuilder#0" />
+                <element signature="method#visitCFGNode#0;class#NASMBuilder#0" />
+                <element signature="method#visitCFGData#0;class#NASMBuilder#0" />
+                <element signature="method#visitCFGInst#0;class#NASMBuilder#0" />
+                <element signature="method#genNASMInst#0;class#NASMBuilder#0" />
+                <element signature="method#genNASMInst#1;class#NASMBuilder#0" />
+                <element signature="method#pushCalleeSavedReg#0;class#NASMBuilder#0" />
+                <element signature="method#popCalleeSavedReg#0;class#NASMBuilder#0" />
+                <element signature="method#getNASMAddr#0;class#NASMBuilder#0" />
+                <element signature="method#getNASMReg#0;class#NASMBuilder#0" />
+                <element signature="method#getNASMOp#0;class#NASMBuilder#0" />
+                <element signature="method#getExp2#0;class#NASMBuilder#0" />
               </folding>
             </state>
           </provider>
@@ -121,18 +145,6 @@
                 <element signature="e#34340#35136#1" />
                 <element signature="e#35154#35229#1" />
                 <element signature="method#visitTypeNode#0;class#CFGBuilder#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -318,7 +330,6 @@
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMLabelAddr.java" />
         <option value="$PROJECT_DIR$/../XNG-master/src/xng/backend/NASM/NASMGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMRegAddr.java" />
-        <option value="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASM.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/AST/ASTExprNode.java" />
@@ -331,6 +342,7 @@
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMMemAddr.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" />
       </list>
     </option>
   </component>
@@ -341,9 +353,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="54" />
-    <option name="y" value="33" />
-    <option name="width" value="1494" />
+    <option name="x" value="217" />
+    <option name="y" value="451" />
+    <option name="width" value="1223" />
     <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -439,7 +451,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556895143235" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556895819370" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -543,12 +555,12 @@
       <workItem from="1556623042324" duration="5341000" />
       <workItem from="1556693518379" duration="19296000" />
       <workItem from="1556772985927" duration="10515000" />
-      <workItem from="1556856476812" duration="16934000" />
+      <workItem from="1556856476812" duration="17721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263791000" />
+    <option name="totallyTimeSpent" value="264578000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,10 +572,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <frame x="470" y="187" width="815" height="696" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3371059" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.6996644" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497979" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -574,7 +586,7 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32867134" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.23776224" />
-      <window_info anchor="bottom" id="Debug" order="4" visible="true" weight="0.4055944" />
+      <window_info anchor="bottom" id="Debug" order="4" visible="true" weight="0.4113475" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32692307" />
@@ -951,62 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
-          <folding>
-            <element signature="method#NASMBuilder#0;class#NASMBuilder#0" />
-            <element signature="method#visitCFG#0;class#NASMBuilder#0" />
-            <element signature="e#1296#1353#1" />
-            <element signature="e#1393#1440#1" />
-            <element signature="e#1510#1619#1" />
-            <element signature="e#1731#1810#1" />
-            <element signature="e#1921#2000#1" />
-            <element signature="method#visitCFGNode#0;class#NASMBuilder#0" />
-            <element signature="e#2204#2468#0" />
-            <element signature="e#2507#3175#1" />
-            <element signature="e#2598#2683#1" />
-            <element signature="e#2948#3134#1" />
-            <element signature="e#3609#3870#1" />
-            <element signature="method#visitCFGData#0;class#NASMBuilder#0" />
-            <element signature="e#4046#4419#0" />
-            <element signature="method#visitCFGInst#0;class#NASMBuilder#0" />
-            <element signature="method#genNASMInst#0;class#NASMBuilder#0" />
-            <element signature="e#4988#5087#1" />
-            <element signature="e#5151#5472#1" />
-            <element signature="e#5536#5837#1" />
-            <element signature="e#6202#7204#0" />
-            <element signature="e#6408#6565#1" />
-            <element signature="e#6655#6909#1" />
-            <element signature="e#7625#7681#1" />
-            <element signature="e#8149#8203#1" />
-            <element signature="method#genNASMInst#1;class#NASMBuilder#0" />
-            <element signature="method#pushCalleeSavedReg#0;class#NASMBuilder#0" />
-            <element signature="e#7507#7626#1" />
-            <element signature="method#popCalleeSavedReg#0;class#NASMBuilder#0" />
-            <element signature="e#7714#7877#1" />
-            <element signature="e#7969#8088#1" />
-            <element signature="method#popCallerSavedReg#0;class#NASMBuilder#0" />
-            <element signature="e#8176#8339#1" />
-            <element signature="method#getNASMAddr#0;class#NASMBuilder#0" />
-            <element signature="e#8479#10160#0" />
-            <element signature="e#8817#8935#1" />
-            <element signature="e#8957#9906#1" />
-            <element signature="e#9004#9483#0" />
-            <element signature="e#9529#9888#0" />
-            <element signature="method#getNASMReg#0;class#NASMBuilder#0" />
-            <element signature="e#10337#10858#0" />
-            <element signature="e#10756#10767#0" />
-            <element signature="e#10911#11001#1" />
-            <element signature="method#getNASMOp#0;class#NASMBuilder#0" />
-            <element signature="e#11266#12980#0" />
-            <element signature="e#12836#12850#0" />
-            <element signature="method#getExp2#0;class#NASMBuilder#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1668,9 +1624,31 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding>
+            <element signature="method#NASMBuilder#0;class#NASMBuilder#0" />
+            <element signature="method#visitCFG#0;class#NASMBuilder#0" />
+            <element signature="method#visitCFGNode#0;class#NASMBuilder#0" />
+            <element signature="method#visitCFGData#0;class#NASMBuilder#0" />
+            <element signature="method#visitCFGInst#0;class#NASMBuilder#0" />
+            <element signature="method#genNASMInst#0;class#NASMBuilder#0" />
+            <element signature="method#genNASMInst#1;class#NASMBuilder#0" />
+            <element signature="method#pushCalleeSavedReg#0;class#NASMBuilder#0" />
+            <element signature="method#popCalleeSavedReg#0;class#NASMBuilder#0" />
+            <element signature="method#getNASMAddr#0;class#NASMBuilder#0" />
+            <element signature="method#getNASMReg#0;class#NASMBuilder#0" />
+            <element signature="method#getNASMOp#0;class#NASMBuilder#0" />
+            <element signature="method#getExp2#0;class#NASMBuilder#0" />
           </folding>
         </state>
       </provider>
