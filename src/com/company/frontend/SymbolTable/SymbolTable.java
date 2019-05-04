@@ -67,8 +67,8 @@ public class SymbolTable {
                     if (classInfo == null)
                         ce.add(CompileError.ceType.ce_nodecl, curClassName, node.pos);
                     else {
-                        ((ASTDeclNode) node).reg = info.reg = CFGInstAddr.newImmAddr(classInfo.type.getMemSize());
-                        classInfo.type.memSize += type.getMemSize();
+                        ((ASTDeclNode) node).reg = info.reg = CFGInstAddr.newImmAddr(classInfo.type.getClassMemSize());
+                        classInfo.type.ClassMemSize += type.getMemSize();
                     }
 
                 } else {

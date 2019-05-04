@@ -290,8 +290,10 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
             return new ASTPrimNode(new Position(ctx), ASTNodeType.p_bool, (ctx.BoolConstant().getText().equals("true"))?1:0, "");
         if (ctx.IntegerConstant() != null)
             return new ASTPrimNode(new Position(ctx), ASTNodeType.p_int, Integer.parseInt(ctx.IntegerConstant().getText()), "");
-        if (ctx.StringConstant() != null)
-            return new ASTPrimNode(new Position(ctx), ASTNodeType.p_str, 0,ctx.StringConstant().getText());
+        if (ctx.StringConstant() != null){
+            String str = ctx.StringConstant().getText();
+            return new ASTPrimNode(new Position(ctx), ASTNodeType.p_str, 0,str.substring(1,str.length()-1));
+        }
         if (ctx.PointConstant() != null){
             if (ctx.PointConstant().getText().equals("this"))
                 return new ASTPrimNode(new Position(ctx), ASTNodeType.p_this, 0,"");

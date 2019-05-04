@@ -1,9 +1,7 @@
 package com.company.frontend.SymbolTable;
 
-import com.company.frontend.AST.ASTNodeType;
 import com.company.frontend.AST.ASTTypeNode;
 
-import java.awt.*;
 import java.util.Vector;
 
 public class SymbolType {
@@ -21,7 +19,7 @@ public class SymbolType {
     public String name;
     public int arrayDim;
     public Vector<SymbolType> memList;
-    public int memSize;
+    public Integer ClassMemSize = 0;
     public SymbolType(symbolType _t){
         type = _t;
         name = null;
@@ -88,8 +86,21 @@ public class SymbolType {
         }
         return false;
     }
-
+    public int getClassMemSize(){
+        if(type == symbolType.CLASS) return ClassMemSize;
+        else return 0;
+    }
     public int getMemSize() {
-        return memSize;
+        if (arrayDim >0) return 8;
+        switch (type){
+            case CLASS:
+            case INT:
+            case STR:
+            case NULL:
+            case BOOL:
+                return 8;
+                default:
+                    return 0;
+        }
     }
 }
