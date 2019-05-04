@@ -58,6 +58,13 @@ public class NASMAdapter {
             }
         }
         node.insts = newList;
+        for (CFGInst inst : node.insts){
+            if (inst.op == CFGInst.InstType.op_mov){
+                CFGInstAddr opr1 = inst.operands.get(0);
+                CFGInstAddr opr2 = inst.operands.get(1);
+                assert opr1 != null && opr2 != null && !(opr1.a_type == CFGInstAddr.addrType.a_mem && opr2.a_type == CFGInstAddr.addrType.a_mem);
+            }
+        }
         node.nextNodes.forEach(this::visitCFGNode);
     }
     private void visitCFGInst(Vector<CFGInst> list, CFGInst.InstType type, CFGInstAddr opr1, CFGInstAddr opr2){
@@ -92,9 +99,11 @@ public class NASMAdapter {
             CFGInstAddr tmp =  CFGInstAddr.newRegAddr();
             visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
             visitCFGInst(list, type, opr1, tmp);
+            return;
         }
         CFGInstAddr newOpr2 = visitCFGInstAddr(list, opr2); //opr2 first ???
         CFGInstAddr newOpr1 = visitCFGInstAddr(list, opr1);
+        //assert !(type == CFGInst.InstType.op_mov && newOpr1.a_type == CFGInstAddr.addrType.a_mem && newOpr2.a_type == CFGInstAddr.addrType.a_mem);
         if (type == CFGInst.InstType.op_mov && newOpr1.equals(newOpr2)) return;
         list.add(new CFGInst(type, newOpr1, newOpr2));
     }

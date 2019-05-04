@@ -67,7 +67,7 @@ public class SymbolTable {
                     if (classInfo == null)
                         ce.add(CompileError.ceType.ce_nodecl, curClassName, node.pos);
                     else {
-                        ((ASTDeclNode) node).reg = info.reg = CFGInstAddr.newImmAddr(classInfo.type.getMemSize(),0);
+                        ((ASTDeclNode) node).reg = info.reg = CFGInstAddr.newImmAddr(classInfo.type.getMemSize());
                         classInfo.type.memSize += type.getMemSize();
                     }
 
@@ -75,7 +75,7 @@ public class SymbolTable {
                     //global -> mem
                     int size = type.getMemSize();
                     ((ASTDeclNode) node).reg = info.reg =
-                            CFGInstAddr.newMemAddr(CFGInstAddr.newStaticAddr("_v_"+str, size), CFGInstAddr.newImmAddr(0,0),0,0);
+                            CFGInstAddr.newMemAddr(CFGInstAddr.newStaticAddr("_v_"+str, size), CFGInstAddr.newImmAddr(0),0,0);
                 }
             }
             tableStack.peek().table.put(str, info);

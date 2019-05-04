@@ -108,7 +108,9 @@ public class NASMBuilder {
                 break;
             case d_str:
                 str.append("db\t");
-                str.append("\"").append(data.strValue).append("\",0");
+                data.strValue.chars().forEach(i-> str.append(String.format("%02X",i)).append("H, "));
+                str.append("00H");
+                //???
                 break;
         }
         nasm.genLine(true, str.toString());
@@ -124,6 +126,9 @@ public class NASMBuilder {
     }
 
     private void genNASMInst(CFGInst.InstType op, CFGInstAddr opr1, CFGInstAddr opr2) {
+        if (op == CFGInst.InstType.op_mov){
+            assert opr1 != null && opr2 != null && !(opr1.a_type == CFGInstAddr.addrType.a_mem && opr2.a_type == CFGInstAddr.addrType.a_mem);
+        }
         if (CFGInst.isCompare(op) && opr1.a_type == CFGInstAddr.addrType.a_imm) {
             genNASMInst(op, opr2, opr1);
             return;
@@ -182,6 +187,7 @@ public class NASMBuilder {
                 else genNASMInst(getNASMOp(op), a1, a2);
                 break;
             case op_call:
+                genNASMInst(getNASMOp(op), a1, a2);
                 if (parameterStackOffset > 0){
                     genNASMInst(NASMInst.InstType.ADD, new NASMRegAddr(20, NASMWordType.QWORD), new NASMImmAddr(parameterStackOffset));
                     parameterStackOffset = 0;
@@ -313,9 +319,9 @@ public class NASMBuilder {
             case op_sub:
                 return NASMInst.InstType.SUB;
             case op_mult:
-                return NASMInst.InstType.IMULQ;
+                return NASMInst.InstType.IMUL;
             case op_div:
-                return NASMInst.InstType.IDIVQ;
+                return NASMInst.InstType.IDIV;
             case op_inc:
                 return NASMInst.InstType.INC;
             case op_dec:

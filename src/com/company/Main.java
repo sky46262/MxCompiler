@@ -60,8 +60,8 @@ public class Main {
         new NASMAdapter(cfg);
 
         BufferedWriter writer = null;
-        writer = new BufferedWriter(new PrintWriter(System.out));
-       /* try {
+       writer = new BufferedWriter(new PrintWriter(System.out));
+       /*try {
             writer = new BufferedWriter(new FileWriter("test.asm"));
         } catch (IOException e) {
             e.printStackTrace();

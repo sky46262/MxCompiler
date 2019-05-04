@@ -105,8 +105,8 @@ public class CFGInstAddr {
 
     }
     //lit1, lit2
-    public static CFGInstAddr newImmAddr(int rg1, int rg2){
-        CFGInstAddr newAddr = new CFGInstAddr(addrType.a_imm, rg1, rg2, 0,0);
+    public static CFGInstAddr newImmAddr(int l1){
+        CFGInstAddr newAddr = new CFGInstAddr(addrType.a_imm, 0, 0, 0,l1);
         //todo const
         return newAddr;
     }

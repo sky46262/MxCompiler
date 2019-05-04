@@ -24,8 +24,8 @@ public class NASMMemAddr extends NASMAddr{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        //???
-        //if (wtype != NASMWordType.WORD) sb.append(wtype.toString().toLowerCase()).append(" ");
+        //size
+        if (wtype != NASMWordType.WORD) sb.append(wtype.toString().toLowerCase()).append(" ");
         sb.append('[');
         if (base != null) {
             sb.append(base);
