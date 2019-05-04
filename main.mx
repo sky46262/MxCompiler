@@ -1,39 +1,17 @@
-//Target: use loops to calculate calculator of 6!
-//@author yixi
-
-int N;
-int h = 99;
-int i = 100;
-int j = 101;
-int k = 102;
-int total = 0;
-
 int main() {
-  	int a;
-    int b;
-	int c;
-	int d;
-	int e;
-	int f;
-	N=getInt();
-	for ( a=1; a<=N; a++ )
-	for ( b=1; b<=N; b++ )
-	for ( c=1; c<=N; c++ )
-	for ( d=1; d<=N; d++ )
-	for ( e=1; e<=N; e++ )
-	for ( f=1; f<=N; f++ )
-		if (a!=b && a!=c && a!=d && a!=e && a!=f && a!=h && a!=i && a!=j && a!=k
-              && b!=c && b!=d && b!=e && b!=f && b!=h && b!=i && b!=j && b!=k
-              && c!=d && c!=e && c!=f && c!=h && c!=i && c!=j && c!=k
-              && d!=e && d!=f && d!=h && d!=i && d!=j && d!=k
-              && e!=f && e!=h && e!=i && e!=j && e!=k
-              && f!=h && f!=i && f!=j && f!=k && i!=j && h!=k)
-		{
-			total++;
-		}
+    int a = 5;
+    int b = 0;
+    int c;
+    if (b != 0 && a/b != 1) {
+        c = 10;
+    } else {
+        c = 20;
+    }
 
-	println(toString(total));
-	return 0;
+    if (!(c == 10 && a/b == 0 && a == 5))
+        c = 30;
+
+    return c;
 }
 
 
@@ -41,13 +19,19 @@ int main() {
 
 /*!! metadata:
 === comment ===
-superloop-5090379042-jiaxiao.mx
+simple2.mx
 === assert ===
-success_compile
+exitcode
+=== timeout ===
+0.1
+=== input ===
+
 === phase ===
-semantic pretest
+codegen pretest
 === is_public ===
 True
+=== exitcode ===
+30
 
 !!*/
 
