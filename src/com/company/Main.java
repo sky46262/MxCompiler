@@ -22,7 +22,7 @@ public class Main {
         CompileError compileError = new CompileError();
         mxParser.ProgramContext root = null;
         mxParser parser = null;
-        boolean isTest = true;
+        boolean isTest = false;
         try{
             mxLexer lexer;
             if (isTest) lexer = new mxLexer(CharStreams.fromStream(System.in));
