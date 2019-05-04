@@ -430,13 +430,15 @@ L_021:
 L_022:
         db 25H, 73H, 00H
 global main
+global _static_init
 global _global_a
 
 SECTION .text
 main:
 	push	rbp
 	mov	rbp, rsp
-	sub	rsp, 64
+	sub	rsp, 128
+	call	_static_init
 _Label_14:
 	mov	qword [rbp-8H], 4
 	lea	rax, [rbp-8H]
@@ -445,31 +447,82 @@ _Label_14:
 	call	_lib_alloc
 	mov	qword [rbp-10H], rax
 _Label_15:
-_Label_17:
+_Label_22:
 	mov	r10, qword [rel _global_a]
 	mov	qword [rbp-18H], r10
 	mov	r11, qword [rbp-18H]
 	mov	r10, qword [rbp-10H]
 	mov	qword [r10+8H], r11
-_Label_18:
+_Label_23:
+	mov	r11, qword [rel _global_a]
+	mov	qword [rbp-20H], r11
+	mov	r10, qword [rbp-20H]
 	mov	r11, qword [rbp-10H]
-	mov	r10, qword [r11]
-	mov	qword [rbp-20H], r10
-	mov	rdi, qword [rbp-20H]
-	call	_lib_printlnInt
-_Label_19:
-	mov	r11, qword [rbp-10H]
-	mov	r10, qword [r11+8H]
+	mov	qword [r11+10H], r10
+_Label_24:
+	mov	r10, qword [rel _global_a]
 	mov	qword [rbp-28H], r10
 	mov	r11, qword [rbp-28H]
-	mov	r10, qword [r11]
-	mov	qword [rbp-30H], r10
-	mov	rdi, qword [rbp-30H]
+	mov	r10, qword [rbp-10H]
+	mov	qword [r10+18H], r11
+_Label_25:
+	mov	r11, qword [rel _global_a]
+	mov	qword [rbp-30H], r11
+	mov	r10, qword [rbp-30H]
+	mov	r11, qword [rbp-10H]
+	mov	qword [r11+20H], r10
+_Label_26:
+	mov	r10, qword [rbp-10H]
+	mov	r11, qword [r10]
+	mov	qword [rbp-38H], r11
+	mov	rdi, qword [rbp-38H]
 	call	_lib_printlnInt
 _Label_16:
+	mov	qword [rbp-40H], 0
+_Label_20:
+	mov	r10, qword [rbp-10H]
+	mov	r11, qword [r10+8H]
+	mov	qword [rbp-48H], r11
+	mov	r10, qword [rbp-48H]
+	mov	r11, qword [r10]
+	mov	qword [rbp-50H], r11
+	mov	r10, qword [rbp-50H]
+	cmp	qword [rbp-40H], r10
+	jge	_Label_18
+_Label_19:
+	call	_lib_getInt
+	mov	qword [rbp-58H], rax
+	mov	r11, qword [rbp-10H]
+	mov	r10, qword [r11+8H]
+	mov	qword [rbp-60H], r10
+	mov	r11, qword [rbp-58H]
+	mov	r10, qword [rbp-60H]
+	mov	r11, qword [rbp-40H]
+	mov	qword [r11+r10*8+8H], r10
+_Label_17:
+	mov	r11, qword [rbp-40H]
+	mov	qword [rbp-68H], r11
+	inc	qword [rbp-40H]
+	jmp	_Label_20
+_Label_18:
+_Label_21:
 	mov	rax, 0
 _Label_13:
-	add	rsp, 64
+	add	rsp, 128
+	pop	rbp
+	ret
+_static_init:
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+_Label_12:
+	mov	qword [rbp-8H], 4
+	lea	rax, [rbp-8H]
+	mov	rsi, rax
+	mov	rdi, 1
+	call	_lib_alloc
+	mov	qword [rel _global_a], rax
+	add	rsp, 32
 	pop	rbp
 	ret
 
