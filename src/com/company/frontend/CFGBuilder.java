@@ -332,6 +332,7 @@ public class CFGBuilder extends ASTBaseVisitor{
                         type = CFGInst.InstType.op_le;
                         break;
                     case e_lt:
+                        type = CFGInst.InstType.op_lt;
                         break;
                 }
                 if (SymbolType.strSymbolType.equals(node.exprList.get(0).resultType)){
@@ -489,7 +490,7 @@ public class CFGBuilder extends ASTBaseVisitor{
                 CFGProcess callee = cfg.getProc(node.toNode.name);
                 if (callee != null) callee.isCallee = true;
 
-                CFGInst call_inst = new CFGInst(CFGInst.InstType.op_jmp);
+                CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
                 call_inst.addOperand(CFGInstAddr.newLabelAddr(node.toNode));
                 node.instList.add(call_inst);
 
@@ -524,6 +525,7 @@ public class CFGBuilder extends ASTBaseVisitor{
             default:
                 return;
         }
+        assert type != CFGInst.InstType.op_nop;
         CFGInst inst = new CFGInst(type);
         node.instAddr = CFGInstAddr.newRegAddr();
         inst.addOperand(node.instAddr);

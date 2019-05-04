@@ -429,248 +429,111 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
+global _func_foo
 global main
-global _str_1
-global _str_2
-global _str_3
 
 SECTION .text
+_func_foo:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 128
+	mov	qword [rbp-8H], rdi
+	mov	qword [rbp-10H], rsi
+	mov	qword [rbp-18H], rdx
+_Label_21:
+	mov	r10, qword [rbp-8H]
+	mov	qword [rbp-20H], r10
+	mov	r11, qword [rbp-20H]
+	imul	r11, 1000
+	mov	qword [rbp-20H], r11
+	mov	r10, qword [rbp-10H]
+	mov	qword [rbp-28H], r10
+	mov	r11, qword [rbp-28H]
+	imul	r11, 10
+	mov	qword [rbp-28H], r11
+	mov	r10, qword [rbp-20H]
+	mov	qword [rbp-30H], r10
+	mov	r11, qword [rbp-28H]
+	add	qword [rbp-30H], r11
+	mov	r10, qword [rbp-30H]
+	mov	qword [rbp-38H], r10
+	mov	r11, qword [rbp-18H]
+	add	qword [rbp-38H], r11
+	mov	rdi, qword [rbp-38H]
+	call	_lib_printlnInt
+_Label_19:
+	cmp	qword [rbp-8H], 1
+	jne	_Label_17
+_Label_18:
+_Label_13:
+	add	rsp, 128
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_17:
+_Label_20:
+	mov	r10, qword [rbp-10H]
+	mov	qword [rbp-40H], r10
+_Label_22:
+	mov	r11, qword [rbp-18H]
+	mov	qword [rbp-10H], r11
+_Label_23:
+	mov	r10, qword [rbp-40H]
+	mov	qword [rbp-18H], r10
+_Label_24:
+	mov	rdx, qword [rbp-18H]
+	mov	rsi, qword [rbp-10H]
+	mov	rdi, 1
+	call	_func_foo
+	mov	qword [rbp-48H], rax
+_Label_25:
+	mov	r11, qword [rbp-8H]
+	mov	qword [rbp-50H], r11
+	mov	r10, qword [rbp-50H]
+	imul	r10, 1000
+	mov	qword [rbp-50H], r10
+	mov	r11, qword [rbp-10H]
+	mov	qword [rbp-58H], r11
+	mov	r10, qword [rbp-58H]
+	imul	r10, 10
+	mov	qword [rbp-58H], r10
+	mov	r11, qword [rbp-50H]
+	mov	qword [rbp-60H], r11
+	mov	r10, qword [rbp-58H]
+	add	qword [rbp-60H], r10
+	mov	r11, qword [rbp-60H]
+	mov	qword [rbp-68H], r11
+	mov	r10, qword [rbp-18H]
+	add	qword [rbp-68H], r10
+	mov	rdi, qword [rbp-68H]
+	call	_lib_printlnInt
+	jmp	_Label_13
 main:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 32
-_Label_13:
-	mov	r10, _str_1
-	mov	qword [rbp-8H], r10
-_Label_14:
-	mov	r11, _str_2
-	mov	qword [rbp-10H], r11
-_Label_15:
-	mov	r10, _str_3
-	mov	qword [rbp-18H], r10
-_Label_17:
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-_Label_18:
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-_Label_19:
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-_Label_20:
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-_Label_21:
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-_Label_22:
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-_Label_23:
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-_Label_24:
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-_Label_25:
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-_Label_26:
-	mov	rdi, qword [rbp-8H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-	mov	rdi, qword [rbp-10H]
-	call	_lib_print
-	mov	rdi, qword [rbp-18H]
-	call	_lib_print
-_Label_16:
+_Label_28:
+	mov	rdx, 3
+	mov	rsi, 5
+	mov	rdi, 7
+	call	_func_foo
+	mov	qword [rbp-8H], rax
+_Label_27:
 	mov	rax, 0
-_Label_12:
+_Label_26:
 	add	rsp, 32
 	pop	rbp
 	ret
 
 SECTION .data
-_str_1:
-	db	22H, 5CH, 22H, 5CH, 6EH, 62H, 64H, 61H, 5CH, 5CH, 5CH, 22H, 5CH, 6EH, 64H, 62H, 64H, 5CH, 5CH, 63H, 5CH, 22H, 5CH, 5CH, 5CH, 22H, 63H, 5CH, 5CH, 63H, 5CH, 22H, 22H, 00H
-_str_2:
-	db	22H, 5CH, 5CH, 61H, 62H, 5CH, 6EH, 61H, 63H, 5CH, 22H, 5CH, 22H, 61H, 64H, 64H, 5CH, 6EH, 5CH, 22H, 5CH, 6EH, 61H, 63H, 5CH, 6EH, 64H, 62H, 5CH, 22H, 22H, 00H
-_str_3:
-	db	22H, 5CH, 6EH, 61H, 62H, 62H, 64H, 62H, 64H, 64H, 5CH, 5CH, 5CH, 5CH, 5CH, 22H, 64H, 5CH, 22H, 63H, 5CH, 5CH, 61H, 64H, 63H, 5CH, 22H, 63H, 22H, 00H
 
 SECTION .bss

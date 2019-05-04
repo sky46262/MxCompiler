@@ -107,8 +107,12 @@ public class CFGInstAddr {
     //lit1, lit2
     public static CFGInstAddr newImmAddr(int l1){
         CFGInstAddr newAddr = new CFGInstAddr(addrType.a_imm, 0, 0, 0,l1);
-        //todo const
+
         return newAddr;
+    }
+    //todo const
+    public boolean isConst(){
+        return a_type == addrType.a_imm;
     }
 
 }

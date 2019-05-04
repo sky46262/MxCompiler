@@ -101,7 +101,7 @@ public class NASMBuilder {
         StringBuilder str = new StringBuilder();
         switch (data.dType){
             case d_num:
-                str.append("dp\t").append(data.intValue);
+                str.append("dq\t").append(data.intValue);
                 break;
             case d_res:
                 str.append("resw\t").append(data.size);
@@ -146,6 +146,7 @@ public class NASMBuilder {
             genNASMInst(NASMInst.InstType.CQO, null, null);
             genNASMInst(CFGInst.InstType.op_div, opr2, null);
             genNASMInst(CFGInst.InstType.op_mov, opr1, CFGInstAddr.newRegAddr(-5));
+            return;
         }
         NASMWordType wt1, wt2;
         wt1 = NASMWordType.QWORD;
@@ -337,7 +338,7 @@ public class NASMBuilder {
             case op_call:
                 return NASMInst.InstType.CALL;
             case op_lea:
-                return NASMInst.InstType.LEAQ;
+                return NASMInst.InstType.LEA;
             case op_not:
                 return NASMInst.InstType.NOT;
             case op_neg:

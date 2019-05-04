@@ -75,7 +75,7 @@ public class SymbolTable {
                     //global -> mem
                     int size = type.getMemSize();
                     ((ASTDeclNode) node).reg = info.reg =
-                            CFGInstAddr.newMemAddr(CFGInstAddr.newStaticAddr("_v_"+str, size), CFGInstAddr.newImmAddr(0),0,0);
+                            CFGInstAddr.newMemAddr(CFGInstAddr.newStaticAddr("_global_"+str, size), CFGInstAddr.newImmAddr(0),0,0);
                 }
             }
             tableStack.peek().table.put(str, info);

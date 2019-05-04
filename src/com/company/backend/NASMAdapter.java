@@ -70,22 +70,36 @@ public class NASMAdapter {
     private void visitCFGInst(Vector<CFGInst> list, CFGInst.InstType type, CFGInstAddr opr1, CFGInstAddr opr2){
         switch (type){
             case op_div:
-                //TODO const
-                break;
-            case op_mult: {
-                if (opr1.a_type != CFGInstAddr.addrType.a_reg) {
+                if (opr2 != null && opr2.isConst()){
+                    //TODO exp2
                     CFGInstAddr tmp = CFGInstAddr.newRegAddr();
-                    visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr1);
-                    visitCFGInst(list, CFGInst.InstType.op_mult, tmp, opr2);
-                    visitCFGInst(list, CFGInst.InstType.op_mov, opr1, tmp);
-                    return;
-                    //!!!
+                    visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
+                    opr2 = tmp;
                 }
                 break;
-            }
             case op_mod:
-                //TODO const
+                if (opr2 != null && opr2.isConst()){
+                    //TODO exp2
+                    CFGInstAddr tmp = CFGInstAddr.newRegAddr();
+                    visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
+                    opr2 = tmp;
+                }
                 break;
+            case op_mult: {
+                if (opr2 != null && opr2.isConst()){
+                    //TODO exp2
+                    if (opr1.a_type != CFGInstAddr.addrType.a_reg) {
+                        CFGInstAddr tmp = CFGInstAddr.newRegAddr();
+                        visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr1);
+                        visitCFGInst(list, CFGInst.InstType.op_mult, tmp, opr2);
+                        visitCFGInst(list, CFGInst.InstType.op_mov, opr1, tmp);
+                        return;
+                    }
+                    //!!!
+                    break;
+                }
+            }
+            //not break
             case op_not:
             case op_neg:
                 if (opr2 != null) {

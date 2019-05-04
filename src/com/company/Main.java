@@ -22,9 +22,11 @@ public class Main {
         CompileError compileError = new CompileError();
         mxParser.ProgramContext root = null;
         mxParser parser = null;
+        boolean isTest = true;
         try{
-            mxLexer lexer = new mxLexer(CharStreams.fromStream(System.in));
-            //mxLexer lexer = new mxLexer(CharStreams.fromFileName("main.mx"));
+            mxLexer lexer;
+            if (isTest) lexer = new mxLexer(CharStreams.fromStream(System.in));
+            else  lexer = new mxLexer(CharStreams.fromFileName("main.mx"));
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             parser = new mxParser(tokens);
             SyntaxErrorListener errorListener = new SyntaxErrorListener(compileError);
@@ -60,13 +62,16 @@ public class Main {
         new NASMAdapter(cfg);
 
         BufferedWriter writer = null;
-       writer = new BufferedWriter(new PrintWriter(System.out));
-       /*try {
-            writer = new BufferedWriter(new FileWriter("test.asm"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }*/
+
+       if (isTest) writer = new BufferedWriter(new PrintWriter(System.out));
+       else {
+           try {
+               writer = new BufferedWriter(new FileWriter("test.asm"));
+           } catch (IOException e) {
+               e.printStackTrace();
+               return;
+           }
+       }
         NASM nasm = new NASM(writer);
         new NASMBuilder(cfg, nasm);
         writer.close();

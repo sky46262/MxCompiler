@@ -8,7 +8,7 @@ public class NASMInst {
         MOV, PUSH, POP,
         //CWTL, CLTQ, CQTO,
         INC, DEC, NEG, NOT,
-        LEAQ, ADD, SUB, XOR, OR, AND,
+        LEA, ADD, SUB, XOR, OR, AND,
         SAR, SAL, // arithmetic shift
         IMUL, MUL, IDIV, DIV,
         CMP, TEST, CQO,
