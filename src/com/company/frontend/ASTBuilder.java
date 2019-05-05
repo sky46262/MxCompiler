@@ -292,7 +292,29 @@ public class ASTBuilder extends mxBaseVisitor<ASTBaseNode>{
             return new ASTPrimNode(new Position(ctx), ASTNodeType.p_int, Integer.parseInt(ctx.IntegerConstant().getText()), "");
         if (ctx.StringConstant() != null){
             String str = ctx.StringConstant().getText();
-            return new ASTPrimNode(new Position(ctx), ASTNodeType.p_str, 0,str.substring(1,str.length()-1));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 1; i < str.length() -1; i++){
+                char c = str.charAt(i);
+                if (c == '\\') {
+                    char c1 = str.charAt(i+1);
+                    switch (c1){
+                        case 't':
+                            builder.append('\t');
+                            break;
+                        case 'n':
+                            builder.append('\n');
+                            break;
+                            default:
+                                builder.append(c1);
+                    }
+                    i++;
+                }
+                else builder.append(c);
+            }
+           /* System.out.println("test: escape sequence");
+            System.out.println(str);
+            System.out.println(builder.toString());*/
+            return new ASTPrimNode(new Position(ctx), ASTNodeType.p_str, 0,builder.toString());
         }
         if (ctx.PointConstant() != null){
             if (ctx.PointConstant().getText().equals("this"))

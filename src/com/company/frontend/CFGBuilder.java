@@ -58,7 +58,7 @@ public class CFGBuilder extends ASTBaseVisitor{
                 node.startNode = node.exprList.get(0).startNode;
                 break;
             default: {//ge,le,gt,lt,eq,neq...
-                visitExprNode(node);
+                visitExpr(node);
                 CFGNode n = node.startNode = node.endNode = cfg.addNode();
                 n.addInst(node.instList);
                 if (n.insts.isEmpty() || !n.insts.lastElement().isCompare()){

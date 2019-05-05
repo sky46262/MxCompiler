@@ -16,8 +16,8 @@ public class NASMBuilder {
     private int[] parameterReg = {23, 22, 19, 18, 8, 9};
     private int parameterStackOffset = 0;
 
-    private int[] templateReg = {10, 11};
-    private int[] templateMap = {0, 0};
+    private int[] templateReg = {10, 11, 12, 13, 14, 15, 17};
+    private int[] templateMap = {0, 0, 0, 0, 0, 0, 0};
     private int curTemplateReg = 0;
 
     private Stack<Integer> curCalleeSavedReg = new Stack<>();

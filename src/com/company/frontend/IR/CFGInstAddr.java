@@ -52,7 +52,7 @@ public class CFGInstAddr {
                 case a_mem:
                     return Objects.equals(addr1, o.addr1) && Objects.equals(addr2, o.addr2)&& this.lit3 == o.lit3 && this.lit4 == o.lit4;
                 case a_stack:
-                    return this.lit3 == o.lit3;
+                    return this.lit4 == o.lit4;
             }
             return false;
         }
