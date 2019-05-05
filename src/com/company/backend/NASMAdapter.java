@@ -80,7 +80,7 @@ public class NASMAdapter {
                             num >>= 1;
                             k++;
                         }
-                        if (k > 1){
+                        if (k >= 1){
                             visitCFGInst(list, CFGInst.InstType.op_shr, opr1, CFGInstAddr.newImmAddr(k));
                         }
                         return;
@@ -100,7 +100,7 @@ public class NASMAdapter {
                             num >>= 1;
                             k++;
                         }
-                        if (k > 1){
+                        if (k >= 1){
                             visitCFGInst(list, CFGInst.InstType.op_and, opr1, CFGInstAddr.newImmAddr((1<<k)-1));
                         }
                         else visitCFGInst(list, CFGInst.InstType.op_mov, opr1, CFGInstAddr.newImmAddr(0));
