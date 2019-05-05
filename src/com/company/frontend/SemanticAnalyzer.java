@@ -324,7 +324,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
             if (symbol == null) ce.add(CompileError.ceType.ce_nodecl, "class creator:"+node.type.className, node.pos);
             if (symbol.type.type != SymbolType.symbolType.CLASS) ce.add(CompileError.ceType.ce_type, "not class creator:"+node.type.className, node.pos);
             if (node.type.dimension == 0){
-                if (ST.findSymbol(node.type.className+"_init") != null) node.hasConstructor = true;
+                if (ST.findSymbol(node.type.className+"._init") != null) node.hasConstructor = true;
                 node.resultType = symbol.type;
             }
         }

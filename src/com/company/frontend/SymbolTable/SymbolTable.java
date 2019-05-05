@@ -53,8 +53,8 @@ public class SymbolTable {
                             info.startNode.name = "_lib_str_" + str.substring(7);
                         else info.startNode.name = "_lib_" + str;
                     }
+                    else info.startNode.name = "_class_"+ str;
                 }
-                else info.startNode.name = "_class_"+ str;
             }
             else if (node instanceof ASTDeclNode){
                 //in function -> reg
