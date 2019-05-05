@@ -429,232 +429,38 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
-global _class_older.solveAge
 global main
 global _str_1
 
 SECTION .text
-_class_older.solveAge:
-	push	rbx
-	push	r12
-	push	r13
-	push	r14
-	push	r15
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 512
-	mov	qword [rbp-8H], rdi
-_Label_15:
-_Label_16:
-_Label_17:
-_Label_18:
-	mov	qword [rbp-10H], 1
-_Label_32:
-	cmp	qword [rbp-10H], 100
-	jge	_Label_20
-_Label_21:
-	mov	r10, qword [rbp-10H]
-	mov	qword [rbp-18H], r10
-	add	qword [rbp-18H], 1
-	mov	r11, qword [rbp-18H]
-	mov	qword [rbp-20H], r11
-_Label_31:
-	cmp	qword [rbp-20H], 100
-	jge	_Label_23
-_Label_24:
-	mov	r12, qword [rbp-20H]
-	mov	qword [rbp-30H], r12
-	add	qword [rbp-30H], 1
-	mov	r13, qword [rbp-30H]
-	mov	qword [rbp-38H], r13
-_Label_30:
-	cmp	qword [rbp-38H], 100
-	jge	_Label_26
-_Label_29:
-	mov	r14, qword [rbp-10H]
-	mov	qword [rbp-48H], r14
-	mov	r15, qword [rbp-10H]
-	sub	qword [rbp-48H], r15
-	mov	rbx, qword [rbp-48H]
-	mov	qword [rbp-50H], rbx
-	mov	r10, qword [rbp-10H]
-	add	qword [rbp-50H], r10
-	mov	r11, qword [rbp-50H]
-	mov	qword [rbp-58H], r11
-	mov	r12, qword [rbp-20H]
-	add	qword [rbp-58H], r12
-	mov	r13, qword [rbp-58H]
-	mov	qword [rbp-60H], r13
-	mov	r14, qword [rbp-20H]
-	sub	qword [rbp-60H], r14
-	mov	r15, qword [rbp-60H]
-	mov	qword [rbp-68H], r15
-	mov	rbx, qword [rbp-20H]
-	add	qword [rbp-68H], rbx
-	mov	r10, qword [rbp-68H]
-	mov	qword [rbp-70H], r10
-	mov	r11, qword [rbp-38H]
-	add	qword [rbp-70H], r11
-	mov	r12, qword [rbp-70H]
-	mov	qword [rbp-78H], r12
-	mov	r13, qword [rbp-38H]
-	sub	qword [rbp-78H], r13
-	mov	r14, qword [rbp-78H]
-	mov	qword [rbp-80H], r14
-	mov	r15, qword [rbp-38H]
-	add	qword [rbp-80H], r15
-	mov	qword [rbp-88H], 100
-	mov	rbx, qword [rbp-10H]
-	mov	rax, qword [rbp-88H]
-	cqo
-	imul	rbx
-	mov	qword [rbp-88H], rax
-	mov	qword [rbp-090H], 10
-	mov	r10, qword [rbp-20H]
-	mov	rax, qword [rbp-090H]
-	cqo
-	imul	r10
-	mov	qword [rbp-090H], rax
-	mov	r11, qword [rbp-88H]
-	mov	qword [rbp-098H], r11
-	mov	r12, qword [rbp-090H]
-	add	qword [rbp-098H], r12
-	mov	r13, qword [rbp-098H]
-	mov	qword [rbp-0A0H], r13
-	mov	r14, qword [rbp-38H]
-	add	qword [rbp-0A0H], r14
-	mov	r15, qword [rbp-80H]
-	mov	qword [rbp-0A8H], r15
-	mov	rbx, qword [rbp-0A0H]
-	mov	rax, qword [rbp-0A8H]
-	cqo
-	imul	rbx
-	mov	qword [rbp-0A8H], rax
-	mov	r10, qword [rbp-0A8H]
-	mov	qword [rbp-0B0H], r10
-	mov	qword [rbp-0B8H], 1926
-	mov	r11, qword [rbp-0B8H]
-	mov	rax, qword [rbp-0B0H]
-	cqo
-	idiv	r11
-	mov	qword [rbp-0B0H], rdx
-	cmp	qword [rbp-0B0H], 0
-	jne	_Label_27
-_Label_28:
-	mov	r12, qword [rbp-10H]
-	mov	qword [rbp-0C8H], r12
-	mov	r13, qword [rbp-10H]
-	sub	qword [rbp-0C8H], r13
-	mov	r14, qword [rbp-0C8H]
-	mov	qword [rbp-0D0H], r14
-	mov	r15, qword [rbp-10H]
-	add	qword [rbp-0D0H], r15
-	mov	rbx, qword [rbp-0D0H]
-	mov	qword [rbp-0D8H], rbx
-	mov	r10, qword [rbp-20H]
-	add	qword [rbp-0D8H], r10
-	mov	r11, qword [rbp-0D8H]
-	mov	qword [rbp-0E0H], r11
-	mov	r12, qword [rbp-20H]
-	sub	qword [rbp-0E0H], r12
-	mov	r13, qword [rbp-0E0H]
-	mov	qword [rbp-0E8H], r13
-	mov	r14, qword [rbp-20H]
-	add	qword [rbp-0E8H], r14
-	mov	r15, qword [rbp-0E8H]
-	mov	qword [rbp-0F0H], r15
-	mov	rbx, qword [rbp-38H]
-	add	qword [rbp-0F0H], rbx
-	mov	r10, qword [rbp-0F0H]
-	mov	qword [rbp-0F8H], r10
-	mov	r11, qword [rbp-38H]
-	sub	qword [rbp-0F8H], r11
-	mov	r12, qword [rbp-0F8H]
-	mov	qword [rbp-100H], r12
-	mov	r13, qword [rbp-38H]
-	add	qword [rbp-100H], r13
-	mov	qword [rbp-108H], 100
-	mov	r14, qword [rbp-10H]
-	mov	rax, qword [rbp-108H]
-	cqo
-	imul	r14
-	mov	qword [rbp-108H], rax
-	mov	qword [rbp-110H], 10
-	mov	r15, qword [rbp-20H]
-	mov	rax, qword [rbp-110H]
-	cqo
-	imul	r15
-	mov	qword [rbp-110H], rax
-	mov	rbx, qword [rbp-108H]
-	mov	qword [rbp-118H], rbx
-	mov	r10, qword [rbp-110H]
-	add	qword [rbp-118H], r10
-	mov	r11, qword [rbp-118H]
-	mov	qword [rbp-120H], r11
-	mov	r12, qword [rbp-38H]
-	add	qword [rbp-120H], r12
-	mov	r13, qword [rbp-100H]
-	mov	qword [rbp-128H], r13
-	mov	r14, qword [rbp-120H]
-	mov	rax, qword [rbp-128H]
-	cqo
-	imul	r14
-	mov	qword [rbp-128H], rax
-	mov	r15, qword [rbp-128H]
-	mov	rbx, qword [rbp-8H]
-	mov	qword [rbx], r15
-_Label_27:
-_Label_25:
-	mov	r10, qword [rbp-38H]
-	mov	qword [rbp-0C0H], r10
-	inc	qword [rbp-38H]
-	jmp	_Label_30
-_Label_26:
-_Label_22:
-	mov	r11, qword [rbp-20H]
-	mov	qword [rbp-40H], r11
-	inc	qword [rbp-20H]
-	jmp	_Label_31
-_Label_23:
-_Label_19:
-	mov	r12, qword [rbp-10H]
-	mov	qword [rbp-28H], r12
-	inc	qword [rbp-10H]
-	jmp	_Label_32
-_Label_20:
-_Label_14:
-	add	rsp, 512
-	pop	rbp
-	pop	r15
-	pop	r14
-	pop	r13
-	pop	r12
-	pop	rbx
-	ret
 main:
 	push	rbp
 	mov	rbp, rsp
-	sub	rsp, 32
-_Label_34:
-	mov	rdi, 8
-	call	malloc
-	mov	qword [rbp-8H], rax
-_Label_39:
-	mov	rdi, qword [rbp-8H]
-	call	_class_older.solveAge
-	mov	qword [rbp-10H], rax
-_Label_37:
-	mov	r13, qword [rbp-8H]
-	cmp	qword [r13], 10000
-	jle	_Label_35
-_Label_36:
+	sub	rsp, 64
+_Label_13:
+	mov	qword [rbp-8H], 10000
+	mov	rcx, 2
+	sar	qword [rbp-8H], cl
+	mov	r10, qword [rbp-8H]
+	mov	qword [rbp-10H], r10
+	mov	rcx, 3
+	sal	qword [rbp-10H], cl
+	mov	r11, qword [rbp-10H]
+	mov	qword [rbp-18H], r11
+	and	qword [rbp-18H], 255
+	mov	r12, qword [rbp-18H]
+	mov	qword [rbp-20H], r12
+_Label_16:
+	cmp	qword [rbp-20H], 10000
+	jle	_Label_14
+_Label_15:
 	mov	rdi, _str_1
 	call	_lib_println
-_Label_35:
-_Label_38:
+_Label_14:
+_Label_17:
 	mov	rax, 0
-_Label_33:
-	add	rsp, 32
+_Label_12:
+	add	rsp, 64
 	pop	rbp
 	ret
 

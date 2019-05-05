@@ -89,7 +89,6 @@ public class GlobalSymbolTableBuilder extends ASTBaseVisitor{
     @Override
     public void visitClassDeclNode(ASTClassDeclNode node) {
         ST.pushSymbol(node.className, new SymbolType(SymbolType.symbolType.CLASS, node.className, 0, new Vector<>()),node);
-        //TODO
         //ST.pushSymbol(node.className, SymbolType.classSymbolType ,node);
         currentClass = node.className;
         for (ASTStmtNode i : node.stmtList) visitStmt(i);

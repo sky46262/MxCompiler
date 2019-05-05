@@ -72,7 +72,19 @@ public class NASMAdapter {
         switch (type){
             case op_div:
                 if (opr2 != null && opr2.isConst()){
-                    //TODO exp2
+                    int num = opr2.getConst();
+                    assert num != 0;
+                    if (isExp2(num)){
+                        int k = 0;
+                        while (num != 1) {
+                            num >>= 1;
+                            k++;
+                        }
+                        if (k > 1){
+                            visitCFGInst(list, CFGInst.InstType.op_shr, opr1, CFGInstAddr.newImmAddr(k));
+                        }
+                        return;
+                    }
                     CFGInstAddr tmp = CFGInstAddr.newRegAddr();
                     visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
                     opr2 = tmp;
@@ -80,7 +92,20 @@ public class NASMAdapter {
                 break;
             case op_mod:
                 if (opr2 != null && opr2.isConst()){
-                    //TODO exp2
+                    int num = opr2.getConst();
+                    assert num != 0;
+                    if (isExp2(num)){
+                        int k = 0;
+                        while (num != 1) {
+                            num >>= 1;
+                            k++;
+                        }
+                        if (k > 1){
+                            visitCFGInst(list, CFGInst.InstType.op_and, opr1, CFGInstAddr.newImmAddr((1<<k)-1));
+                        }
+                        else visitCFGInst(list, CFGInst.InstType.op_mov, opr1, CFGInstAddr.newImmAddr(0));
+                        return;
+                    }
                     CFGInstAddr tmp = CFGInstAddr.newRegAddr();
                     visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
                     opr2 = tmp;
@@ -88,7 +113,24 @@ public class NASMAdapter {
                 break;
             case op_mult: {
                 if (opr2 != null && opr2.isConst()){
-                    //TODO exp2
+                    int num = opr2.getConst();
+                    assert num != 0;
+                    if (isExp2(num)){
+                        int k = 0;
+                        while (num != 1) {
+                            num >>= 1;
+                            k++;
+                        }
+                        if (k > 2){
+                            visitCFGInst(list, CFGInst.InstType.op_shl, opr1, CFGInstAddr.newImmAddr(k));
+                        }
+                        else {
+                            for (int j = 0; j < k; j++){
+                                visitCFGInst(list, CFGInst.InstType.op_add, opr1, opr1);
+                            }
+                        }
+                        return;
+                    }
                     CFGInstAddr tmp = CFGInstAddr.newRegAddr();
                     visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
                     opr2 = tmp;
@@ -104,7 +146,6 @@ public class NASMAdapter {
                 }
             }
             break;
-            //not break todo
             case op_not:
             case op_neg:
                 if (opr2 != null) {
@@ -145,5 +186,8 @@ public class NASMAdapter {
             return t;
         }
         else return opr;
+    }
+    private boolean isExp2(int num){
+        return (num > 0) && (num & (num-1)) == 0;
     }
 }

@@ -114,5 +114,9 @@ public class CFGInstAddr {
     public boolean isConst(){
         return a_type == addrType.a_imm;
     }
+    public int getConst(){
+        assert a_type == addrType.a_imm;
+        return this.lit4;
+    }
 
 }

@@ -328,7 +328,6 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 node.resultType = symbol.type;
             }
         }
-        //todo  array of class to be tested
     }
 
     @Override

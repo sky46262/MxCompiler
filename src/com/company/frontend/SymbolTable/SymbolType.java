@@ -69,7 +69,6 @@ public class SymbolType {
     }
     public SymbolType getDerefType(){
         assert arrayDim >= 1;
-        //TODO
             return new SymbolType(type, name, arrayDim -1);
     }
 
