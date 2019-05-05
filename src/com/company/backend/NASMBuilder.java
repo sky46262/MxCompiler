@@ -148,6 +148,13 @@ public class NASMBuilder {
             genNASMInst(CFGInst.InstType.op_mov, opr1, CFGInstAddr.newRegAddr(-5));
             return;
         }
+        else if (op == CFGInst.InstType.op_mult && opr2 != null){
+            genNASMInst(CFGInst.InstType.op_mov, CFGInstAddr.newRegAddr(-4), opr1);
+            genNASMInst(NASMInst.InstType.CQO, null, null);
+            genNASMInst(CFGInst.InstType.op_mult,  opr2, null);
+            genNASMInst(CFGInst.InstType.op_mov, opr1, CFGInstAddr.newRegAddr(-4));
+            return;
+        }
         NASMWordType wt1, wt2;
         wt1 = NASMWordType.QWORD;
         if (op == CFGInst.InstType.op_lea)

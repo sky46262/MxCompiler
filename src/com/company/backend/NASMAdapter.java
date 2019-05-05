@@ -29,10 +29,11 @@ public class NASMAdapter {
             switch (operands.size()){
                 case 3:{
                     if (operands.get(0).equals(operands.get(1))){
-                        visitCFGInst(newList, inst.op, operands.get(0), operands.get(1));
+                        visitCFGInst(newList, inst.op, operands.get(0), operands.get(2));
                     }
                     else if (operands.get(0).equals(operands.get(2))){
-                        if (inst.isCommutable()) visitCFGInst(newList, inst.op, operands.get(0), operands.get(2));
+                        if (inst.isCommutable())
+                            visitCFGInst(newList, inst.op, operands.get(0), operands.get(1));
                         else {
                             CFGInstAddr tmp = CFGInstAddr.newRegAddr();
                             visitCFGInst(newList, CFGInst.InstType.op_mov, tmp, operands.get(1));
@@ -88,8 +89,11 @@ public class NASMAdapter {
             case op_mult: {
                 if (opr2 != null && opr2.isConst()){
                     //TODO exp2
+                    CFGInstAddr tmp = CFGInstAddr.newRegAddr();
+                    visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
+                    opr2 = tmp;
                     if (opr1.a_type != CFGInstAddr.addrType.a_reg) {
-                        CFGInstAddr tmp = CFGInstAddr.newRegAddr();
+                        tmp = CFGInstAddr.newRegAddr();
                         visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr1);
                         visitCFGInst(list, CFGInst.InstType.op_mult, tmp, opr2);
                         visitCFGInst(list, CFGInst.InstType.op_mov, opr1, tmp);
@@ -99,7 +103,8 @@ public class NASMAdapter {
                     break;
                 }
             }
-            //not break
+            break;
+            //not break todo
             case op_not:
             case op_neg:
                 if (opr2 != null) {

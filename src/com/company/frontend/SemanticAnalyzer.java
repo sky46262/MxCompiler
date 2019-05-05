@@ -85,7 +85,8 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
         ST.pushSymbol(node.funcName, ST.findSymbol(getScopeName(node.isConstructor?"_init":node.funcName)));
     }
     public void visitVarDecl_m(ASTDeclNode node){
-        ST.pushSymbol(node.name,new SymbolType(node.type), node, currentClass,currentFunc);
+        ST.pushSymbol(node.name, ST.findSymbol(getScopeName(node.name)));
+        //ST.pushSymbol(node.name,new SymbolType(node.type), node, currentClass,currentFunc);
     }
     @Override
     public void visitFuncDeclNode(ASTFuncDeclNode node) {
@@ -158,7 +159,7 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                 ++loopCnt;
                 for (ASTStmtNode i: node.stmtList) visitStmt(i);
                 --loopCnt;
-                if (node.stmtList.get(1) != null && !checkExprType((ASTExprNode) node.stmtList.get(1), SymbolType.boolSymbolType))
+                if (!((ASTExprNode)node.stmtList.get(1)).isEmpty() && !checkExprType((ASTExprNode) node.stmtList.get(1), SymbolType.boolSymbolType))
                     ce.add(CompileError.ceType.ce_type, "for", node.pos);
                 return;
             case s_while:
@@ -316,14 +317,17 @@ public class SemanticAnalyzer extends ASTBaseVisitor {
                     break;
                 }
             }
+            node.resultType = new SymbolType(node.type);
         }
         if (node.type.className != null){
             SymbolInfo symbol = ST.findSymbol(node.type.className);
             if (symbol == null) ce.add(CompileError.ceType.ce_nodecl, "class creator:"+node.type.className, node.pos);
-            if (!symbol.type.equals(SymbolType.classSymbolType)) ce.add(CompileError.ceType.ce_type, "not class creator:"+node.type.className, node.pos);
-            if (ST.findSymbol(node.type.className+"_init") != null) node.hasConstructor = true;
+            if (symbol.type.type != SymbolType.symbolType.CLASS) ce.add(CompileError.ceType.ce_type, "not class creator:"+node.type.className, node.pos);
+            if (node.type.dimension == 0){
+                if (ST.findSymbol(node.type.className+"_init") != null) node.hasConstructor = true;
+                node.resultType = symbol.type;
+            }
         }
-        node.resultType = new SymbolType(node.type);
         //todo  array of class to be tested
     }
 
