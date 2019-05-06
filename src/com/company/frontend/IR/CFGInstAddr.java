@@ -1,5 +1,7 @@
 package com.company.frontend.IR;
 
+import com.company.optimization.info.VarInfo;
+
 import java.util.Objects;
 import java.util.Vector;
 
@@ -13,7 +15,7 @@ public class CFGInstAddr {
     public int lit1, lit2, lit3, lit4;
     public addrType a_type;
     public CFGInstAddr addr1, addr2;
-    //todo varInfo
+    public VarInfo info = new VarInfo();
     public CFGInstAddr(addrType _t, int _l1, int _l2, int _l3, int _l4){
         a_type = _t;
         lit1 = _l1; //reg1
@@ -46,7 +48,7 @@ public class CFGInstAddr {
                 case a_label:
                     return this.strLit.equals(o.strLit);
                 case a_reg:
-                    return this.lit4 == o.lit4;
+                    return this.lit4 == o.lit4 && this.lit3 == o.lit3;
                 case a_imm:
                     return this.lit4 == o.lit4;//value in lit4
                 case a_mem:
@@ -83,6 +85,10 @@ public class CFGInstAddr {
         regList.add(newAddr);
         return newAddr;
     }
+    public static CFGInstAddr newColoredRegAddr(int idx){
+        CFGInstAddr newAddr = new CFGInstAddr(addrType.a_reg, 0,0,idx, -6);
+        return newAddr;
+    }
     //for some special register
     // -2
     public static CFGInstAddr newRegAddr(int idx){
@@ -107,16 +113,19 @@ public class CFGInstAddr {
     //lit1, lit2
     public static CFGInstAddr newImmAddr(int l1){
         CFGInstAddr newAddr = new CFGInstAddr(addrType.a_imm, 0, 0, 0,l1);
-
+        newAddr.info.type = VarInfo.valueType.v_const;
+        newAddr.info.constValue= l1;
         return newAddr;
     }
-    //todo const
     public boolean isConst(){
-        return a_type == addrType.a_imm;
+        //return a_type == addrType.a_imm;
+        return info.type == VarInfo.valueType.v_const;
     }
     public int getConst(){
-        assert a_type == addrType.a_imm;
-        return this.lit4;
+       // assert a_type == addrType.a_imm;
+        if (info.type == VarInfo.valueType.v_const)
+            return info.constValue;
+        else return 0;
     }
 
 }

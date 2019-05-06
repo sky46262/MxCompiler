@@ -12,6 +12,10 @@ import com.company.frontend.IR.CFG;
 import com.company.frontend.SymbolTable.SymbolTable;
 import com.company.frontend.parser.mxLexer;
 import com.company.frontend.parser.mxParser;
+import com.company.optimization.CFGReducer;
+import com.company.optimization.DataFlowAnalyzer;
+import com.company.optimization.PeepholeOptimizer;
+import com.company.optimization.VarAnalyzer;
 import org.antlr.v4.runtime.*;
 
 import java.io.*;
@@ -53,9 +57,13 @@ public class Main {
             throw new Error();
         }*/
         new CFGBuilder(cfg).visitCompilationUnitNode(cu);
+        new CFGReducer(cfg);
+
         new NASMAdapter(cfg);//adapt twice ???
 
-        //TODO optimization
+        //new PeepholeOptimizer(cfg);
+        new VarAnalyzer(cfg);
+        new DataFlowAnalyzer(cfg);
 
         new GlobalRegAllocator(cfg);
         new StackAllocator(cfg);

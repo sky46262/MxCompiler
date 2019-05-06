@@ -1,5 +1,7 @@
 package com.company.frontend.IR;
 
+import com.company.optimization.info.InstInfo;
+
 import java.util.Vector;
 
 public class CFGInst {
@@ -10,7 +12,7 @@ public class CFGInst {
         op_eq, op_ne, op_le, op_ge, op_lt, op_gt,
         op_jmp, op_jcc, //condition code
         op_call, op_return,op_mov,
-        op_nop, op_decl, op_push, op_pop,
+        op_nop, op_push, op_pop,
         op_wpara, op_rpara, //w for call, r for decl
         op_inc, op_dec,
         op_lea//load effective address
@@ -18,7 +20,7 @@ public class CFGInst {
     }
     public InstType op;
     public Vector<CFGInstAddr> operands;
-    //todo Instinfo
+    public InstInfo info = new InstInfo();
     public CFGInst(InstType _op){
         op = _op;
         operands = new Vector<>();

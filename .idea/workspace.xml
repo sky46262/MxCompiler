@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/CFGReducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/PeepholeOptimizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/VarAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/info/InstInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/info/RegInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/optimization/info/VarInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.mx" beforeDir="false" afterPath="$PROJECT_DIR$/main.mx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/backend/NASM/NASMInst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/NASM/NASMInst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/backend/NASM/NASMReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/NASM/NASMReg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/backend/NASMAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/NASMAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInst.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGProcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.asm" beforeDir="false" afterPath="$PROJECT_DIR$/test.asm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,10 +50,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGProcess.java">
+        <entry file="file://$PROJECT_DIR$/main.mx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="228">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -54,98 +61,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+            <state relative-caret-position="158">
+              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="554" column="66" selection-start-line="554" selection-start-column="63" selection-end-line="554" selection-end-column="66" />
-              <folding>
-                <element signature="method#visitLogicalExprNode#0;class#CFGBuilder#0" />
-                <element signature="e#971#1099#1" />
-                <element signature="e#1131#2872#0" />
-                <element signature="e#1157#1374#1" />
-                <element signature="e#2165#2862#1" />
-                <element signature="method#genBoolExprNode#0;class#CFGBuilder#0" />
-                <element signature="method#wrapExprNode#0;class#CFGBuilder#0" />
-                <element signature="method#visitCompilationUnitNode#0;class#CFGBuilder#0" />
-                <element signature="e#5342#5605#1" />
-                <element signature="e#5700#5986#1" />
-                <element signature="e#6245#6342#1" />
-                <element signature="e#6462#6502#0" />
-                <element signature="method#visitVarDeclNode#0;class#CFGBuilder#0" />
-                <element signature="e#6781#6956#1" />
-                <element signature="e#6970#7504#1" />
-                <element signature="e#7058#7343#1" />
-                <element signature="e#7562#8143#1" />
-                <element signature="e#7727#7856#1" />
-                <element signature="e#7862#8133#1" />
-                <element signature="e#7910#8037#1" />
-                <element signature="method#visitExprNode#0;class#CFGBuilder#0" />
-                <element signature="e#8427#8581#1" />
-                <element signature="e#8669#24112#0" />
-                <element signature="e#8764#9925#1" />
-                <element signature="e#11319#11607#1" />
-                <element signature="e#11633#12151#1" />
-                <element signature="e#12177#12465#1" />
-                <element signature="e#12491#13009#1" />
-                <element signature="e#13160#15439#1" />
-                <element signature="e#13200#13922#0" />
-                <element signature="e#14008#15114#1" />
-                <element signature="e#15136#15401#1" />
-                <element signature="e#16321#16557#1" />
-                <element signature="e#16616#16761#1" />
-                <element signature="e#17127#17557#1" />
-                <element signature="e#17714#20497#1" />
-                <element signature="e#18118#20451#1" />
-                <element signature="e#18289#19295#1" />
-                <element signature="e#18935#19113#1" />
-                <element signature="e#19364#19537#1" />
-                <element signature="e#19567#20429#1" />
-                <element signature="e#20075#20250#1" />
-                <element signature="e#20651#20938#1" />
-                <element signature="e#21021#21146#1" />
-                <element signature="e#21191#21861#1" />
-                <element signature="e#21325#21444#1" />
-                <element signature="e#21507#21843#1" />
-                <element signature="e#21893#22186#1" />
-                <element signature="e#22895#24037#1" />
-                <element signature="e#23033#23506#1" />
-                <element signature="e#23528#23960#1" />
-                <element signature="e#24527#25333#1" />
-                <element signature="e#24599#24712#1" />
-                <element signature="e#24984#25155#1" />
-                <element signature="e#25862#27170#1" />
-                <element signature="e#25880#25895#0" />
-                <element signature="e#26330#26444#1" />
-                <element signature="e#27196#28158#1" />
-                <element signature="e#27214#27227#0" />
-                <element signature="e#28181#28895#1" />
-                <element signature="e#28318#28530#1" />
-                <element signature="e#28922#30197#1" />
-                <element signature="e#28967#29584#1" />
-                <element signature="e#29161#29496#1" />
-                <element signature="e#29790#30045#1" />
-                <element signature="method#visitPrimNode#0;class#CFGBuilder#0" />
-                <element signature="e#30586#31925#0" />
-                <element signature="e#30869#30990#1" />
-                <element signature="e#31012#31245#1" />
-                <element signature="e#31548#31692#1" />
-                <element signature="e#32170#33867#1" />
-                <element signature="e#32355#32786#1" />
-                <element signature="e#32799#33327#1" />
-                <element signature="e#33340#33614#1" />
-                <element signature="e#34374#35158#1" />
-                <element signature="e#35176#35251#1" />
-                <element signature="method#visitTypeNode#0;class#CFGBuilder#0" />
               </folding>
             </state>
           </provider>
@@ -154,85 +73,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="72" column="14" selection-start-line="72" selection-start-column="14" selection-end-line="72" selection-end-column="14" />
+            <state relative-caret-position="529">
+              <caret line="63" column="45" lean-forward="true" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
               <folding>
+                <element signature="method#visitCFG#0;class#NASMBuilder#0" />
                 <element signature="method#visitCFGData#0;class#NASMBuilder#0" />
-                <element signature="method#visitCFGInst#0;class#NASMBuilder#0" />
                 <element signature="method#genNASMInst#0;class#NASMBuilder#0" />
                 <element signature="method#popCalleeSavedReg#0;class#NASMBuilder#0" />
                 <element signature="method#getNASMAddr#0;class#NASMBuilder#0" />
+                <element signature="method#getNASMReg#0;class#NASMBuilder#0" />
+                <element signature="method#getNASMOp#0;class#NASMBuilder#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java">
+        <entry file="file://$PROJECT_DIR$/test.asm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="52" column="127" selection-start-line="52" selection-start-column="127" selection-end-line="52" selection-end-column="127" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#879#880#0" expanded="true" />
-                <element signature="e#905#906#0" expanded="true" />
-                <element signature="e#932#933#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="38">
+              <caret line="588" column="10" lean-forward="true" selection-end-line="653" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMInst.java">
+        <entry file="file://$PROJECT_DIR$/src/com/company/optimization/CFGReducer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMReg.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-              <folding>
-                <element signature="e#404#417#0" />
-                <element signature="e#1873#2263#1" />
-                <element signature="e#2286#3552#1" />
-                <element signature="e#3576#4851#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="158" selection-start-line="158" selection-end-line="158" />
-              <folding>
-                <element signature="method#NASMAdapter#0;class#NASMAdapter#0" />
-                <element signature="method#visitCFG#0;class#NASMAdapter#0" />
-                <element signature="e#508#558#1" />
-                <element signature="method#visitCFGNode#0;class#NASMAdapter#0" />
-                <element signature="e#968#1081#1" />
-                <element signature="e#1151#1724#1" />
-                <element signature="e#1325#1702#1" />
-                <element signature="e#1750#1969#1" />
-                <element signature="e#2514#2789#1" />
-                <element signature="method#visitCFGInstAddr#0;class#NASMAdapter#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="59">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -241,13 +110,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/StackAllocator.java">
+        <entry file="file://$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
+            <state relative-caret-position="-418">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="831">
+              <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/common/CompileError.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
               <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SyntaxErrorListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../编译器/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/ProxyErrorListener.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -263,12 +171,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>MemSize</find>
-      <find>Decl</find>
-      <find>getMemSize</find>
-      <find>op_mov</find>
-      <find>mult</find>
-      <find>imul</find>
       <find>div</find>
       <find>prim</find>
       <find>.getNum()</find>
@@ -287,12 +189,18 @@
       <find>hasConstructor</find>
       <find>init</find>
       <find>push</find>
-      <find>call</find>
-      <find>e_call</find>
       <find>???</find>
       <find>jcc</find>
       <find>jmp</find>
       <find>21</find>
+      <find>call</find>
+      <find>e_call</find>
+      <find>regList</find>
+      <find>strtol</find>
+      <find>calleeSaveReg</find>
+      <find>newReg</find>
+      <find>new NASMRegAddr</find>
+      <find>getNASMReg</find>
     </findStrings>
     <replaceStrings>
       <replace>expression</replace>
@@ -309,18 +217,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/company/frontend/AST/ASTTypeNode.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/AST/ASTNodeType.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/ASTAbstractVisitor.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/ASTBaseVisitor.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/parser/mxParser.java" />
-        <option value="$PROJECT_DIR$/src/com/company/common/Position.java" />
-        <option value="$PROJECT_DIR$/src/com/company/common/CompileError.java" />
-        <option value="$PROJECT_DIR$/../XNG-master/grammar/Mx.g4" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/parser/mx.g4" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstOpr.java" />
-        <option value="$PROJECT_DIR$/../XNG-master/src/xng/XIR/XCFG.java" />
-        <option value="$PROJECT_DIR$/../XNG-master/src/xng/frontend/XIRGenerator.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/AST/ASTFuncDeclNode.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolInfo.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGData.java" />
@@ -331,7 +227,6 @@
         <option value="$PROJECT_DIR$/src/com/company/frontend/AST/ASTCreatorNode.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMAddr.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMWordType.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java" />
         <option value="$PROJECT_DIR$/../XNG-master/src/xng/backend/GlobalRegAllocator.java" />
         <option value="$PROJECT_DIR$/../XNG-master/src/xng/backend/NASM/NASMAdapter.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMImmAddr.java" />
@@ -341,24 +236,37 @@
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASM.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/AST/ASTExprNode.java" />
         <option value="$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInst.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/StackAllocator.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMMemAddr.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/ASTBuilder.java" />
-        <option value="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/test.asm" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java" />
-        <option value="$PROJECT_DIR$/main.mx" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGProcess.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMReg.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASMAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASM/NASMInst.java" />
         <option value="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/InstInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/VarInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/RegInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/DataFlowOptimizer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/VarOptimizer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/PeepholeOptimizer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInst.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/info/VarInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/info/RegInfo.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/VarAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java" />
+        <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" />
+        <option value="$PROJECT_DIR$/main.mx" />
+        <option value="$PROJECT_DIR$/test.asm" />
+        <option value="$PROJECT_DIR$/src/com/company/optimization/CFGReducer.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
       </list>
     </option>
@@ -370,10 +278,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="243" />
-    <option name="y" value="57" />
-    <option name="width" value="981" />
-    <option name="height" value="1044" />
+    <option name="x" value="811" />
+    <option name="y" value="258" />
+    <option name="width" value="980" />
+    <option name="height" value="938" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -443,16 +351,15 @@
               <item name="compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
+              <item name="optimization" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="compiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="company" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="SymbolTable" type="462c0819:PsiDirectoryNode" />
+              <item name="optimization" type="462c0819:PsiDirectoryNode" />
+              <item name="info" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -467,7 +374,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557116879715" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557158026785" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -476,15 +383,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\2019Spring\compiler\src\com\company\frontend\parser" />
-      <recent name="D:\2019Spring\compiler\src\com\company\parser" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.company.optimization" />
+      <recent name="com.company.frontend.IR" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\2019Spring\compiler\src\com\company\frontend\parser" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.company.frontend.IR" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\2019Spring\compiler\src\com\company\frontend\parser" />
+      <recent name="D:\2019Spring\compiler\src\com\company\parser" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -586,12 +494,12 @@
       <workItem from="1557042925914" duration="16636000" />
       <workItem from="1557064511102" duration="76000" />
       <workItem from="1557064648449" duration="612000" />
-      <workItem from="1557114997485" duration="1878000" />
+      <workItem from="1557114997485" duration="24086000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328430000" />
+    <option name="totallyTimeSpent" value="350638000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -606,8 +514,8 @@
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29587713" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.2497979" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27890056" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24833333" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -616,11 +524,11 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.5804196" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32867134" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.42482516" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.57867134" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.2534965" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.43356642" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.33451328" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.3374126" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32867134" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Tool Output" order="10" weight="0.052447554" />
@@ -638,6 +546,39 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Event Log" order="9" side_tool="true" weight="0.32983023" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2489895" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24833333" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" weight="0.32983023" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.5804196" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32867134" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.42482516" />
+      <window_info anchor="bottom" id="Debug" order="4" visible="true" weight="0.43881118" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.3374126" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32867134" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Tool Output" order="10" weight="0.052447554" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32867134" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="13" weight="0.4755245" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.2497979" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32983023" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Event Log" order="9" side_tool="true" weight="0.32983023" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -687,30 +628,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java</url>
-          <line>566</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/backend/NASMAdapter.java</url>
-          <line>158</line>
-          <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java</url>
-          <line>38</line>
-          <properties />
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>61</line>
-          <properties />
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java</url>
           <line>456</line>
           <properties />
           <option name="timeStamp" value="34" />
@@ -722,16 +639,28 @@
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java</url>
-          <line>79</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java</url>
           <line>70</line>
           <properties />
           <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java</url>
+          <line>307</line>
+          <properties />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java</url>
+          <line>70</line>
+          <properties />
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -741,364 +670,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/backend/NASM/NASMGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1680">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="32" />
-          <folding>
-            <element signature="method#NASMGenerator#0;class#NASMGenerator#0" />
-            <element signature="method#visitXCFG#0;class#NASMGenerator#0" />
-            <element signature="e#1493#1602#1" />
-            <element signature="method#visitXIRData#0;class#NASMGenerator#0" />
-            <element signature="e#2136#2650#0" />
-            <element signature="e#2161#2271#1" />
-            <element signature="e#2296#2409#1" />
-            <element signature="e#2434#2640#1" />
-            <element signature="method#getExp2Sup#0;class#NASMGenerator#0" />
-            <element signature="method#pushCallerSavedReg#0;class#NASMGenerator#0" />
-            <element signature="e#3037#3150#1" />
-            <element signature="method#popCallerSavedReg#0;class#NASMGenerator#0" />
-            <element signature="e#3240#3397#1" />
-            <element signature="method#pushCalleeSavedReg#0;class#NASMGenerator#0" />
-            <element signature="e#3483#3596#1" />
-            <element signature="method#popCalleeSavedReg#0;class#NASMGenerator#0" />
-            <element signature="e#3686#3843#1" />
-            <element signature="method#visitXCFGNode#0;class#NASMGenerator#0" />
-            <element signature="e#4109#4461#1" />
-            <element signature="e#4284#4451#1" />
-            <element signature="e#4495#5483#1" />
-            <element signature="e#4564#4690#1" />
-            <element signature="e#4611#4676#1" />
-            <element signature="e#5268#5441#1" />
-            <element signature="e#5750#5861#1" />
-            <element signature="e#5867#5925#1" />
-            <element signature="e#6030#6289#1" />
-            <element signature="e#6142#6249#1" />
-            <element signature="method#getNASMReg#0;class#NASMGenerator#0" />
-            <element signature="e#6412#6920#0" />
-            <element signature="e#6564#6622#1" />
-            <element signature="e#6964#7075#1" />
-            <element signature="e#6999#7065#1" />
-            <element signature="e#7221#7261#0" />
-            <element signature="method#getNASMAddr#0;class#NASMGenerator#0" />
-            <element signature="e#7925#9724#0" />
-            <element signature="e#7951#8016#1" />
-            <element signature="e#8040#8116#1" />
-            <element signature="e#8140#9529#1" />
-            <element signature="e#8291#8408#1" />
-            <element signature="e#8414#9445#1" />
-            <element signature="e#8535#9034#0" />
-            <element signature="e#8576#8701#1" />
-            <element signature="e#9078#9427#0" />
-            <element signature="e#9555#9621#1" />
-            <element signature="e#9648#9714#1" />
-            <element signature="method#getNASMOp#0;class#NASMGenerator#0" />
-            <element signature="e#9828#11513#0" />
-            <element signature="method#emitNASMInst#0;class#NASMGenerator#0" />
-            <element signature="e#11739#11788#0" />
-            <element signature="method#emitNASMInst#1;class#NASMGenerator#0" />
-            <element signature="e#12231#13378#0" />
-            <element signature="e#12377#12572#1" />
-            <element signature="e#12440#12535#1" />
-            <element signature="e#12598#12970#1" />
-            <element signature="e#12996#13368#1" />
-            <element signature="e#13430#13677#0" />
-            <element signature="e#13922#14245#1" />
-            <element signature="e#13961#14006#0" />
-            <element signature="e#14280#14424#1" />
-            <element signature="e#14430#14582#1" />
-            <element signature="e#14633#15178#1" />
-            <element signature="e#14712#14989#1" />
-            <element signature="e#14779#14936#1" />
-            <element signature="e#14995#15141#1" />
-            <element signature="e#15204#15685#1" />
-            <element signature="e#15247#15420#1" />
-            <element signature="method#visitXIRInst#0;class#NASMGenerator#0" />
-            <element signature="e#17151#17311#1" />
-            <element signature="e#17345#17453#1" />
-            <element signature="e#17459#17515#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/AST/XASTVarDeclNode.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/XIRGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="146" column="39" lean-forward="true" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!block;n#XIRGenerator#0;n#XIRGenerator#0" />
-            <element signature="method#visitCUNode#0;class#XIRGenerator#0" />
-            <element signature="e#1133#1170#1" />
-            <element signature="method#visitClassDeclNode#0;class#XIRGenerator#0" />
-            <element signature="method#visitFuncDeclNode#0;class#XIRGenerator#0" />
-            <element signature="e#2452#2795#1" />
-            <element signature="e#2830#3227#1" />
-            <element signature="e#2891#3217#1" />
-            <element signature="e#3437#3747#1" />
-            <element signature="e#3565#3672#0" />
-            <element signature="e#3785#3882#1" />
-            <element signature="method#genBoolVarNode#0;class#XIRGenerator#0" />
-            <element signature="method#visitTypeNode#0;class#XIRGenerator#0" />
-            <element signature="method#wrapExprNode#0;class#XIRGenerator#0" />
-            <element signature="method#visitStmtNode#0;class#XIRGenerator#0" />
-            <element signature="e#6827#14352#0" />
-            <element signature="e#6855#8735#1" />
-            <element signature="e#6926#7039#1" />
-            <element signature="e#7148#8240#1" />
-            <element signature="e#7201#8222#1" />
-            <element signature="e#7430#7491#0" />
-            <element signature="e#8376#8557#1" />
-            <element signature="e#8787#9324#1" />
-            <element signature="e#9349#10889#1" />
-            <element signature="e#9392#10144#1" />
-            <element signature="e#9598#10066#1" />
-            <element signature="e#10364#10625#1" />
-            <element signature="e#11044#12405#1" />
-            <element signature="e#11463#11632#1" />
-            <element signature="e#12432#13357#1" />
-            <element signature="e#13023#13115#1" />
-            <element signature="e#13381#14210#1" />
-            <element signature="e#13537#13761#1" />
-            <element signature="e#13805#13865#1" />
-            <element signature="e#13870#13953#1" />
-            <element signature="method#visitLogicalExprNode#0;class#XIRGenerator#0" />
-            <element signature="e#14580#14715#1" />
-            <element signature="e#14745#16883#0" />
-            <element signature="e#14776#15075#1" />
-            <element signature="e#14912#14971#1" />
-            <element signature="e#14977#15037#1" />
-            <element signature="e#15101#15388#1" />
-            <element signature="e#15413#15822#1" />
-            <element signature="e#15663#15725#0" />
-            <element signature="e#15847#16154#1" />
-            <element signature="e#15995#16057#0" />
-            <element signature="e#16176#16873#1" />
-            <element signature="e#16428#16647#1" />
-            <element signature="method#visitExprNode#0;class#XIRGenerator#0" />
-            <element signature="e#17171#17308#1" />
-            <element signature="e#17391#33147#0" />
-            <element signature="e#17466#18784#1" />
-            <element signature="e#17526#18672#1" />
-            <element signature="e#18678#18747#1" />
-            <element signature="e#18810#20066#1" />
-            <element signature="e#19010#19497#1" />
-            <element signature="e#19503#19959#1" />
-            <element signature="e#20205#22431#1" />
-            <element signature="e#20243#20952#0" />
-            <element signature="e#21026#22127#1" />
-            <element signature="e#22133#22417#1" />
-            <element signature="e#22831#28864#1" />
-            <element signature="e#23061#23492#1" />
-            <element signature="e#23615#26475#1" />
-            <element signature="e#24002#26429#1" />
-            <element signature="e#24171#25133#1" />
-            <element signature="e#24737#24915#1" />
-            <element signature="e#24921#25049#1" />
-            <element signature="e#25176#25524#1" />
-            <element signature="e#25328#25498#1" />
-            <element signature="e#25530#26407#1" />
-            <element signature="e#26017#26192#1" />
-            <element signature="e#26198#26323#1" />
-            <element signature="e#26605#26816#1" />
-            <element signature="e#26867#26989#1" />
-            <element signature="e#27036#27823#1" />
-            <element signature="e#27190#27331#1" />
-            <element signature="e#27402#27805#1" />
-            <element signature="e#27852#28127#1" />
-            <element signature="e#28891#29190#1" />
-            <element signature="e#29217#29746#1" />
-            <element signature="e#29864#30024#1" />
-            <element signature="e#30050#30349#1" />
-            <element signature="e#30376#30905#1" />
-            <element signature="e#31035#31081#0" />
-            <element signature="e#31558#32609#1" />
-            <element signature="e#31802#32042#1" />
-            <element signature="e#32048#32257#1" />
-            <element signature="e#32258#32305#0" />
-            <element signature="method#visitPrimNode#0;class#XIRGenerator#0" />
-            <element signature="e#33555#35329#0" />
-            <element signature="e#33742#33952#1" />
-            <element signature="e#34698#34825#1" />
-            <element signature="e#34831#35060#1" />
-            <element signature="method#visitCreatorNode#0;class#XIRGenerator#0" />
-            <element signature="e#35564#37610#1" />
-            <element signature="e#35566#35600#0" />
-            <element signature="e#36135#36530#1" />
-            <element signature="e#36543#37071#1" />
-            <element signature="e#37084#37359#1" />
-            <element signature="e#37616#39034#1" />
-            <element signature="e#38157#38943#1" />
-            <element signature="e#38949#39024#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/frontend/SemanticAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="121" column="25" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="25" />
-          <folding>
-            <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
-            <element signature="method#getScopeName#0;class#SemanticAnalyzer#0" />
-            <element signature="method#checkLv#0;class#SemanticAnalyzer#0" />
-            <element signature="e#1483#1620#1" />
-            <element signature="e#1649#1934#0" />
-            <element signature="e#1869#1896#0" />
-            <element signature="method#checkFuncParam#0;class#SemanticAnalyzer#0" />
-            <element signature="e#2175#2209#1" />
-            <element signature="e#2252#2507#1" />
-            <element signature="e#2454#2497#1" />
-            <element signature="method#assertExprType#0;class#SemanticAnalyzer#0" />
-            <element signature="method#assertExprType#1;class#SemanticAnalyzer#0" />
-            <element signature="method#visitCUNode#0;class#SemanticAnalyzer#0" />
-            <element signature="method#visitClassDeclNode#0;class#SemanticAnalyzer#0" />
-            <element signature="method#visitFuncDeclNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#4123#4211#1" />
-            <element signature="method#visitTypeNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#4938#5558#0" />
-            <element signature="e#4996#5093#1" />
-            <element signature="e#5373#5478#1" />
-            <element signature="method#visitStmtNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#5675#8334#0" />
-            <element signature="e#5971#6065#1" />
-            <element signature="e#6197#6421#1" />
-            <element signature="e#6264#6403#1" />
-            <element signature="e#6427#6676#1" />
-            <element signature="e#6524#6658#1" />
-            <element signature="e#6816#6926#1" />
-            <element signature="e#7276#7386#1" />
-            <element signature="e#7649#7761#1" />
-            <element signature="e#7850#8206#1" />
-            <element signature="e#8017#8188#1" />
-            <element signature="method#visitExprNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#8630#18950#0" />
-            <element signature="e#8826#8966#1" />
-            <element signature="e#9122#9262#1" />
-            <element signature="e#9268#9373#1" />
-            <element signature="e#9835#9972#1" />
-            <element signature="e#9978#10083#1" />
-            <element signature="e#10496#10636#1" />
-            <element signature="e#10642#10785#1" />
-            <element signature="e#10916#11056#1" />
-            <element signature="e#11062#11205#1" />
-            <element signature="e#11393#11506#1" />
-            <element signature="e#11637#11708#1" />
-            <element signature="e#11714#11819#1" />
-            <element signature="e#12038#12149#1" />
-            <element signature="e#12231#12394#1" />
-            <element signature="e#12542#12943#1" />
-            <element signature="e#12631#12799#1" />
-            <element signature="e#12805#12925#1" />
-            <element signature="e#12949#13061#1" />
-            <element signature="e#13199#13326#1" />
-            <element signature="e#13332#14311#1" />
-            <element signature="e#13446#13612#1" />
-            <element signature="e#13774#13937#1" />
-            <element signature="e#13953#14106#1" />
-            <element signature="e#14112#14293#1" />
-            <element signature="e#14424#14558#1" />
-            <element signature="e#14631#14765#1" />
-            <element signature="e#14771#14916#1" />
-            <element signature="e#15078#15198#1" />
-            <element signature="e#15366#15942#1" />
-            <element signature="e#15698#15778#1" />
-            <element signature="e#15803#15924#1" />
-            <element signature="e#15948#16061#1" />
-            <element signature="e#16331#16474#1" />
-            <element signature="e#16480#16585#1" />
-            <element signature="e#16712#16855#1" />
-            <element signature="e#16861#16966#1" />
-            <element signature="e#17183#17301#1" />
-            <element signature="e#17424#17537#1" />
-            <element signature="e#17610#17679#1" />
-            <element signature="e#17685#17861#1" />
-            <element signature="e#18120#18330#1" />
-            <element signature="e#18336#18740#1" />
-            <element signature="method#visitPrimNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#19035#20963#0" />
-            <element signature="e#19737#19832#1" />
-            <element signature="e#19838#20006#1" />
-            <element signature="e#20053#20953#1" />
-            <element signature="e#20132#20214#1" />
-            <element signature="e#20220#20372#1" />
-            <element signature="e#20536#20680#1" />
-            <element signature="e#20686#20916#1" />
-            <element signature="method#visitCreatorNode#0;class#SemanticAnalyzer#0" />
-            <element signature="e#21058#21583#1" />
-            <element signature="e#21144#21521#1" />
-            <element signature="e#21209#21262#1" />
-            <element signature="e#21317#21449#1" />
-            <element signature="e#21455#21507#1" />
-            <element signature="e#21621#22675#1" />
-            <element signature="e#21727#21865#1" />
-            <element signature="e#21905#22626#1" />
-            <element signature="e#22004#22099#0" />
-            <element signature="e#22202#22451#1" />
-            <element signature="e#22287#22433#1" />
-            <element signature="e#22510#22612#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/common/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/AST/ASTDeclNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="867" column="35" selection-start-line="867" selection-start-column="35" selection-end-line="867" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../编译器/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/DefaultErrorStrategy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/AST/ASTTypeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/parser/mxParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/AST/ASTCreatorNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/AST/ASTExprNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1128,20 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../编译器/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/ProxyErrorListener.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SyntaxErrorListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/parser/mx.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -1167,13 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/common/CompileError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
@@ -1230,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1262,13 +805,6 @@
           <folding>
             <element signature="method#defSection#0;class#NASM#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGInst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>
@@ -1319,9 +855,155 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/StackAllocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMInst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../XNG-master/src/xng/backend/GlobalRegAllocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="84" column="29" lean-forward="true" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+          <folding>
+            <element signature="method#GlobalRegAllocator#0;class#GlobalRegAllocator#0" />
+            <element signature="e#467#507#1" />
+            <element signature="class#RegInfoPair#0;class#GlobalRegAllocator#0" />
+            <element signature="method#RegInfoPair#0;class#RegInfoPair#0;class#GlobalRegAllocator#0" />
+            <element signature="method#colorNode#0;class#GlobalRegAllocator#0" />
+            <element signature="e#892#1009#1" />
+            <element signature="e#1037#1100#1" />
+            <element signature="method#spillMetric#0;class#GlobalRegAllocator#0" />
+            <element signature="class#1489:1783" />
+            <element signature="method#compare#0;class#1489:1783" />
+            <element signature="e#2021#2158#1" />
+            <element signature="e#2195#2555#1" />
+            <element signature="e#2473#2545#1" />
+            <element signature="method#visitXCFGNode#0;class#GlobalRegAllocator#0" />
+            <element signature="method#visitXIRInst#0;class#GlobalRegAllocator#0" />
+            <element signature="e#3294#3693#1" />
+            <element signature="e#3407#3683#1" />
+            <element signature="e#3492#3571#1" />
+            <element signature="e#3593#3669#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGInst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/info/InstInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/HashSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="171" column="23" selection-start-line="171" selection-start-column="23" selection-end-line="171" selection-end-column="23" />
+          <folding>
+            <element signature="e#6496#6497#0" expanded="true" />
+            <element signature="e#6542#6543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/PeepholeOptimizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/info/VarInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/VarAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/info/RegInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMLabelAddr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+          <folding>
+            <element signature="e#144#145#0" expanded="true" />
+            <element signature="e#170#171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SemanticAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1539">
+        <state relative-caret-position="835">
           <caret line="329" column="9" selection-start-line="329" selection-start-column="9" selection-end-line="329" selection-end-column="9" />
           <folding>
             <element signature="method#SemanticAnalyzer#0;class#SemanticAnalyzer#0" />
@@ -1343,30 +1025,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SymbolTable/SymbolType.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+        <state relative-caret-position="209">
+          <caret line="50" column="69" selection-start-line="50" selection-start-column="69" selection-end-line="50" selection-end-column="69" />
+          <folding>
+            <element signature="class#addrType#0;class#CFGInstAddr#0" />
+            <element signature="method#CFGInstAddr#0;class#CFGInstAddr#0" />
+            <element signature="e#921#922#0" expanded="true" />
+            <element signature="e#948#949#0" expanded="true" />
+            <element signature="method#newStaticAddr#0;class#CFGInstAddr#0" />
+            <element signature="method#newLabelAddr#0;class#CFGInstAddr#0" />
+            <element signature="n#!!block;n#newLabelAddr#1;n#CFGInstAddr#0" />
+            <element signature="method#newRegAddr#1;class#CFGInstAddr#0" />
+            <element signature="method#newMemAddr#0;class#CFGInstAddr#0" />
+            <element signature="method#newStackAddr#0;class#CFGInstAddr#0" />
+            <element signature="method#newImmAddr#0;class#CFGInstAddr#0" />
+            <element signature="method#isConst#0;class#CFGInstAddr#0" />
+            <element signature="method#getConst#0;class#CFGInstAddr#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.mx">
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMReg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.asm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6463">
-          <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+        <state relative-caret-position="209">
+          <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+          <folding>
+            <element signature="class#regType#0;class#NASMReg#0" />
+            <element signature="method#NASMReg#1;class#NASMReg#0" />
+            <element signature="method#NASMReg#2;class#NASMReg#0" />
+            <element signature="method#toString#0;class#NASMReg#0" />
+            <element signature="method#getRegId#0;class#NASMReg#0" />
+            <element signature="e#1195#1763#0" />
+            <element signature="method#getSpecReg#0;class#NASMReg#0" />
+            <element signature="e#1845#6150#0" />
+            <element signature="e#1869#2259#1" />
+            <element signature="e#1901#2208#0" />
+            <element signature="e#2282#3548#1" />
+            <element signature="e#2314#3497#0" />
+            <element signature="e#3572#4847#1" />
+            <element signature="e#3605#4796#0" />
+            <element signature="e#4872#6140#1" />
+            <element signature="e#4906#6089#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/GlobalSymbolTableBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
+        <state relative-caret-position="-41">
           <caret line="90" column="123" selection-start-line="90" selection-start-column="123" selection-end-line="90" selection-end-column="123" />
           <folding>
             <element signature="e#695#696#0" expanded="true" />
@@ -1376,61 +1084,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/backend/StackAllocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMReg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-          <folding>
-            <element signature="e#404#417#0" />
-            <element signature="e#1873#2263#1" />
-            <element signature="e#2286#3552#1" />
-            <element signature="e#3576#4851#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="52" column="127" selection-start-line="52" selection-start-column="127" selection-end-line="52" selection-end-column="127" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#879#880#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#932#933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASM/NASMInst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="-66">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1439,127 +1096,194 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="158" selection-start-line="158" selection-end-line="158" />
+        <state relative-caret-position="-599">
+          <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
           <folding>
             <element signature="method#NASMAdapter#0;class#NASMAdapter#0" />
             <element signature="method#visitCFG#0;class#NASMAdapter#0" />
             <element signature="e#508#558#1" />
-            <element signature="method#visitCFGNode#0;class#NASMAdapter#0" />
             <element signature="e#968#1081#1" />
             <element signature="e#1151#1724#1" />
             <element signature="e#1325#1702#1" />
             <element signature="e#1750#1969#1" />
             <element signature="e#2514#2789#1" />
-            <element signature="method#visitCFGInstAddr#0;class#NASMAdapter#0" />
+            <element signature="method#visitCFGInst#0;class#NASMAdapter#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="554" column="66" selection-start-line="554" selection-start-column="63" selection-end-line="554" selection-end-column="66" />
+        <state relative-caret-position="153">
+          <caret line="491" column="70" selection-start-line="491" selection-start-column="70" selection-end-line="491" selection-end-column="70" />
           <folding>
             <element signature="method#visitLogicalExprNode#0;class#CFGBuilder#0" />
             <element signature="e#971#1099#1" />
-            <element signature="e#1131#2872#0" />
+            <element signature="e#1131#2868#0" />
             <element signature="e#1157#1374#1" />
-            <element signature="e#2165#2862#1" />
+            <element signature="e#2165#2858#1" />
+            <element signature="e#2416#2635#1" />
             <element signature="method#genBoolExprNode#0;class#CFGBuilder#0" />
             <element signature="method#wrapExprNode#0;class#CFGBuilder#0" />
             <element signature="method#visitCompilationUnitNode#0;class#CFGBuilder#0" />
-            <element signature="e#5342#5605#1" />
-            <element signature="e#5700#5986#1" />
-            <element signature="e#6245#6342#1" />
-            <element signature="e#6462#6502#0" />
-            <element signature="method#visitVarDeclNode#0;class#CFGBuilder#0" />
-            <element signature="e#6781#6956#1" />
-            <element signature="e#6970#7504#1" />
-            <element signature="e#7058#7343#1" />
-            <element signature="e#7562#8143#1" />
-            <element signature="e#7727#7856#1" />
-            <element signature="e#7862#8133#1" />
-            <element signature="e#7910#8037#1" />
-            <element signature="method#visitExprNode#0;class#CFGBuilder#0" />
-            <element signature="e#8427#8581#1" />
-            <element signature="e#8669#24112#0" />
-            <element signature="e#8764#9925#1" />
-            <element signature="e#11319#11607#1" />
-            <element signature="e#11633#12151#1" />
-            <element signature="e#12177#12465#1" />
-            <element signature="e#12491#13009#1" />
-            <element signature="e#13160#15439#1" />
-            <element signature="e#13200#13922#0" />
-            <element signature="e#14008#15114#1" />
-            <element signature="e#15136#15401#1" />
-            <element signature="e#16321#16557#1" />
-            <element signature="e#16616#16761#1" />
-            <element signature="e#17127#17557#1" />
-            <element signature="e#17714#20497#1" />
-            <element signature="e#18118#20451#1" />
-            <element signature="e#18289#19295#1" />
-            <element signature="e#18935#19113#1" />
-            <element signature="e#19364#19537#1" />
-            <element signature="e#19567#20429#1" />
-            <element signature="e#20075#20250#1" />
-            <element signature="e#20651#20938#1" />
-            <element signature="e#21021#21146#1" />
-            <element signature="e#21191#21861#1" />
-            <element signature="e#21325#21444#1" />
-            <element signature="e#21507#21843#1" />
-            <element signature="e#21893#22186#1" />
-            <element signature="e#22895#24037#1" />
-            <element signature="e#23033#23506#1" />
-            <element signature="e#23528#23960#1" />
-            <element signature="e#24527#25333#1" />
-            <element signature="e#24599#24712#1" />
-            <element signature="e#24984#25155#1" />
-            <element signature="e#25862#27170#1" />
-            <element signature="e#25880#25895#0" />
-            <element signature="e#26330#26444#1" />
-            <element signature="e#27196#28158#1" />
-            <element signature="e#27214#27227#0" />
-            <element signature="e#28181#28895#1" />
-            <element signature="e#28318#28530#1" />
-            <element signature="e#28922#30197#1" />
-            <element signature="e#28967#29584#1" />
-            <element signature="e#29161#29496#1" />
-            <element signature="e#29790#30045#1" />
+            <element signature="method#visitClassDeclNode#0;class#CFGBuilder#0" />
+            <element signature="method#visitFuncDeclNode#0;class#CFGBuilder#0" />
+            <element signature="e#5338#5601#1" />
+            <element signature="e#5696#5933#1" />
+            <element signature="e#6192#6289#1" />
+            <element signature="e#6409#6449#0" />
+            <element signature="e#6728#6903#1" />
+            <element signature="e#7509#8101#1" />
+            <element signature="e#7685#7814#1" />
+            <element signature="e#7820#8091#1" />
+            <element signature="e#7868#7995#1" />
+            <element signature="e#8385#8539#1" />
+            <element signature="e#8722#9883#1" />
+            <element signature="e#11277#11565#1" />
+            <element signature="e#12135#12423#1" />
+            <element signature="e#12449#12967#1" />
+            <element signature="e#13118#15411#1" />
+            <element signature="e#13158#13880#0" />
+            <element signature="e#13966#15086#1" />
+            <element signature="e#15108#15373#1" />
+            <element signature="e#16259#16495#1" />
+            <element signature="e#16554#16699#1" />
+            <element signature="e#17065#17495#1" />
+            <element signature="e#17652#20435#1" />
+            <element signature="e#18056#20389#1" />
+            <element signature="e#18227#19233#1" />
+            <element signature="e#18873#19051#1" />
+            <element signature="e#19302#19475#1" />
+            <element signature="e#19505#20367#1" />
+            <element signature="e#20013#20188#1" />
+            <element signature="e#20589#20876#1" />
+            <element signature="e#20959#21084#1" />
+            <element signature="e#21129#21799#1" />
+            <element signature="e#21263#21382#1" />
+            <element signature="e#21445#21781#1" />
+            <element signature="e#21831#22124#1" />
+            <element signature="e#22971#23444#1" />
+            <element signature="e#23466#23898#1" />
+            <element signature="method#visitStmtNode#0;class#CFGBuilder#0" />
+            <element signature="e#24437#30422#0" />
+            <element signature="e#24465#25271#1" />
+            <element signature="e#24537#24650#1" />
+            <element signature="e#24922#25093#1" />
+            <element signature="e#25326#25776#1" />
+            <element signature="e#25800#27108#1" />
+            <element signature="e#25818#25833#0" />
+            <element signature="e#26268#26382#1" />
+            <element signature="e#27134#28096#1" />
+            <element signature="e#27152#27165#0" />
+            <element signature="e#28119#28833#1" />
+            <element signature="e#28256#28468#1" />
+            <element signature="e#28860#30135#1" />
+            <element signature="e#28905#29522#1" />
+            <element signature="e#29099#29434#1" />
+            <element signature="e#29728#29983#1" />
             <element signature="method#visitPrimNode#0;class#CFGBuilder#0" />
-            <element signature="e#30586#31925#0" />
-            <element signature="e#30869#30990#1" />
-            <element signature="e#31012#31245#1" />
-            <element signature="e#31548#31692#1" />
-            <element signature="e#32170#33867#1" />
-            <element signature="e#32355#32786#1" />
-            <element signature="e#32799#33327#1" />
-            <element signature="e#33340#33614#1" />
-            <element signature="e#34374#35158#1" />
-            <element signature="e#35176#35251#1" />
+            <element signature="e#30524#31863#0" />
+            <element signature="e#30807#30928#1" />
+            <element signature="e#30950#31183#1" />
+            <element signature="e#31486#31630#1" />
+            <element signature="method#visitCreatorNode#0;class#CFGBuilder#0" />
+            <element signature="e#32108#33805#1" />
+            <element signature="e#32293#32724#1" />
+            <element signature="e#32737#33265#1" />
+            <element signature="e#33278#33552#1" />
+            <element signature="e#33819#35199#1" />
+            <element signature="e#34312#35096#1" />
+            <element signature="e#35114#35189#1" />
             <element signature="method#visitTypeNode#0;class#CFGBuilder#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/common/CompileError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/frontend/SyntaxErrorListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../编译器/antlr4-runtime-4.7.2.jar!/org/antlr/v4/runtime/ProxyErrorListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.mx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="72" column="14" selection-start-line="72" selection-start-column="14" selection-end-line="72" selection-end-column="14" />
+        <state relative-caret-position="529">
+          <caret line="63" column="45" lean-forward="true" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
           <folding>
+            <element signature="method#visitCFG#0;class#NASMBuilder#0" />
             <element signature="method#visitCFGData#0;class#NASMBuilder#0" />
-            <element signature="method#visitCFGInst#0;class#NASMBuilder#0" />
             <element signature="method#genNASMInst#0;class#NASMBuilder#0" />
             <element signature="method#popCalleeSavedReg#0;class#NASMBuilder#0" />
             <element signature="method#getNASMAddr#0;class#NASMBuilder#0" />
+            <element signature="method#getNASMReg#0;class#NASMBuilder#0" />
+            <element signature="method#getNASMOp#0;class#NASMBuilder#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-418">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/CFGReducer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.asm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="588" column="10" lean-forward="true" selection-end-line="653" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        <state relative-caret-position="158">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

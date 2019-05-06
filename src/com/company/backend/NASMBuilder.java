@@ -12,12 +12,12 @@ public class NASMBuilder {
 
     private Vector<NASMInst> instList = new Vector<>();
 
-    //private int[] availableReg = {12, 13, 14, 15, 17};
+    private int[] availableReg = {17,12, 13, 14, 15};
     private int[] parameterReg = {23, 22, 19, 18, 8, 9};
     private int parameterStackOffset = 0;
 
-    private int[] templateReg = {10, 11, 12, 13, 14, 15, 17};
-    private int[] templateMap = {0, 0, 0, 0, 0, 0, 0};
+    private int[] templateReg = {10, 11};
+    private int[] templateMap = {0, 0};
     private int curTemplateReg = 0;
 
     private Stack<Integer> curCalleeSavedReg = new Stack<>();
@@ -304,8 +304,8 @@ public class NASMBuilder {
                 return new NASMReg(16, wt);
             case -5:
                 return new NASMReg(19, wt);
-           // case -6:
-             //   return new NASMReg(availableReg[opr.lit2], wt);//idk about -6
+            case -6:
+                return new NASMReg(availableReg[opr.lit3], wt);//colored reg
 
         }
         for (int i = 0; i < templateMap.length; ++i){
