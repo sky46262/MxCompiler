@@ -429,15 +429,24 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
+global _func_a
 global main
 global _str_1
 
 SECTION .text
+_func_a:
+	push	rbp
+	mov	rbp, rsp
+_Label_14:
+	mov	rax, 1
+_Label_13:
+	pop	rbp
+	ret
 main:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 64
-_Label_13:
+_Label_16:
 	mov	qword [rbp-8H], 10000
 	mov	rcx, 2
 	sar	qword [rbp-8H], cl
@@ -450,16 +459,16 @@ _Label_13:
 	and	qword [rbp-18H], 255
 	mov	r12, qword [rbp-18H]
 	mov	qword [rbp-20H], r12
-_Label_16:
+_Label_19:
 	cmp	qword [rbp-20H], 10000
-	jle	_Label_14
-_Label_15:
+	jle	_Label_17
+_Label_18:
 	mov	rdi, _str_1
 	call	_lib_println
-_Label_14:
 _Label_17:
+_Label_20:
 	mov	rax, 0
-_Label_12:
+_Label_15:
 	add	rsp, 64
 	pop	rbp
 	ret

@@ -65,13 +65,16 @@ public class NASMBuilder {
         if (visitFlag.contains(node.ID)) return;
         visitFlag.add(node.ID);
         nasm.defLabel(node.name);
-        if (!node.insts.isEmpty()) {
+        /*if (!node.insts.isEmpty()) {
             CFGInst last_inst = node.insts.lastElement();
             if (last_inst.op == CFGInst.InstType.op_jcc || last_inst.op == CFGInst.InstType.op_jmp)
                 last_inst.operands.firstElement().strLit = node.nextNodes.firstElement().name;
-        }//????
+        }*/
+        //TODO
+        //????
         if (curProcess != null) {
-            ///??? call
+            //in the front of function
+            //push register and calculate stack
             if (curProcess.isCallee && curProcess.paramCnt <= 6) {
                 for (int t : calleeSaveReg) curCalleeSavedReg.add(t);
             } else curCalleeSavedReg.add(21);
@@ -110,7 +113,7 @@ public class NASMBuilder {
                 str.append("db\t");
                 data.strValue.chars().forEach(i-> str.append(String.format("%02X",i)).append("H, "));
                 str.append("00H");
-                //???
+                //strLit is to long, so split into bytes
                 break;
         }
         nasm.genLine(true, str.toString());
@@ -287,7 +290,7 @@ public class NASMBuilder {
     }
     private NASMReg getNASMReg(CFGInstAddr opr, NASMWordType wt){
         int num = opr.getNum();
-        //16 RAX 19 RDX 20 RSP
+        //16 RAX 19 RDX 20 RSP 21 RBP
         switch (num){
             case 0:
                 return null;
@@ -356,7 +359,7 @@ public class NASMBuilder {
                 return NASMInst.InstType.SAR;
             case op_jmp:
                 return NASMInst.InstType.JMP;
-            case op_jcc:
+            case op_jcc: // jump if false , so revOp
                 return  NASMInst.newJccRevOp(lastOp);
             case op_return:
                 return NASMInst.InstType.RET;

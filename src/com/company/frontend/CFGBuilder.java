@@ -66,8 +66,8 @@ public class CFGBuilder extends ASTBaseVisitor{
                     c_inst.addOperand(node.instAddr);
                     c_inst.addOperand(CFGInstAddr.newImmAddr(1)); // true
                 }
-                CFGInst j_inst = n.addInst(CFGInst.InstType.op_jcc);
-                j_inst.addOperand(CFGInstAddr.newLabelAddr(fN));//why falseNode ???
+                CFGInst j_inst = n.addInst(CFGInst.InstType.op_jcc);//jump if false
+                j_inst.addOperand(CFGInstAddr.newLabelAddr(fN));
                 n.linkTo(fN);
                 n.linkTo(tN);
             }
@@ -142,7 +142,6 @@ public class CFGBuilder extends ASTBaseVisitor{
                 CFGInst paramInst = node.startNode.addInst(CFGInst.InstType.op_rpara);
                 paramInst.addOperand(((ASTDeclNode) i).reg);
                 paramInst.addOperand(CFGInstAddr.newImmAddr(paramIdx++));
-                //what is the use of paramIdx???
             }
         curProc.paramCnt = paramIdx;
         visitStmt(node.funcBody);
@@ -182,7 +181,7 @@ public class CFGBuilder extends ASTBaseVisitor{
             node.startNode = node.endNode = curNode;
         }
         if (curFuncName == null && curClassName == null) {
-            int size = node.reg.addr1.getSize();//???
+            int size = node.reg.addr1.getSize();//size of static
             if (node.initExpr.nodeType == ASTNodeType.p_int || node.initExpr.nodeType == ASTNodeType.p_bool) {
                 cfg.dataList.add(new CFGData("_global_"+node.name, ((ASTPrimNode)node.initExpr).intValue, true));
             } else {
@@ -350,7 +349,7 @@ public class CFGBuilder extends ASTBaseVisitor{
                     CFGInst cmp_inst = new CFGInst(type);
                     cmp_inst.addOperand(CFGInstAddr.newRegAddr(-2));
                     cmp_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                    //???
+                    //result in reg(-2)
                     node.instList.add(cmp_inst);
                     node.instAddr = CFGInstAddr.newRegAddr(-2);
                 }
@@ -371,7 +370,6 @@ public class CFGBuilder extends ASTBaseVisitor{
                 return;
             case e_idx:
                 node.instAddr = CFGInstAddr.newMemAddr(node.exprList.get(0).instAddr, node.exprList.get(1).instAddr, 8, 8);
-                //why num = 8 ???
                 return;
             //exprList has not been visited
             case e_member:

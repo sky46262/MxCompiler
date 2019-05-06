@@ -10,7 +10,7 @@ public class CFGProcess {
     public boolean isCallee;
 
     public int stackSize;
-    //??? what the use of stackSize
+    //stackSize of process
 
     //todo calleeSavedReg
     public CFGProcess(CFGNode _s, CFGNode _e){

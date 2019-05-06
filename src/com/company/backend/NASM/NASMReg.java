@@ -1,20 +1,20 @@
 package com.company.backend.NASM;
 
 public class NASMReg {
+    //for reg and static (REL)
     public enum regType{
         NONE, REL,
-        R8,R9,R10,R11,R12,R13,R14,R15, RAX,RBX,RCX,RDX,RSP,RBP,RSI,RDI,RIP, //QWord
-        R8D,R9D,R10D,R11D,R12D,R13D,R14D,R15D, EAX,EBX,ECX,EDX,EBP,ESI,EDI,ESP,EIP, //DWord
+        R8,R9,R10,R11,R12,R13,R14,R15, RAX,RBX,RCX,RDX,RSP,RBP,RSI,RDI, //QWord
+        R8D,R9D,R10D,R11D,R12D,R13D,R14D,R15D, EAX,EBX,ECX,EDX,EBP,ESI,EDI,ESP, //DWord
         R8W,R9W,R10W,R11W,R12W,R13W,R14W,R15W, AX,BX,CX,DX,SP,BP,SI,DI, //Word
         AL,BL,CL,DL,AH,BH,CH,DH //Byte
-        //??? RIP EIP
-        //AH,BH,CH,DH
+        //AH,BH,CH,DH ???
     }
+
     int regId;
     NASMWordType wtype;
     private String staticName;
 
-    //???
     public NASMReg(String str){
         regId = -1;
         staticName = str;

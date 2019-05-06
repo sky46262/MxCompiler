@@ -42,13 +42,13 @@ public class CFGInstAddr {
         else{
             switch (this.a_type){
                 case a_static:
-                    return this.strLit.equals(o.strLit) /* && this.lit3 == o.lit3*/; //???
+                    return this.strLit.equals(o.strLit);
                 case a_label:
                     return this.strLit.equals(o.strLit);
                 case a_reg:
                     return this.lit4 == o.lit4;
                 case a_imm:
-                    return this.lit4 == o.lit4;//value in lit4???
+                    return this.lit4 == o.lit4;//value in lit4
                 case a_mem:
                     return Objects.equals(addr1, o.addr1) && Objects.equals(addr2, o.addr2)&& this.lit3 == o.lit3 && this.lit4 == o.lit4;
                 case a_stack:
@@ -91,7 +91,7 @@ public class CFGInstAddr {
     }
 
    //lit3,lit4,addr1,addr2
-    //what is the meaning of lit4 ???
+    //addr1 + addr2 * lit3 + lit4
     public static CFGInstAddr newMemAddr(CFGInstAddr base, CFGInstAddr offset, int size, int num){
         CFGInstAddr newAddr = new CFGInstAddr(addrType.a_mem, 0,0,size,num);
         newAddr.addr1 = base;

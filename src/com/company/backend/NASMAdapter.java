@@ -161,7 +161,7 @@ public class NASMAdapter {
             visitCFGInst(list, type, opr1, tmp);
             return;
         }
-        CFGInstAddr newOpr2 = visitCFGInstAddr(list, opr2); //opr2 first ???
+        CFGInstAddr newOpr2 = visitCFGInstAddr(list, opr2); //opr2 first (right associated)
         CFGInstAddr newOpr1 = visitCFGInstAddr(list, opr1);
         //assert !(type == CFGInst.InstType.op_mov && newOpr1.a_type == CFGInstAddr.addrType.a_mem && newOpr2.a_type == CFGInstAddr.addrType.a_mem);
         if (type == CFGInst.InstType.op_mov && newOpr1.equals(newOpr2)) return;

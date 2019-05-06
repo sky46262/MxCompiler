@@ -1,3 +1,6 @@
+int a(){
+    return 1;
+}
 int main(){
     int age = 10000 / 4 * 8 % 256;
 	if(age > 10000)println("eternal!");

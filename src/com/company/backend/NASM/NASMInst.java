@@ -50,7 +50,6 @@ public class NASMInst {
             case op_gt:
                 return InstType.JG;
         }
-        //??? JZ
         return InstType.JNE;
     }
 
