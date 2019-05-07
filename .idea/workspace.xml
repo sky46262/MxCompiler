@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" line="290" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="" />
+    <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,10 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
+            <state relative-caret-position="-298">
               <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -43,32 +45,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+            <state relative-caret-position="199">
+              <caret line="40" column="60" lean-forward="true" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2896#2897#0" expanded="true" />
+                <element signature="e#2983#2984#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
+        <entry file="file://$PROJECT_DIR$/src/com/company/optimization/PeepholeOptimizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
-              <folding>
-                <element signature="method#visitCFG#0;class#NASMBuilder#0" />
-                <element signature="method#visitCFGData#0;class#NASMBuilder#0" />
-                <element signature="method#genNASMInst#0;class#NASMBuilder#0" />
-                <element signature="method#popCalleeSavedReg#0;class#NASMBuilder#0" />
-                <element signature="method#getNASMAddr#0;class#NASMBuilder#0" />
-                <element signature="method#getNASMReg#0;class#NASMBuilder#0" />
-                <element signature="method#getNASMOp#0;class#NASMBuilder#0" />
-              </folding>
+            <state relative-caret-position="95">
+              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -359,7 +354,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557158080592" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557195568433" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -368,16 +363,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.company.optimization" />
-      <recent name="com.company.frontend.IR" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\2019Spring\compiler\src\com\company\frontend\parser" />
+      <recent name="D:\2019Spring\compiler\src\com\company\parser" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\2019Spring\compiler\src\com\company\frontend\parser" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\2019Spring\compiler\src\com\company\frontend\parser" />
-      <recent name="D:\2019Spring\compiler\src\com\company\parser" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.company.optimization" />
+      <recent name="com.company.frontend.IR" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -480,12 +475,12 @@
       <workItem from="1557064511102" duration="76000" />
       <workItem from="1557064648449" duration="612000" />
       <workItem from="1557114997485" duration="24433000" />
-      <workItem from="1557192528004" duration="1026000" />
+      <workItem from="1557192528004" duration="2198000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352011000" />
+    <option name="totallyTimeSpent" value="353183000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -497,10 +492,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="324" y="347" width="654" height="626" extended-state="0" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.57885903" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27890056" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24833333" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -923,13 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/PeepholeOptimizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/optimization/info/VarInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -1244,22 +1232,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        <state relative-caret-position="-298">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/PeepholeOptimizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+        <state relative-caret-position="95">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="40" column="60" lean-forward="true" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2896#2897#0" expanded="true" />
+            <element signature="e#2983#2984#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -27,6 +27,7 @@ public class GlobalRegAllocator {
             visitCFGNode(i.entryNode);
         }
     }
+
     private class RegPair{
         int a;
         RegInfo b;
@@ -35,9 +36,13 @@ public class GlobalRegAllocator {
             b = _b;
         }
     }
-
     private void visitInterferenceGraph(InterferenceGraph graph) {
-        PriorityQueue<RegPair> delQueue = new PriorityQueue<RegPair>(regComparator);
+        PriorityQueue<RegPair> delQueue = new PriorityQueue<>((o1, o2) -> {
+            float t = spillMetric(o1.b) - spillMetric(o2.b);
+            if (t < 0) return -1;
+            if (t > 0) return 1;
+            return 0;
+        });
         for (Map.Entry<Integer, RegInfo> entry : graph.map.entrySet()) {
             delQueue.add(new RegPair(entry.getKey(),entry.getValue()));
         }
@@ -83,16 +88,7 @@ public class GlobalRegAllocator {
         }
     }
 
-    private static Comparator<RegPair> regComparator = new Comparator<>() {
-        private float spillMetric(RegInfo info){
-            return (float)(25 + info.varInfo.getReferrenceCnt()) / info.getDegree();
-        }
-        @Override
-        public int compare(RegPair o1, RegPair o2) {
-            float t = spillMetric(o1.b) - spillMetric(o2.b);
-            if (t < 0) return -1;
-            if (t > 0) return 1;
-            return 0;
-        }
-    };
+    private float spillMetric(RegInfo info){
+        return (float)(25 + info.varInfo.getReferrenceCnt()) / info.getDegree();
+    }
 }
