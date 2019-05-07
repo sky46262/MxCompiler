@@ -429,16 +429,12 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
-global _func_qsrt
+global _func_add
+global _func_dp
 global main
-global _static_init
-global _global_a
-global _global_n
-global _str_1
-global _str_2
 
 SECTION .text
-_func_qsrt:
+_func_add:
 	push	rbx
 	push	r12
 	push	r13
@@ -446,80 +442,15 @@ _func_qsrt:
 	push	r15
 	push	rbp
 	mov	rbp, rsp
-	sub	rsp, 64
-	mov	qword [rbp-8H], rdi
-	mov	qword [rbp-10H], rsi
-	mov	r10, qword [rbp-8H]
-	mov	qword [rbp-18H], r10
-	mov	r15, qword [rbp-10H]
-	mov	r12, qword [rbp-8H]
-	add	r12, qword [rbp-10H]
-	mov	rcx, 1
-	sar	r12, cl
-	mov	r13, qword [rel _global_a]
-	mov	r11, qword [r13+r12*8+8H]
-	mov	qword [rbp-20H], r11
-_Label_31:
-	cmp	qword [rbp-18H], r15
-	jg	_Label_21
-_Label_26:
-	mov	r12, qword [rel _global_a]
-	mov	r10, qword [rbp-20H]
-	mov	r11, qword [rbp-18H]
-	cmp	qword [r12+r11*8+8H], r10
-	jge	_Label_23
-_Label_25:
-	mov	r12, qword [rbp-18H]
-	inc	qword [rbp-18H]
-	jmp	_Label_26
-_Label_23:
-	mov	r12, qword [rel _global_a]
-	mov	r10, qword [rbp-20H]
-	cmp	qword [r12+r15*8+8H], r10
-	jle	_Label_27
-_Label_29:
-	mov	r12, r15
-	dec	r15
-	jmp	_Label_23
-_Label_27:
-	cmp	qword [rbp-18H], r15
-	jg	_Label_31
-_Label_32:
-	mov	r12, qword [rel _global_a]
-	mov	r11, qword [rbp-18H]
-	mov	r14, qword [r12+r11*8+8H]
-	mov	r12, qword [rel _global_a]
-	mov	r13, qword [r12+r15*8+8H]
-	mov	r12, qword [rel _global_a]
-	mov	r10, qword [rbp-18H]
-	mov	qword [r12+r10*8+8H], r13
-	mov	r12, qword [rel _global_a]
-	mov	qword [r12+r15*8+8H], r14
-	mov	r12, qword [rbp-18H]
-	inc	qword [rbp-18H]
-	mov	r12, r15
-	dec	r15
-	jmp	_Label_31
-_Label_21:
-	cmp	qword [rbp-8H], r15
-	jge	_Label_39
-_Label_40:
-	mov	rsi, r15
-	mov	rdi, qword [rbp-8H]
-	call	_func_qsrt
-	mov	r12, rax
-_Label_39:
-	mov	r11, qword [rbp-10H]
-	cmp	qword [rbp-18H], r11
-	jge	_Label_42
-_Label_43:
-	mov	rsi, qword [rbp-10H]
-	mov	rdi, qword [rbp-18H]
-	call	_func_qsrt
-	mov	rbx, rax
-_Label_42:
-	mov	rax, 0
-	add	rsp, 64
+	mov	r12, rdi
+	mov	r13, rsi
+	add	r12, r13
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	rax, r12
 	pop	rbp
 	pop	r15
 	pop	r14
@@ -527,69 +458,627 @@ _Label_42:
 	pop	r12
 	pop	rbx
 	ret
+_func_dp:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	cmp	r15, 1
+	jg	_Label_20
+_Label_21:
+	mov	r12, 7
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, 7
+	mov	rax, r12
+	cqo
+	imul	r13
+	mov	r12, rax
+	mov	r13, 233
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	rbx, r12
+	mov	rax, rbx
+_Label_18:
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_20:
+	mov	r13, 0
+	mov	r14, 2
+_Label_32:
+	cmp	r14, r15
+	jg	_Label_28
+_Label_31:
+	mov	r12, r15
+	xor	r12, r14
+	cmp	r12, r15
+	jge	_Label_29
+_Label_30:
+	mov	r12, r15
+	xor	r12, r14
+	mov	rdi, r12
+	call	_func_dp
+	mov	r12, rax
+	mov	rsi, r12
+	mov	rdi, r13
+	call	_func_add
+	mov	r12, rax
+	mov	r13, r12
+_Label_29:
+	mov	r12, r14
+	inc	r14
+	jmp	_Label_32
+_Label_28:
+	mov	rax, r13
+	jmp	_Label_18
 main:
 	push	rbp
 	mov	rbp, rsp
-	call	_static_init
-	mov	r14, 1
-_Label_52:
-	cmp	r14, qword [rel _global_n]
-	jg	_Label_50
-_Label_51:
-	mov	r12, qword [rel _global_n]
-	add	r12, 1
-	sub	r12, r14
-	mov	r13, qword [rel _global_a]
-	mov	qword [r13+r14*8+8H], r12
-	mov	r12, r14
-	inc	r14
-	jmp	_Label_52
-_Label_50:
-	mov	rsi, qword [rel _global_n]
-	mov	rdi, 1
-	call	_func_qsrt
+	call	_lib_getInt
 	mov	rbx, rax
-	mov	r14, 1
-_Label_58:
-	cmp	r14, qword [rel _global_n]
-	jg	_Label_55
-_Label_56:
-	mov	r12, qword [rel _global_a]
-	mov	rdi, qword [r12+r14*8+8H]
-	call	_lib_printInt
-	mov	rdi, _str_1
-	call	_lib_print
-	mov	r12, r14
-	inc	r14
-	jmp	_Label_58
-_Label_55:
-	mov	rdi, _str_2
-	call	_lib_print
+	mov	r14, rbx
+	mov	r13, 1
+_Label_41:
+	cmp	r13, r14
+	jg	_Label_39
+_Label_40:
+	mov	rdi, r13
+	call	_func_dp
+	mov	r12, rax
+	mov	rdi, r12
+	call	_lib_printlnInt
+	mov	r12, r13
+	inc	r13
+	jmp	_Label_41
+_Label_39:
 	mov	rax, 0
-	pop	rbp
-	ret
-_static_init:
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 32
-	mov	qword [rbp-8H], 10100
-	lea	rax, [rbp-8H]
-	mov	rsi, rax
-	mov	rdi, 1
-	call	_lib_alloc
-	mov	qword [rel _global_a], rax
-	add	rsp, 32
 	pop	rbp
 	ret
 
 SECTION .data
-_global_n:
-	dq	10000
-_str_1:
-	db	20H, 00H
-_str_2:
-	db	0AH, 00H
 
 SECTION .bss
-_global_a:
-	resw	8

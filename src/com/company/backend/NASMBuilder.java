@@ -66,12 +66,12 @@ public class NASMBuilder {
         visitFlag.add(node.ID);
         nasm.defLabel(node.name);
         if (!node.insts.isEmpty()) {
+            //after reduce, change the label
             CFGInst last_inst = node.insts.lastElement();
             if (last_inst.op == CFGInst.InstType.op_jcc || last_inst.op == CFGInst.InstType.op_jmp)
                 last_inst.operands.firstElement().strLit = node.nextNodes.firstElement().name;
         }
         //TODO
-        //after reduce, change the label
         if (curProcess != null) {
             //in the front of function
             //push register and calculate stack
@@ -190,7 +190,7 @@ public class NASMBuilder {
                 break;
             case op_shl:
             case op_shr:
-                if (opr2.a_type == CFGInstAddr.addrType.a_imm){
+                if (opr2.a_type != CFGInstAddr.addrType.a_imm){
                     genNASMInst(NASMInst.InstType.MOV, new NASMRegAddr(18, NASMWordType.QWORD), a2);
                     if (op == CFGInst.InstType.op_shl) genNASMInst(NASMInst.InstType.SAL, a1, new NASMRegAddr(18, NASMWordType.BYTE));
                     else genNASMInst(NASMInst.InstType.SAR, a1, new NASMRegAddr(18, NASMWordType.BYTE));

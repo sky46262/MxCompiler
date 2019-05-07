@@ -61,7 +61,7 @@ public class Main {
 
         new NASMAdapter(cfg);//adapt twice ???
 
-        //new PeepholeOptimizer(cfg);
+        new PeepholeOptimizer(cfg);
         new VarAnalyzer(cfg);
         new DataFlowAnalyzer(cfg);
 
