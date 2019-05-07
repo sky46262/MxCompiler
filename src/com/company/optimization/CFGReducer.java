@@ -30,7 +30,7 @@ public class CFGReducer {
         if (node == null || visitFlag.contains(node.ID)) return;
         visitFlag.add(node.ID);
         while (node.nextNodes.size() == 1 &&
-                (node.nextNodes.firstElement().prevNodes.size() ==1 || (node.insts.isEmpty() && ! isGlobal))){
+                (node.nextNodes.firstElement().prevNodes.size() ==1 || (node.insts.isEmpty() && !isGlobal))){
             for (int i = 0; i < node.insts.size(); i++)
                 if (node.insts.get(i).op == CFGInst.InstType.op_jmp){
                     node.insts.remove(i);

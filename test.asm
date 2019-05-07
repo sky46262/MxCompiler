@@ -429,20 +429,16 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
-global _func_printBoard
-global _func_search
+global _func_qsrt
 global main
 global _static_init
-global _global_N
-global _global_row
-global _global_col
-global _global_d
+global _global_a
+global _global_n
 global _str_1
 global _str_2
-global _str_3
 
 SECTION .text
-_func_printBoard:
+_func_qsrt:
 	push	rbx
 	push	r12
 	push	r13
@@ -450,204 +446,150 @@ _func_printBoard:
 	push	r15
 	push	rbp
 	mov	rbp, rsp
-	mov	r12, 0
-_Label_33:
-	cmp	r12, qword [rel _global_N]
-	jge	_Label_23
-_Label_24:
-	mov	r13, 0
+	sub	rsp, 64
+	mov	qword [rbp-8H], rdi
+	mov	qword [rbp-10H], rsi
+	mov	r10, qword [rbp-8H]
+	mov	qword [rbp-18H], r10
+	mov	r15, qword [rbp-10H]
+	mov	r12, qword [rbp-8H]
+	add	r12, qword [rbp-10H]
+	mov	rcx, 1
+	sar	r12, cl
+	mov	r13, qword [rel _global_a]
+	mov	r11, qword [r13+r12*8+8H]
+	mov	qword [rbp-20H], r11
 _Label_31:
-	cmp	r13, qword [rel _global_N]
-	jge	_Label_26
-_Label_30:
-	mov	r14, qword [rel _global_col]
-	cmp	qword [r14+r12*8+8H], r13
-	jne	_Label_28
-_Label_29:
-	mov	rdi, _str_2
-	call	_lib_print
-_Label_27:
-	mov	r14, r13
-	inc	r13
-	jmp	_Label_31
-_Label_28:
-	mov	rdi, _str_1
-	call	_lib_print
-	jmp	_Label_27
+	cmp	qword [rbp-18H], r15
+	jg	_Label_21
 _Label_26:
-	mov	rdi, _str_3
-	call	_lib_println
-	mov	r13, r12
-	inc	r12
-	jmp	_Label_33
+	mov	r12, qword [rel _global_a]
+	mov	r10, qword [rbp-20H]
+	mov	r11, qword [rbp-18H]
+	cmp	qword [r12+r11*8+8H], r10
+	jge	_Label_23
+_Label_25:
+	mov	r12, qword [rbp-18H]
+	inc	qword [rbp-18H]
+	jmp	_Label_26
 _Label_23:
-	mov	rdi, _str_3
-	call	_lib_println
-	pop	rbp
-	pop	r15
-	pop	r14
-	pop	r13
-	pop	r12
-	pop	rbx
-	ret
-_func_search:
-	push	rbx
-	push	r12
-	push	r13
-	push	r14
-	push	r15
-	push	rbp
-	mov	rbp, rsp
-	mov	r12, rdi
-	cmp	r12, qword [rel _global_N]
-	jne	_Label_38
-_Label_55:
-	call	_func_printBoard
-	mov	rbx, rax
-_Label_41:
-	pop	rbp
-	pop	r15
-	pop	r14
-	pop	r13
-	pop	r12
-	pop	rbx
-	ret
-_Label_38:
-	mov	r13, 0
-_Label_54:
-	cmp	r13, qword [rel _global_N]
-	jge	_Label_41
-_Label_53:
-	mov	r14, qword [rel _global_row]
-	cmp	qword [r14+r13*8+8H], 0
-	jne	_Label_42
-_Label_52:
-	mov	r14, r13
-	add	r14, r12
-	mov	r15, qword [rel _global_d]
-	mov	r15, qword [r15+8H]
-	cmp	qword [r15+r14*8+8H], 0
-	jne	_Label_42
-_Label_51:
-	mov	r14, r13
-	add	r14, qword [rel _global_N]
-	sub	r14, 1
-	sub	r14, r12
-	mov	r15, qword [rel _global_d]
-	mov	r15, qword [r15+10H]
-	cmp	qword [r15+r14*8+8H], 0
-	jne	_Label_42
+	mov	r12, qword [rel _global_a]
+	mov	r10, qword [rbp-20H]
+	cmp	qword [r12+r15*8+8H], r10
+	jle	_Label_27
+_Label_29:
+	mov	r12, r15
+	dec	r15
+	jmp	_Label_23
+_Label_27:
+	cmp	qword [rbp-18H], r15
+	jg	_Label_31
+_Label_32:
+	mov	r12, qword [rel _global_a]
+	mov	r11, qword [rbp-18H]
+	mov	r14, qword [r12+r11*8+8H]
+	mov	r12, qword [rel _global_a]
+	mov	r13, qword [r12+r15*8+8H]
+	mov	r12, qword [rel _global_a]
+	mov	r10, qword [rbp-18H]
+	mov	qword [r12+r10*8+8H], r13
+	mov	r12, qword [rel _global_a]
+	mov	qword [r12+r15*8+8H], r14
+	mov	r12, qword [rbp-18H]
+	inc	qword [rbp-18H]
+	mov	r12, r15
+	dec	r15
+	jmp	_Label_31
+_Label_21:
+	cmp	qword [rbp-8H], r15
+	jge	_Label_39
+_Label_40:
+	mov	rsi, r15
+	mov	rdi, qword [rbp-8H]
+	call	_func_qsrt
+	mov	r12, rax
+_Label_39:
+	mov	r11, qword [rbp-10H]
+	cmp	qword [rbp-18H], r11
+	jge	_Label_42
 _Label_43:
-	mov	r14, r13
-	add	r14, qword [rel _global_N]
-	sub	r14, 1
-	sub	r14, r12
-	mov	r15, qword [rel _global_d]
-	mov	r15, qword [r15+10H]
-	mov	qword [r15+r14*8+8H], 1
-	mov	r14, r13
-	add	r14, r12
-	mov	r15, qword [rel _global_d]
-	mov	r15, qword [r15+8H]
-	mov	qword [r15+r14*8+8H], 1
-	mov	r14, qword [rel _global_row]
-	mov	qword [r14+r13*8+8H], 1
-	mov	r14, qword [rel _global_col]
-	mov	qword [r14+r12*8+8H], r13
-	mov	r14, r12
-	add	r14, 1
-	mov	rdi, r14
-	call	_func_search
-	mov	r14, rax
-	mov	r14, qword [rel _global_row]
-	mov	qword [r14+r13*8+8H], 0
-	mov	r14, r13
-	add	r14, r12
-	mov	r15, qword [rel _global_d]
-	mov	r15, qword [r15+8H]
-	mov	qword [r15+r14*8+8H], 0
-	mov	r14, r13
-	add	r14, qword [rel _global_N]
-	sub	r14, 1
-	sub	r14, r12
-	mov	r15, qword [rel _global_d]
-	mov	r15, qword [r15+10H]
-	mov	qword [r15+r14*8+8H], 0
+	mov	rsi, qword [rbp-10H]
+	mov	rdi, qword [rbp-18H]
+	call	_func_qsrt
+	mov	rbx, rax
 _Label_42:
-	mov	r14, r13
-	inc	r13
-	jmp	_Label_54
+	mov	rax, 0
+	add	rsp, 64
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
 main:
 	push	rbp
 	mov	rbp, rsp
-	sub	rsp, 32
 	call	_static_init
-	mov	r12, 0
-_Label_63:
-	cmp	r12, 2
-	jge	_Label_61
-_Label_62:
-	mov	r13, 8
-	add	r13, 8
-	sub	r13, 1
-	mov	qword [rbp-8H], r13
-	lea	rax, [rbp-8H]
-	mov	rsi, rax
+	mov	r14, 1
+_Label_52:
+	cmp	r14, qword [rel _global_n]
+	jg	_Label_50
+_Label_51:
+	mov	r12, qword [rel _global_n]
+	add	r12, 1
+	sub	r12, r14
+	mov	r13, qword [rel _global_a]
+	mov	qword [r13+r14*8+8H], r12
+	mov	r12, r14
+	inc	r14
+	jmp	_Label_52
+_Label_50:
+	mov	rsi, qword [rel _global_n]
 	mov	rdi, 1
-	call	_lib_alloc
-	mov	r13, qword [rel _global_d]
-	mov	qword [r13+r12*8+8H], rax
-	mov	r13, r12
-	inc	r12
-	jmp	_Label_63
-_Label_61:
-	mov	rdi, 0
-	call	_func_search
+	call	_func_qsrt
 	mov	rbx, rax
+	mov	r14, 1
+_Label_58:
+	cmp	r14, qword [rel _global_n]
+	jg	_Label_55
+_Label_56:
+	mov	r12, qword [rel _global_a]
+	mov	rdi, qword [r12+r14*8+8H]
+	call	_lib_printInt
+	mov	rdi, _str_1
+	call	_lib_print
+	mov	r12, r14
+	inc	r14
+	jmp	_Label_58
+_Label_55:
+	mov	rdi, _str_2
+	call	_lib_print
 	mov	rax, 0
-	add	rsp, 32
 	pop	rbp
 	ret
 _static_init:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 32
-	mov	qword [rbp-8H], 8
+	mov	qword [rbp-8H], 10100
 	lea	rax, [rbp-8H]
 	mov	rsi, rax
 	mov	rdi, 1
 	call	_lib_alloc
-	mov	qword [rel _global_row], rax
-	mov	qword [rbp-10H], 8
-	lea	rax, [rbp-10H]
-	mov	rsi, rax
-	mov	rdi, 1
-	call	_lib_alloc
-	mov	qword [rel _global_col], rax
-	mov	qword [rbp-18H], 2
-	lea	rax, [rbp-18H]
-	mov	rsi, rax
-	mov	rdi, 1
-	call	_lib_alloc
-	mov	qword [rel _global_d], rax
+	mov	qword [rel _global_a], rax
 	add	rsp, 32
 	pop	rbp
 	ret
 
 SECTION .data
-_global_N:
-	dq	8
+_global_n:
+	dq	10000
 _str_1:
-	db	20H, 2EH, 00H
+	db	20H, 00H
 _str_2:
-	db	20H, 4FH, 00H
-_str_3:
-	db	00H
+	db	0AH, 00H
 
 SECTION .bss
-_global_row:
-	resw	8
-_global_col:
-	resw	8
-_global_d:
+_global_a:
 	resw	8

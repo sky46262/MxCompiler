@@ -38,7 +38,7 @@ public class GlobalRegAllocator {
     }
     private void visitInterferenceGraph(InterferenceGraph graph) {
         PriorityQueue<RegPair> delQueue = new PriorityQueue<>((o1, o2) -> {
-            float t = spillMetric(o1.b) - spillMetric(o2.b);
+            float t = spillMetric(o2.b) - spillMetric(o1.b);
             if (t < 0) return -1;
             if (t > 0) return 1;
             return 0;
