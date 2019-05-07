@@ -65,13 +65,13 @@ public class NASMBuilder {
         if (visitFlag.contains(node.ID)) return;
         visitFlag.add(node.ID);
         nasm.defLabel(node.name);
-        /*if (!node.insts.isEmpty()) {
+        if (!node.insts.isEmpty()) {
             CFGInst last_inst = node.insts.lastElement();
             if (last_inst.op == CFGInst.InstType.op_jcc || last_inst.op == CFGInst.InstType.op_jmp)
                 last_inst.operands.firstElement().strLit = node.nextNodes.firstElement().name;
-        }*/
+        }
         //TODO
-        //????
+        //after reduce, change the label
         if (curProcess != null) {
             //in the front of function
             //push register and calculate stack
