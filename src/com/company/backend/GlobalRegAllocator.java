@@ -4,7 +4,7 @@ import com.company.frontend.IR.*;
 import com.company.optimization.InterferenceGraph;
 import com.company.optimization.info.RegInfo;
 import org.antlr.v4.runtime.misc.Pair;
-
+import java.util.Comparator;
 import java.util.*;
 
 public class GlobalRegAllocator {
