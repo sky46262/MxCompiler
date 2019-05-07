@@ -3,7 +3,6 @@ package com.company.backend;
 import com.company.frontend.IR.*;
 import com.company.optimization.InterferenceGraph;
 import com.company.optimization.info.RegInfo;
-import org.antlr.v4.runtime.misc.Pair;
 import java.util.Comparator;
 import java.util.*;
 
@@ -28,14 +27,22 @@ public class GlobalRegAllocator {
             visitCFGNode(i.entryNode);
         }
     }
+    private class RegPair{
+        int a;
+        RegInfo b;
+        public RegPair(int _a, RegInfo _b){
+            a = _a;
+            b = _b;
+        }
+    }
 
     private void visitInterferenceGraph(InterferenceGraph graph) {
-        PriorityQueue<Pair<Integer,RegInfo>> delQueue = new PriorityQueue<>(regComparator);
+        PriorityQueue<RegPair> delQueue = new PriorityQueue<RegPair>(regComparator);
         for (Map.Entry<Integer, RegInfo> entry : graph.map.entrySet()) {
-            delQueue.add(new Pair<>(entry.getKey(),entry.getValue()));
+            delQueue.add(new RegPair(entry.getKey(),entry.getValue()));
         }
         while (!delQueue.isEmpty()){
-            Pair<Integer,RegInfo> pair = delQueue.poll();
+            RegPair pair = delQueue.poll();
             colorNode(pair.a);
         }
     }
@@ -76,12 +83,12 @@ public class GlobalRegAllocator {
         }
     }
 
-    private static Comparator<Pair<Integer, RegInfo>> regComparator = new Comparator<>() {
+    private static Comparator<RegPair> regComparator = new Comparator<>() {
         private float spillMetric(RegInfo info){
             return (float)(25 + info.varInfo.getReferrenceCnt()) / info.getDegree();
         }
         @Override
-        public int compare(Pair<Integer, RegInfo> o1, Pair<Integer, RegInfo> o2) {
+        public int compare(RegPair o1, RegPair o2) {
             float t = spillMetric(o1.b) - spillMetric(o2.b);
             if (t < 0) return -1;
             if (t > 0) return 1;
