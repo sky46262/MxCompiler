@@ -132,7 +132,7 @@ public class NASMBuilder {
         if (op == CFGInst.InstType.op_mov){
             assert opr1 != null && opr2 != null && !(opr1.a_type == CFGInstAddr.addrType.a_mem && opr2.a_type == CFGInstAddr.addrType.a_mem);
         }
-        if (CFGInst.isCompare(op) && opr1.a_type == CFGInstAddr.addrType.a_imm) {
+        if (CFGInst.isCommutable(op) && opr1.a_type == CFGInstAddr.addrType.a_imm) {
             genNASMInst(op, opr2, opr1);
             return;
             //??? commute?

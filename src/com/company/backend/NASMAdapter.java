@@ -7,6 +7,8 @@ import javax.management.InstanceAlreadyExistsException;
 import java.util.HashSet;
 import java.util.Vector;
 
+import static com.company.frontend.IR.CFGInst.isCompare;
+
 public class NASMAdapter {
     private CFG cfg;
     private HashSet<Integer> visitFlag = new HashSet<>();
@@ -159,6 +161,12 @@ public class NASMAdapter {
             CFGInstAddr tmp =  CFGInstAddr.newRegAddr();
             visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr2);
             visitCFGInst(list, type, opr1, tmp);
+            return;
+        }
+        if (isCompare(type) && opr1.a_type == CFGInstAddr.addrType.a_imm && opr2.a_type == CFGInstAddr.addrType.a_imm){
+            CFGInstAddr tmp = CFGInstAddr.newRegAddr();
+            visitCFGInst(list, CFGInst.InstType.op_mov, tmp, opr1);
+            visitCFGInst(list, type, tmp, opr2);
             return;
         }
         CFGInstAddr newOpr2 = visitCFGInstAddr(list, opr2); //opr2 first (right associated)

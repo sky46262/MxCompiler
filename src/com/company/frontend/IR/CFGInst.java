@@ -42,8 +42,8 @@ public class CFGInst {
         assert addr != null;
         operands.add(addr);
     }
-    public boolean isCommutable(){
-        switch (this.op){
+    public static boolean isCommutable(InstType op){
+        switch (op){
             case op_add:
             case op_mult:
             case op_and:
@@ -56,6 +56,7 @@ public class CFGInst {
                 return false;
         }
     }
+    public boolean isCommutable(){return isCommutable(this.op); }
     public boolean isCompare(){
         return isCompare(this.op);
     }
@@ -71,4 +72,5 @@ public class CFGInst {
         }
         return false;
     }
+
 }
