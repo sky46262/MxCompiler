@@ -429,19 +429,401 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
+global _func_gcd
+global _func_gcd1
+global _func_gcd2
 global main
 
 SECTION .text
+_func_gcd:
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 512
+	mov	qword [rbp-8H], rdi
+	mov	r15, rsi
+	mov	qword [rbp-10H], rdx
+	mov	qword [rbp-18H], rcx
+	mov	qword [rbp-20H], r8
+	mov	qword [rbp-28H], r9
+	mov	qword [rbp-100H], 0
+_Label_158:
+	cmp	qword [rbp-100H], 10
+	jg	_Label_86
+_Label_154:
+	mov	r12, qword [rbp-10H]
+	add	r12, qword [rbp-18H]
+	add	r12, qword [rbp-20H]
+	add	r12, qword [rbp-28H]
+	add	r12, qword [rbp+10H]
+	add	r12, qword [rbp+18H]
+	add	r12, qword [rbp+20H]
+	add	r12, qword [rbp+28H]
+	add	r12, qword [rbp+30H]
+	add	r12, qword [rbp+38H]
+	add	r12, qword [rbp+40H]
+	add	r12, qword [rbp+48H]
+	add	r12, qword [rbp+50H]
+	add	r12, qword [rbp+58H]
+	add	r12, qword [rbp+60H]
+	add	r12, qword [rbp+68H]
+	add	r12, qword [rbp+70H]
+	add	r12, qword [rbp+78H]
+	add	r12, qword [rbp+80H]
+	add	r12, qword [rbp+88H]
+	add	r12, qword [rbp+090H]
+	add	r12, qword [rbp+098H]
+	add	r12, qword [rbp+0A0H]
+	add	r12, qword [rbp+0A8H]
+	add	r12, qword [rbp+0B0H]
+	add	r12, qword [rbp+0B8H]
+	add	r12, qword [rbp+0C0H]
+	add	r12, qword [rbp+0C8H]
+	add	r12, qword [rbp+0D0H]
+	add	r12, qword [rbp+0D8H]
+	mov	r13, 100
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r14, r12
+	inc	qword [rbp-100H]
+	jmp	_Label_158
+_Label_86:
+	mov	r12, qword [rbp-8H]
+	mov	rax, r12
+	cqo
+	idiv	r15
+	mov	r12, rdx
+	cmp	r12, 0
+	jne	_Label_229
+_Label_231:
+	mov	rax, r15
+_Label_15:
+	add	rsp, 512
+	pop	rbp
+	ret
+_Label_229:
+	mov	r12, qword [rbp-8H]
+	mov	rax, r12
+	cqo
+	idiv	r15
+	mov	r12, rdx
+	push	58
+	push	56
+	push	54
+	push	52
+	push	50
+	push	48
+	push	46
+	push	44
+	push	42
+	push	40
+	push	38
+	push	36
+	push	34
+	push	32
+	push	30
+	push	28
+	push	26
+	push	24
+	push	22
+	push	20
+	push	18
+	push	16
+	push	14
+	push	12
+	push	10
+	push	8
+	mov	r9, 6
+	mov	r8, 4
+	mov	rcx, 2
+	mov	rdx, 0
+	mov	rsi, 68
+	mov	rdi, 10
+	call	_func_gcd
+	add	rsp, 208
+	mov	r13, rax
+	push	qword [rbp+0D8H]
+	push	qword [rbp+0D0H]
+	push	qword [rbp+0C8H]
+	push	qword [rbp+0C0H]
+	push	qword [rbp+0B8H]
+	push	qword [rbp+0B0H]
+	push	qword [rbp+0A8H]
+	push	qword [rbp+0A0H]
+	push	qword [rbp+098H]
+	push	qword [rbp+090H]
+	push	qword [rbp+88H]
+	push	qword [rbp+80H]
+	push	qword [rbp+78H]
+	push	qword [rbp+70H]
+	push	qword [rbp+68H]
+	push	qword [rbp+60H]
+	push	qword [rbp+58H]
+	push	qword [rbp+50H]
+	push	qword [rbp+48H]
+	push	qword [rbp+40H]
+	push	qword [rbp+38H]
+	push	qword [rbp+30H]
+	push	qword [rbp+28H]
+	push	qword [rbp+20H]
+	push	qword [rbp+18H]
+	push	qword [rbp+10H]
+	mov	r9, qword [rbp-28H]
+	mov	r8, qword [rbp-20H]
+	mov	rcx, r13
+	mov	rdx, r14
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_func_gcd1
+	add	rsp, 208
+	mov	rbx, rax
+	mov	rax, rbx
+	jmp	_Label_15
+_func_gcd1:
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 256
+	mov	r15, rdi
+	mov	r14, rsi
+	mov	r12, rdx
+	mov	qword [rbp-8H], rcx
+	mov	qword [rbp-10H], r8
+	mov	qword [rbp-18H], r9
+	add	r12, qword [rbp-8H]
+	add	r12, qword [rbp-10H]
+	add	r12, qword [rbp-18H]
+	add	r12, qword [rbp+10H]
+	add	r12, qword [rbp+18H]
+	add	r12, qword [rbp+20H]
+	add	r12, qword [rbp+28H]
+	add	r12, qword [rbp+30H]
+	add	r12, qword [rbp+38H]
+	add	r12, qword [rbp+40H]
+	add	r12, qword [rbp+48H]
+	add	r12, qword [rbp+50H]
+	add	r12, qword [rbp+58H]
+	add	r12, qword [rbp+60H]
+	add	r12, qword [rbp+68H]
+	add	r12, qword [rbp+70H]
+	add	r12, qword [rbp+78H]
+	add	r12, qword [rbp+80H]
+	add	r12, qword [rbp+88H]
+	add	r12, qword [rbp+090H]
+	add	r12, qword [rbp+098H]
+	add	r12, qword [rbp+0A0H]
+	add	r12, qword [rbp+0A8H]
+	add	r12, qword [rbp+0B0H]
+	add	r12, qword [rbp+0B8H]
+	add	r12, qword [rbp+0C0H]
+	add	r12, qword [rbp+0C8H]
+	add	r12, qword [rbp+0D0H]
+	add	r12, qword [rbp+0D8H]
+	mov	r13, 100
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r13, r12
+	mov	r12, r15
+	mov	rax, r12
+	cqo
+	idiv	r14
+	mov	r12, rdx
+	cmp	r12, 0
+	jne	_Label_405
+_Label_407:
+	mov	rax, r14
+_Label_238:
+	add	rsp, 256
+	pop	rbp
+	ret
+_Label_405:
+	mov	r12, r15
+	mov	rax, r12
+	cqo
+	idiv	r14
+	mov	r12, rdx
+	push	qword [rbp+0D8H]
+	push	qword [rbp+0D0H]
+	push	qword [rbp+0C8H]
+	push	qword [rbp+0C0H]
+	push	qword [rbp+0B8H]
+	push	qword [rbp+0B0H]
+	push	qword [rbp+0A8H]
+	push	qword [rbp+0A0H]
+	push	qword [rbp+098H]
+	push	qword [rbp+090H]
+	push	qword [rbp+88H]
+	push	qword [rbp+80H]
+	push	qword [rbp+78H]
+	push	qword [rbp+70H]
+	push	qword [rbp+68H]
+	push	qword [rbp+60H]
+	push	qword [rbp+58H]
+	push	qword [rbp+50H]
+	push	qword [rbp+48H]
+	push	qword [rbp+40H]
+	push	qword [rbp+38H]
+	push	qword [rbp+30H]
+	push	qword [rbp+28H]
+	push	qword [rbp+20H]
+	push	qword [rbp+18H]
+	push	qword [rbp+10H]
+	mov	r9, qword [rbp-18H]
+	mov	r8, qword [rbp-10H]
+	mov	rcx, qword [rbp-8H]
+	mov	rdx, r13
+	mov	rsi, r12
+	mov	rdi, r14
+	call	_func_gcd2
+	add	rsp, 208
+	mov	rbx, rax
+	mov	rax, rbx
+	jmp	_Label_238
+_func_gcd2:
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 256
+	mov	r15, rdi
+	mov	r14, rsi
+	mov	qword [rbp-8H], rdx
+	mov	qword [rbp-10H], rcx
+	mov	qword [rbp-18H], r8
+	mov	qword [rbp-20H], r9
+	mov	r12, qword [rbp-8H]
+	add	r12, qword [rbp-10H]
+	add	r12, qword [rbp-18H]
+	add	r12, qword [rbp-20H]
+	add	r12, qword [rbp+10H]
+	add	r12, qword [rbp+18H]
+	add	r12, qword [rbp+20H]
+	add	r12, qword [rbp+28H]
+	add	r12, qword [rbp+30H]
+	add	r12, qword [rbp+38H]
+	add	r12, qword [rbp+40H]
+	add	r12, qword [rbp+48H]
+	add	r12, qword [rbp+50H]
+	add	r12, qword [rbp+58H]
+	add	r12, qword [rbp+60H]
+	add	r12, qword [rbp+68H]
+	add	r12, qword [rbp+70H]
+	add	r12, qword [rbp+78H]
+	add	r12, qword [rbp+80H]
+	add	r12, qword [rbp+88H]
+	add	r12, qword [rbp+090H]
+	add	r12, qword [rbp+098H]
+	add	r12, qword [rbp+0A0H]
+	add	r12, qword [rbp+0A8H]
+	add	r12, qword [rbp+0B0H]
+	add	r12, qword [rbp+0B8H]
+	add	r12, qword [rbp+0C0H]
+	add	r12, qword [rbp+0C8H]
+	add	r12, qword [rbp+0D0H]
+	add	r12, qword [rbp+0D8H]
+	mov	r13, 100
+	mov	rax, r12
+	cqo
+	idiv	r13
+	mov	r12, rdx
+	mov	r12, r15
+	mov	rax, r12
+	cqo
+	idiv	r14
+	mov	r12, rdx
+	cmp	r12, 0
+	jne	_Label_581
+_Label_583:
+	mov	rax, r14
+_Label_414:
+	add	rsp, 256
+	pop	rbp
+	ret
+_Label_581:
+	mov	r12, r15
+	mov	rax, r12
+	cqo
+	idiv	r14
+	mov	r12, rdx
+	push	qword [rbp+0D8H]
+	push	qword [rbp+0D0H]
+	push	qword [rbp+0C8H]
+	push	qword [rbp+0C0H]
+	push	qword [rbp+0B8H]
+	push	qword [rbp+0B0H]
+	push	qword [rbp+0A8H]
+	push	qword [rbp+0A0H]
+	push	qword [rbp+098H]
+	push	qword [rbp+090H]
+	push	qword [rbp+88H]
+	push	qword [rbp+80H]
+	push	qword [rbp+78H]
+	push	qword [rbp+70H]
+	push	qword [rbp+68H]
+	push	qword [rbp+60H]
+	push	qword [rbp+58H]
+	push	qword [rbp+50H]
+	push	qword [rbp+48H]
+	push	qword [rbp+40H]
+	push	qword [rbp+38H]
+	push	qword [rbp+30H]
+	push	qword [rbp+28H]
+	push	qword [rbp+20H]
+	push	qword [rbp+18H]
+	push	qword [rbp+10H]
+	mov	r9, qword [rbp-20H]
+	mov	r8, qword [rbp-18H]
+	mov	rcx, qword [rbp-10H]
+	mov	rdx, qword [rbp-8H]
+	mov	rsi, r12
+	mov	rdi, r14
+	call	_func_gcd
+	add	rsp, 208
+	mov	rbx, rax
+	mov	rax, rbx
+	jmp	_Label_414
 main:
 	push	rbp
 	mov	rbp, rsp
-	mov	rbx, 3
-	cmp	rbx, 1
-	jle	_Label_13
-_Label_14:
-	mov	rdi, 24
+	push	58
+	push	56
+	push	54
+	push	52
+	push	50
+	push	48
+	push	46
+	push	44
+	push	42
+	push	40
+	push	38
+	push	36
+	push	34
+	push	32
+	push	30
+	push	28
+	push	26
+	push	24
+	push	22
+	push	20
+	push	18
+	push	16
+	push	14
+	push	12
+	push	10
+	push	8
+	mov	r9, 6
+	mov	r8, 4
+	mov	rcx, 2
+	mov	rdx, 0
+	mov	rsi, 1
+	mov	rdi, 10
+	call	_func_gcd
+	add	rsp, 208
+	mov	rbx, rax
+	add	rbx, 1024
+	mov	rdi, rbx
 	call	_lib_printlnInt
-_Label_13:
+	mov	rax, 0
 	pop	rbp
 	ret
 
