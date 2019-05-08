@@ -35,6 +35,8 @@ public class CFGBuilder extends ASTBaseVisitor{
     private Stack<CFGNode> inlineFuncAfterStack = new Stack<>();
     private Stack<CFGInstAddr> inlineFuncRet = new Stack<>();
     private final int inlineMaxDepth = 10;
+    private final int inlineMaxOperations = 10;
+    private HashMap<String, Integer> operationCount = new HashMap<>();
 
     public CFGBuilder(CFG _cfg) {
         cfg = _cfg;
@@ -929,13 +931,39 @@ public class CFGBuilder extends ASTBaseVisitor{
 
     private boolean deserveInline(String funcName){
         return false;
-        /*if (!funcDeclMap.containsKey(funcName)) return false;
+       /* if (!funcDeclMap.containsKey(funcName)) return false;
         ASTFuncDeclNode node = funcDeclMap.get(funcName);
         //if use global variable
         if (node.isMember) return false;
-        //if operation count
-        //todo
+        int cnt;
+        if (operationCount.containsKey(funcName)) cnt = operationCount.get(funcName);
+        else {
+            cnt = countOperations(node);
+            operationCount.put(funcName,cnt);
+        }
+        if (cnt > inlineMaxOperations) return false;
         if (inlineParamStack.size() >= inlineMaxDepth) return false;
         return true;*/
+    }
+    private int countOperations(ASTExprNode node){
+        if (node == null || node.nodeType == ASTNodeType.e_empty) return 0;
+        if (node instanceof ASTCreatorNode) return node.resultType.arrayDim;
+        if (node instanceof ASTPrimNode) return 1;
+        int cnt = 0;
+        for (ASTExprNode i: node.exprList) cnt += countOperations(i);
+        return cnt + 1;
+    }
+    private int countOperations(ASTStmtNode node){
+        if (node == null || node.nodeType == ASTNodeType.s_empty) return 0;
+        if (node instanceof ASTExprNode) return countOperations((ASTExprNode)node);
+        if (node instanceof ASTDeclNode) return countOperations(((ASTDeclNode) node).initExpr) + 1;
+        int cnt = 0;
+        for (ASTStmtNode i: node.stmtList) cnt += countOperations(i);
+        return cnt;
+    }
+    private int countOperations(ASTFuncDeclNode node) {
+        int cnt = 0;
+        for (ASTStmtNode i: node.stmtList) cnt += countOperations(i);
+        return cnt;
     }
 }
