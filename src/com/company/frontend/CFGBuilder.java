@@ -35,7 +35,8 @@ public class CFGBuilder extends ASTBaseVisitor{
     private Stack<CFGNode> inlineFuncAfterStack = new Stack<>();
     private Stack<CFGInstAddr> inlineFuncRet = new Stack<>();
     private final int inlineMaxDepth = 10;
-    private final int inlineMaxOperations = 10;
+    private final int inlineMaxOperations = 20;
+    private boolean useGlobal = false;
     private HashMap<String, Integer> operationCount = new HashMap<>();
 
     public CFGBuilder(CFG _cfg) {
@@ -71,15 +72,15 @@ public class CFGBuilder extends ASTBaseVisitor{
                 break;
             default: {//ge,le,gt,lt,eq,neq...
                 visitExpr(node);
-                CFGNode n = node.startNode = node.endNode = cfg.addNode();
-                n.addInst(node.instList);
-                if (n.insts.isEmpty() || !n.insts.lastElement().isCompare()){
+                CFGNode n = cfg.addNode();
+                if (node.endNode.insts.isEmpty() || !node.endNode.insts.lastElement().isCompare()){
                     CFGInst c_inst = n.addInst(CFGInst.InstType.op_eq);
                     c_inst.addOperand(node.instAddr);
                     c_inst.addOperand(CFGInstAddr.newImmAddr(1)); // true
                 }
                 CFGInst j_inst = n.addInst(CFGInst.InstType.op_jcc);//jump if false
                 j_inst.addOperand(CFGInstAddr.newLabelAddr(fN));
+                node.endNode.linkTo(n);
                 n.linkTo(fN);
                 n.linkTo(tN);
             }
@@ -97,20 +98,15 @@ public class CFGBuilder extends ASTBaseVisitor{
         visitLogicalExprNode(expr, tNode, fNode);
         tNode.linkTo(endNode);
         fNode.linkTo(endNode);
-        }
-        // expr -> stmt
-    private void wrapExprNode(ASTExprNode expr) {
-        CFGNode n = cfg.addNode();
-        expr.startNode = expr.endNode = n;
-        n.addInst(expr.instList);
     }
+        // expr -> stmt
     @Override
     public void visitCompilationUnitNode(ASTCompilationUnitNode node){
         CFGNode staticInit;
         staticInit = curStaticInit = cfg.addNode();
         staticInit.name = "_static_init";
         for (ASTStmtNode i : node.declList){
-            if (i instanceof ASTFuncDeclNode) funcDeclMap.put(((ASTFuncDeclNode) i).funcName, (ASTFuncDeclNode)i);
+            if (i instanceof ASTFuncDeclNode) funcDeclMap.put("_func_"+ ((ASTFuncDeclNode) i).funcName, (ASTFuncDeclNode)i);
         }
         for (ASTStmtNode i : node.declList)  visitStmt(i);
         if (curStaticInit.name.equals("_static_init")) return;
@@ -142,7 +138,6 @@ public class CFGBuilder extends ASTBaseVisitor{
         curProc = new CFGProcess(node.startNode, node.endNode);
         cfg.processList.add(curProc);
         curFuncName = node.funcName;
-        visitTypeNode(node.returnType);
         visitStmt(node.paramList);
         int paramIdx = 0;
         if (node.isMember) {
@@ -151,7 +146,7 @@ public class CFGBuilder extends ASTBaseVisitor{
             paramInst.addOperand(curThisAddr);
             paramInst.addOperand(CFGInstAddr.newImmAddr(paramIdx++));
         }
-        if (node.paramList != null)
+        if (node.paramList != null && !isInInline)
             for (ASTStmtNode i : node.paramList.stmtList) {
                 CFGInst paramInst = node.startNode.addInst(CFGInst.InstType.op_rpara);
                 paramInst.addOperand(((ASTDeclNode) i).reg);
@@ -175,72 +170,87 @@ public class CFGBuilder extends ASTBaseVisitor{
 
     @Override
     public void visitVarDeclNode(ASTDeclNode node) {
-        visitTypeNode(node.type);
-        if (SymbolType.boolSymbolType.equals(node.initExpr.resultType) && !(node.initExpr instanceof  ASTPrimNode)){
-            node.endNode = cfg.addNode();
-            genBoolExprNode(node.reg, node.initExpr, node.endNode);
-            node.startNode = node.initExpr.startNode;
-        }
-        else {
+        if (isInInline){
+            CFGInstAddr tmp = CFGInstAddr.newRegAddr();
             visitExpr(node.initExpr);
+            node.startNode = node.initExpr.startNode;
+            node.endNode = cfg.addNode();
+            node.initExpr.endNode.linkTo(node.endNode);
             if (node.initExpr.instAddr != null) {
-                CFGInst mvInst = new CFGInst(CFGInst.InstType.op_mov);
+                CFGInst mvInst = node.endNode.addInst(CFGInst.InstType.op_mov);
+                CFGInstAddr mvReg = tmp;
+                mvInst.addOperand(mvReg);
+                mvInst.addOperand(node.initExpr.instAddr);
+            }
+            inlineParamStack.peek().put(node.name, tmp);
+        }
+        else{
+            visitExpr(node.initExpr);
+            node.startNode = node.initExpr.startNode;
+            node.endNode = cfg.addNode();
+            node.initExpr.endNode.linkTo(node.endNode);
+            if (node.initExpr.instAddr != null) {
+                CFGInst mvInst = node.endNode.addInst(CFGInst.InstType.op_mov);
                 CFGInstAddr mvReg = node.reg;
                 mvInst.addOperand(mvReg);
                 mvInst.addOperand(node.initExpr.instAddr);
-                node.initExpr.instList.add(mvInst);
             }
-            CFGNode curNode = cfg.addNode();
-            curNode.addInst(node.initExpr.instList);
-            node.startNode = node.endNode = curNode;
-        }
-        if (curFuncName == null && curClassName == null) {
-            int size = node.reg.addr1.getSize();//size of static
-            if (node.initExpr.nodeType == ASTNodeType.p_int || node.initExpr.nodeType == ASTNodeType.p_bool) {
-                cfg.dataList.add(new CFGData("_global_"+node.name, ((ASTPrimNode)node.initExpr).intValue, true));
-            } else {
-                if (!node.initExpr.isEmpty()) {
-                    curStaticInit.linkTo(node.startNode);
-                    curStaticInit = node.endNode;
+            if (curFuncName == null && curClassName == null) {
+                int size = node.reg.addr1.getSize();//size of static
+                if (node.initExpr.nodeType == ASTNodeType.p_int || node.initExpr.nodeType == ASTNodeType.p_bool) {
+                    cfg.dataList.add(new CFGData("_global_"+node.name, ((ASTPrimNode)node.initExpr).intValue, true));
+                } else {
+                    if (!node.initExpr.isEmpty()) {
+                        curStaticInit.linkTo(node.startNode);
+                        curStaticInit = node.endNode;
+                    }
+                    cfg.dataList.add(new CFGData("_global_"+node.name, size, false));
                 }
-                cfg.dataList.add(new CFGData("_global_"+node.name, size, false));
             }
         }
+
     }
 
     @Override
     public void visitExprNode(ASTExprNode node){
         if (node.exprList == null) {
-            wrapExprNode(node);
+            node.startNode = node.endNode = cfg.addNode();
+            return;
+        }
+        if (node.nodeType == ASTNodeType.e_land || node.nodeType == ASTNodeType.e_lor || node.nodeType == ASTNodeType.e_not){
+            CFGNode endNode = cfg.addNode();
+            node.instAddr = CFGInstAddr.newRegAddr();
+            genBoolExprNode(node.instAddr, node, endNode);
+            node.endNode = endNode;
             return;
         }
         //if inst is in the origin order
         if  (node.nodeType != ASTNodeType.e_member && node.nodeType != ASTNodeType.e_call && node.nodeType != ASTNodeType.e_asgn){
-            for (ASTExprNode i : node.exprList) visitExpr(i);
-            for (ASTExprNode i: node.exprList) node.instList.addAll(i.instList);
+            CFGNode last = node.startNode = cfg.addNode();
+            for (ASTExprNode i : node.exprList) {
+                visitExpr(i);
+                last.linkTo(i.startNode);
+                last = i.endNode;
+            }
+            node.endNode = last;
         }
         CFGInst.InstType type = CFGInst.InstType.op_nop;
         switch (node.nodeType){
             case e_add:
                 if (node.resultType.equals(SymbolType.strSymbolType)){
-                    CFGInst s1_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                    CFGInst s1_inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                     s1_inst.addOperand(node.exprList.get(0).instAddr);
                     s1_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                    CFGInst s2_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                    CFGInst s2_inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                     s2_inst.addOperand(node.exprList.get(1).instAddr);
                     s2_inst.addOperand(CFGInstAddr.newImmAddr(1));
-                    node.instList.add(s1_inst);
-                    node.instList.add(s2_inst);
-                    CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+                    CFGInst call_inst = node.endNode.addInst(CFGInst.InstType.op_call);
                     call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_strcat"));//use the lib
-                    node.instList.add(call_inst);
-                    CFGInst mov_inst = new CFGInst(CFGInst.InstType.op_mov);
+                    CFGInst mov_inst = node.endNode.addInst(CFGInst.InstType.op_mov);
                     CFGInstAddr ret_addr = CFGInstAddr.newRegAddr();
                     mov_inst.addOperand(ret_addr);
                     mov_inst.addOperand(CFGInstAddr.newRegAddr(-2));
-                    node.instList.add(mov_inst);
                     node.instAddr = ret_addr;
-                    wrapExprNode(node);
                     return;
                 }
                 else type = CFGInst.InstType.op_add;
@@ -281,51 +291,36 @@ public class CFGBuilder extends ASTBaseVisitor{
             case e_bneg:
                 type = CFGInst.InstType.op_not;
                 break;
-            case e_land:
-            case e_lor:
-            case e_not:
-                //logical expression  nothing to do
-                break;
             case e_inc_p:{
-                CFGInst inc_inst = new CFGInst(CFGInst.InstType.op_inc);
+                CFGInst inc_inst = node.endNode.addInst(CFGInst.InstType.op_inc);
                 inc_inst.addOperand(node.exprList.get(0).instAddr);
-                node.instList.add(inc_inst);
                 node.instAddr = node.exprList.get(0).instAddr;
-                wrapExprNode(node);
                 return;
             }
             case e_inc_s:{
-                CFGInst mv_inst = new CFGInst(CFGInst.InstType.op_mov);
+                CFGInst mv_inst = node.endNode.addInst(CFGInst.InstType.op_mov);
                 node.instAddr = CFGInstAddr.newRegAddr();
                 mv_inst.addOperand(node.instAddr);
                 mv_inst.addOperand(node.exprList.get(0).instAddr);
-                node.instList.add(mv_inst);
 
-                CFGInst inc_inst = new CFGInst(CFGInst.InstType.op_inc);
+                CFGInst inc_inst = node.endNode.addInst(CFGInst.InstType.op_inc);
                 inc_inst.addOperand(node.exprList.get(0).instAddr);
-                node.instList.add(inc_inst);
-                wrapExprNode(node);
                 return;
             }
             case e_dec_p:{
-                CFGInst dec_inst = new CFGInst(CFGInst.InstType.op_dec);
+                CFGInst dec_inst = node.endNode.addInst(CFGInst.InstType.op_dec);
                 dec_inst.addOperand(node.exprList.get(0).instAddr);
-                node.instList.add(dec_inst);
                 node.instAddr = node.exprList.get(0).instAddr;
-                wrapExprNode(node);
                 return;
             }
             case e_dec_s:{
-                CFGInst mv_inst = new CFGInst(CFGInst.InstType.op_mov);
+                CFGInst mv_inst = node.endNode.addInst(CFGInst.InstType.op_mov);
                 node.instAddr = CFGInstAddr.newRegAddr();
                 mv_inst.addOperand(node.instAddr);
                 mv_inst.addOperand(node.exprList.get(0).instAddr);
-                node.instList.add(mv_inst);
 
-                CFGInst inc_inst = new CFGInst(CFGInst.InstType.op_dec);
+                CFGInst inc_inst = node.endNode.addInst(CFGInst.InstType.op_dec);
                 inc_inst.addOperand(node.exprList.get(0).instAddr);
-                node.instList.add(inc_inst);
-                wrapExprNode(node);
                 return;
             }
             case e_ne:
@@ -357,51 +352,43 @@ public class CFGBuilder extends ASTBaseVisitor{
                         break;
                 }
                 if (SymbolType.strSymbolType.equals(node.exprList.get(0).resultType)){
-                    CFGInst s1_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                    CFGInst s1_inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                     s1_inst.addOperand(node.exprList.get(0).instAddr);
                     s1_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                    CFGInst s2_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                    CFGInst s2_inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                     s2_inst.addOperand(node.exprList.get(1).instAddr);
                     s2_inst.addOperand(CFGInstAddr.newImmAddr(1));
-                    node.instList.add(s1_inst);
-                    node.instList.add(s2_inst);
-                    CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+                    CFGInst call_inst = node.endNode.addInst(CFGInst.InstType.op_call);
                     call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_strcmp"));//use the lib
-                    node.instList.add(call_inst);
-                    CFGInst cmp_inst = new CFGInst(type);
+                    CFGInst cmp_inst = node.endNode.addInst(type);
                     cmp_inst.addOperand(CFGInstAddr.newRegAddr(-2));
                     cmp_inst.addOperand(CFGInstAddr.newImmAddr(0));
                     //result in reg(-2)
-                    node.instList.add(cmp_inst);
                     node.instAddr = CFGInstAddr.newRegAddr(-2);
                 }
                 else {
-                    CFGInst inst = new CFGInst(type);
+                    CFGInst inst = node.endNode.addInst(type);
                     for (ASTExprNode i : node.exprList) inst.addOperand(i.instAddr);
-                    node.instList.add(inst);
                     node.instAddr = CFGInstAddr.newRegAddr();
                 }
-                wrapExprNode(node);
                 return;
             }
             /*case e_creator:
                 node.instAddr = node.exprList.firstElement().instAddr;
                 return;*/
             case e_list:
-                wrapExprNode(node);
                 return;
             case e_empty:
-                wrapExprNode(node);
                 return;
             case e_idx:
                 node.instAddr = CFGInstAddr.newMemAddr(node.exprList.get(0).instAddr, node.exprList.get(1).instAddr, 8, 8);
-                wrapExprNode(node);
                 return;
             //exprList has not been visited
             case e_member:
                 //use member outside the class
                 visitExpr(node.exprList.firstElement());
-                node.instList.addAll(node.exprList.firstElement().instList);
+                node.startNode = node.exprList.firstElement().startNode;
+                node.endNode = node.exprList.get(0).endNode;
                 //if last element of member expression (such as a.b)
                 if (node.exprList.get(1).instAddr != null && node.exprList.get(1).instAddr.a_type == CFGInstAddr.addrType.a_imm){
                     node.instAddr = CFGInstAddr.newMemAddr(node.exprList.get(0).instAddr, CFGInstAddr.newImmAddr(0), 8, node.exprList.get(1).instAddr.getNum());
@@ -410,24 +397,25 @@ public class CFGBuilder extends ASTBaseVisitor{
                 else // (such as a.b.b.b)
                 {
                     visitExpr(node.exprList.get(1));
-                    node.instList.addAll(node.exprList.get(1).instList);
+                    node.exprList.firstElement().endNode.linkTo(node.exprList.get(1).startNode);
+                    node.endNode = node.exprList.get(1).endNode;
                 }
-                wrapExprNode(node);
                 return;
-            case e_call:
+            case e_call:{
                 //exprList = {functionName, paramList}
                 type = CFGInst.InstType.op_call;
                 visitExpr(node.exprList.get(0));
-                node.instList.addAll(node.exprList.get(0).instList);
+                node.startNode = node.exprList.get(0).startNode;
+                CFGNode last = node.exprList.get(0).endNode;
                 if (curProc != null) curProc.isCaller = true;
                 //array.size();
                 if (node.toNode.name.startsWith("_lib_array")){
-                    CFGInst mv_inst = new CFGInst(CFGInst.InstType.op_mov);
+                    node.endNode = cfg.addNode();
+                    CFGInst mv_inst = node.endNode.addInst(CFGInst.InstType.op_mov);
                     node.instAddr = CFGInstAddr.newRegAddr();
                     mv_inst.addOperand(node.instAddr);
                     mv_inst.addOperand(CFGInstAddr.newMemAddr(node.exprList.get(0).exprList.get(0).instAddr, CFGInstAddr.newImmAddr(0),0,0));
-                    node.instList.add(mv_inst);
-                    wrapExprNode(node);
+                    node.startNode.linkTo(node.endNode);
                     return;
                 }
                 //print println
@@ -443,42 +431,45 @@ public class CFGBuilder extends ASTBaseVisitor{
                         if (expr.nodeType == ASTNodeType.e_call && expr.toNode.name.equals("_lib_toString")){
                             //toString(int)
                             ASTExprNode intExpr = expr.exprList.get(1).exprList.get(0);
-                            node.instList.addAll(intExpr.instList);
-                            CFGInst param_inst = new CFGInst( CFGInst.InstType.op_wpara);
+                            last.linkTo(intExpr.startNode);
+                            last = intExpr.endNode;
+                            CFGNode tmp = cfg.addNode();
+                            CFGInst param_inst = tmp.addInst( CFGInst.InstType.op_wpara);
                             param_inst.addOperand(intExpr.instAddr);
                             param_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                            node.instList.add(param_inst);
 
-                            CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+                            CFGInst call_inst = tmp.addInst(CFGInst.InstType.op_call);
                             if (isLine && exprStack.empty()){
                                 call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_printlnInt"));
                                 isLine = false;
                             }
                             else call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_printInt"));
-                            node.instList.add(call_inst);
+                            last.linkTo(tmp);
+                            last = tmp;
                         }
                         else if (expr.nodeType == ASTNodeType.e_add){
                             for (int i = expr.exprList.size()-1; i>=0 ;i--)
                                 exprStack.push(expr.exprList.get(i));
                         }
                         else {
-                            node.instList.addAll(expr.instList);
-                            CFGInst param_inst = new CFGInst( CFGInst.InstType.op_wpara);
+                            last.linkTo(expr.startNode);
+                            last = expr.endNode;
+                            CFGNode tmp = cfg.addNode();
+                            CFGInst param_inst = tmp.addInst( CFGInst.InstType.op_wpara);
                             param_inst.addOperand(expr.instAddr);
                             param_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                            node.instList.add(param_inst);
 
-                            CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+                            CFGInst call_inst = tmp.addInst(CFGInst.InstType.op_call);
                             if (isLine && exprStack.empty()){
                                 call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_println"));
                                 isLine = false;
                             }
                             else call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_print"));
-                            node.instList.add(call_inst);
+                            last.linkTo(tmp);
+                            last = tmp;
                         }
                     }
-
-                    wrapExprNode(node);
+                    node.endNode = last;
                     return;
                 }
 
@@ -499,106 +490,103 @@ public class CFGBuilder extends ASTBaseVisitor{
                         flag = 1;
                         ptAddr = node.exprList.get(0).exprList.get(0).instAddr;
                     }
+                    node.endNode = cfg.addNode();
                     if (node.exprList.size() > 1) {
                         Vector<ASTExprNode> exprList = node.exprList.get(1).exprList;
                         for (ASTExprNode i : exprList) {
                             visitExpr(i);
-                            node.instList.addAll(i.instList);
+                            last.linkTo(i.startNode);
+                            last = i.endNode;
                         }
                         for (int i = exprList.size() - 1; i >= 0; i--) {
                             ASTExprNode j = exprList.get(i);
-                            CFGInst inst = new CFGInst(CFGInst.InstType.op_wpara);
+                            CFGInst inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                             inst.addOperand(j.instAddr);
                             inst.addOperand(CFGInstAddr.newImmAddr(i + flag));
-                            node.instList.add(inst);
                         }
                     }
                     if (flag == 1) {
-                        CFGInst inst = new CFGInst(CFGInst.InstType.op_wpara);
+                        CFGInst inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                         assert (ptAddr != null);
                         inst.addOperand(ptAddr);
                         inst.addOperand(CFGInstAddr.newImmAddr(0));
-                        node.instList.add(inst);
                     }
-
-                    CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+                    CFGInst call_inst = node.endNode.addInst(CFGInst.InstType.op_call);
                     call_inst.addOperand(CFGInstAddr.newLabelAddr(node.toNode));
-                    node.instList.add(call_inst);
 
-                    CFGInst mv_inst = new CFGInst(CFGInst.InstType.op_mov);
+                    CFGInst mv_inst = node.endNode.addInst(CFGInst.InstType.op_mov);
                     CFGInstAddr ret_addr = CFGInstAddr.newRegAddr();
                     mv_inst.addOperand(ret_addr);
                     mv_inst.addOperand(CFGInstAddr.newRegAddr(-2));
-                    node.instList.add(mv_inst);
                     node.instAddr = ret_addr;
-                    wrapExprNode(node);
+                    last.linkTo(node.endNode);
                 }
                 else {
+                    ASTFuncDeclNode funcDecl = funcDeclMap.get(node.toNode.name);
+                    CFGNode inlineFuncBody = cfg.addNode();
+                    CFGNode inlineFuncAfter = cfg.addNode();
+                    inlineFuncAfterStack.push(inlineFuncAfter);
+
                     if (node.exprList.size() > 1) {
                         Vector<ASTExprNode> exprList = node.exprList.get(1).exprList;
                         inlineParamStack.push(new HashMap<>());
                         for (ASTExprNode i : exprList) {
                             visitExpr(i);
-                            node.instList.addAll(i.instList);
+                            last.linkTo(i.startNode);
+                            last = i.endNode;
                         }
-
-                        ASTFuncDeclNode funcDecl = funcDeclMap.get(node.toNode.name);
-                        for (int i = 1; i < exprList.size(); i++) {
-                            CFGInst mov_inst = new CFGInst(CFGInst.InstType.op_mov);
+                        for (int i = 0; i < exprList.size(); i++) {
+                            CFGInst mov_inst = inlineFuncBody.addInst(CFGInst.InstType.op_mov);
                             CFGInstAddr tmp = CFGInstAddr.newRegAddr();
                             mov_inst.operands.add(tmp);
                             mov_inst.operands.add(exprList.get(i).instAddr);
-                            node.instList.add(mov_inst);
-                            inlineParamStack.peek().put(((ASTDeclNode)funcDecl.paramList.stmtList.get(i-1)).name, tmp);
+                            inlineParamStack.peek().put(((ASTDeclNode)funcDecl.paramList.stmtList.get(i)).name, tmp);
                         }
-
+                    }
+                        last.linkTo(inlineFuncBody);
+                        last = inlineFuncBody;
                         boolean oldInline = isInInline;
                         isInInline = true;
-
-                        CFGNode inlineFuncBody = cfg.addNode();
-                        CFGNode inlineFuncAfter = cfg.addNode();
-                        inlineFuncBody.insts.addAll(node.instList);
-                        inlineFuncAfterStack.push(inlineFuncAfter);
 
                         CFGInstAddr ret_addr = CFGInstAddr.newRegAddr();
                         node.instAddr = ret_addr;
                         inlineFuncRet.push(ret_addr);
 
-
-                        CFGNode lastNode = inlineFuncBody;
                         for (ASTStmtNode i : funcDecl.funcBody.stmtList){
                             visitStmt(i);
-                            lastNode.linkTo(i.startNode);
-                            lastNode = i.startNode;
+                            last.linkTo(i.startNode);
+                            last = i.endNode;
                         }
                         //TODO
-                        lastNode.linkTo(inlineFuncAfter);
+                       // lastNode.linkTo(inlineFuncAfter);
                         inlineFuncAfterStack.pop();
                         inlineFuncRet.pop();
                         isInInline = oldInline;
-                        node.startNode = inlineFuncBody;
                         node.endNode = inlineFuncAfter;
-                    }
                 }
                 return;
+            }
             case e_asgn:{
                 if (SymbolType.boolSymbolType.equals(node.exprList.get(1).resultType) && !(node.exprList.get(1) instanceof ASTPrimNode)){
                     //logical assign
                     visitExpr(node.exprList.firstElement());
-                    node.startNode = cfg.addNode();
+                    node.startNode = node.exprList.get(0).startNode;
                     node.endNode = cfg.addNode();
-                    node.startNode.addInst(node.exprList.get(0).instList);
                     genBoolExprNode(node.exprList.get(0).instAddr, node.exprList.get(1), node.endNode);
                     node.startNode.linkTo(node.exprList.get(1).startNode);
                 }
                 else {
-                    for (ASTExprNode i: node.exprList) visitExpr(i);
-                    for (ASTExprNode i : node.exprList) node.instList.addAll(i.instList);
-                    CFGInst inst = new CFGInst(CFGInst.InstType.op_mov);
+                    CFGNode last = node.startNode = cfg.addNode();
+                    for (ASTExprNode i: node.exprList) {
+                        visitExpr(i);
+                        last.linkTo(i.startNode);
+                        last = i.endNode;
+                    };
+                    node.endNode = cfg.addNode();
+                    last.linkTo(node.endNode);
+                    CFGInst inst = node.endNode.addInst(CFGInst.InstType.op_mov);
                     inst.addOperand(node.exprList.get(0).instAddr);
                     inst.addOperand(node.exprList.get(1).instAddr);
-                    node.instList.add(inst);
-                    wrapExprNode(node);
                 }
                 node.instAddr = node.exprList.get(0).instAddr;
             }
@@ -609,24 +597,19 @@ public class CFGBuilder extends ASTBaseVisitor{
         assert type != CFGInst.InstType.op_nop;
         if (node.exprList.size() == 2 && node.exprList.get(0).instAddr.isConst() && node.exprList.get(1).instAddr.isConst()){
             node.instAddr = CFGInstAddr.newImmAddr(getConst(type, node.exprList.get(0).instAddr.getConst(), node.exprList.get(1).instAddr.getConst()));
-            wrapExprNode(node);
             return;
         }
         if (node.exprList.size() == 1 && node.exprList.get(0).instAddr.isConst()){
             node.instAddr = CFGInstAddr.newImmAddr(getConst(type, node.exprList.get(0).instAddr.getConst(), 0));
-            wrapExprNode(node);
             return;
         }
-        CFGInst inst = new CFGInst(type);
+        CFGInst inst = node.endNode.addInst(type);
         node.instAddr = CFGInstAddr.newRegAddr();
         inst.addOperand(node.instAddr);
         for (ASTExprNode i : node.exprList) inst.addOperand(i.instAddr);
-        node.instList.add(inst);
-        wrapExprNode(node);
     }
 
     private int getConst(CFGInst.InstType type, int const1, int const2) {
-
         switch (type){
             case op_add:
                 return const1 +const2;
@@ -705,7 +688,6 @@ public class CFGBuilder extends ASTBaseVisitor{
                 // start = 0 -> 1-> (3, end)
                 // 3 -> 2(step)-> 1
                 if (node.stmtList == null) break;
-                CFGNode n = cfg.addNode();
                 CFGNode stepNode = cfg.addNode();
                 node.endNode = cfg.addNode();
                 curLoopBreakNode.push(node.endNode);
@@ -716,14 +698,15 @@ public class CFGBuilder extends ASTBaseVisitor{
                     visitStmt(node.stmtList.get(i));
                 }
 
-                n.addInst(((ASTExprNode)node.stmtList.get(0)).instList);
+                CFGNode n =  node.stmtList.get(0).startNode;
                 visitLogicalExprNode((ASTExprNode)node.stmtList.get(1), node.stmtList.get(3).startNode, node.endNode);
-                n.linkTo(node.stmtList.get(1).startNode);
+                node.stmtList.get(0).endNode.linkTo(node.stmtList.get(1).startNode);
 
                 if (node.stmtList.get(3).endNode != null)
                     node.stmtList.get(3).endNode.linkTo(stepNode);
-                stepNode.addInst(((ASTExprNode)node.stmtList.get(2)).instList);
-                stepNode.linkTo(node.stmtList.get(1).startNode);
+                stepNode.linkTo(node.stmtList.get(2).startNode);
+                node.stmtList.get(2).endNode.linkTo(node.stmtList.get(1).startNode);
+
                 node.startNode = n;
                 curLoopContNode.pop();
                 curLoopBreakNode.pop();
@@ -777,24 +760,33 @@ public class CFGBuilder extends ASTBaseVisitor{
                     }
                     for (ASTStmtNode i : node.stmtList) visitStmt(i);
                 }
+                CFGNode n = cfg.addNode();
                 if (isInInline){
                     CFGNode inlineFuncAfter = inlineFuncAfterStack.peek();
-                    inlineFuncAfter.insts.addAll(((ASTExprNode)node.stmtList.firstElement()).instList);
                     if (((ASTExprNode)node.stmtList.firstElement()).instAddr != null) {
-                        CFGInst mv_inst = inlineFuncAfter.addInst(CFGInst.InstType.op_mov);
+                        node.startNode = node.stmtList.firstElement().startNode;
+                        node.stmtList.firstElement().endNode.linkTo(n);
+                        CFGInst mv_inst = n.addInst(CFGInst.InstType.op_mov);
                         mv_inst.operands.add(inlineFuncRet.peek());
                         mv_inst.operands.add(((ASTExprNode)node.stmtList.firstElement()).instAddr);
                     }
+                    else {
+                        node.startNode = n;
+                    }
+                    n.linkTo(inlineFuncAfter);
+                    node.endNode = null;
                     break;
                 }
-                CFGNode n = cfg.addNode();
-                n.addInst(((ASTExprNode)node.stmtList.firstElement()).instList);
                 if (((ASTExprNode)node.stmtList.firstElement()).instAddr != null){
+                    node.startNode = node.stmtList.firstElement().startNode;
+                    node.stmtList.firstElement().endNode.linkTo(n);
                     CFGInst mv_inst = n.addInst(CFGInst.InstType.op_mov);
                     mv_inst.addOperand(CFGInstAddr.newRegAddr(-2));
                     mv_inst.addOperand(((ASTExprNode)node.stmtList.firstElement()).instAddr);
                 }
-                node.startNode = n;
+                else {
+                    node.startNode = n;
+                }
                 n.linkTo(curFuncRetNode);
                 node.endNode = null;
                 break;
@@ -849,106 +841,104 @@ public class CFGBuilder extends ASTBaseVisitor{
                 node.instAddr = curThisAddr;
                 break;
         }
-        wrapExprNode(node);
+        node.startNode = node.endNode = cfg.addNode();
     }
 
     @Override
     public void visitCreatorNode(ASTCreatorNode node) {
+        node.startNode = cfg.addNode();
         if (node.exprList != null)
             for (ASTExprNode i : node.exprList) visitExpr(i);
-        visitTypeNode(node.type);
         if (node.type.dimension > 0){
             CFGInstAddr startAddr = CFGInstAddr.newStackAddr(8);
             CFGInstAddr tmpAddr = startAddr;
             int iDim = 0;
+            CFGNode last = node.startNode;
             for (ASTExprNode i : node.exprList){
                 if (i.isEmpty()) break;
                 ++iDim;
-                node.instList.addAll(i.instList);
-                CFGInst mv_inst = new CFGInst(CFGInst.InstType.op_mov);
+                last.linkTo(i.startNode);
+                last = i.endNode;
+                CFGNode tmp = cfg.addNode();
+                CFGInst mv_inst = tmp.addInst(CFGInst.InstType.op_mov);
                 assert tmpAddr!=null;
                 mv_inst.addOperand(tmpAddr);
                 mv_inst.addOperand(i.instAddr);
-                node.instList.add(mv_inst);
+                last.linkTo(tmp);
+                last = tmp;
                 tmpAddr = CFGInstAddr.newStackAddr(8);
             }
             {
+                node.endNode = cfg.addNode();
+                last.linkTo(node.endNode);
                 CFGInstAddr tmpReg = CFGInstAddr.newRegAddr(-4);
-                CFGInst lea_inst = new CFGInst(CFGInst.InstType.op_lea);
+                CFGInst lea_inst = node.endNode.addInst(CFGInst.InstType.op_lea);
                 lea_inst.addOperand(tmpReg);
                 lea_inst.addOperand(startAddr);
-                node.instList.add(lea_inst);
-                CFGInst param_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                CFGInst param_inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                 param_inst.addOperand(tmpReg);
                 param_inst.addOperand(CFGInstAddr.newImmAddr(1));
-                node.instList.add(param_inst);
             }
             {
-                CFGInst param_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                CFGInst param_inst = node.endNode.addInst(CFGInst.InstType.op_wpara);
                 param_inst.addOperand(CFGInstAddr.newImmAddr(iDim));
                 param_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                node.instList.add(param_inst);
             }
-            CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+            CFGInst call_inst = node.endNode.addInst(CFGInst.InstType.op_call);
             call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_alloc"));
-            node.instList.add(call_inst);
             node.instAddr = CFGInstAddr.newRegAddr(-2);
         }
         else {
-            CFGInst param_inst = new CFGInst(CFGInst.InstType.op_wpara);
+            CFGInst param_inst = node.startNode.addInst(CFGInst.InstType.op_wpara);
             param_inst.addOperand(CFGInstAddr.newImmAddr(node.resultType.getClassMemSize()));
             param_inst.addOperand(CFGInstAddr.newImmAddr(0));
-            node.instList.add(param_inst);
-            CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
+            CFGInst call_inst = node.startNode.addInst(CFGInst.InstType.op_call);
             call_inst.addOperand(CFGInstAddr.newLabelAddr("malloc"));
-            node.instList.add(call_inst);
             if (node.hasConstructor){
                 node.instAddr = CFGInstAddr.newRegAddr();
-                CFGInst mv_inst = new CFGInst(CFGInst.InstType.op_mov);
+                CFGInst mv_inst = node.startNode.addInst(CFGInst.InstType.op_mov);
                 mv_inst.addOperand(node.instAddr);
                 mv_inst.addOperand(CFGInstAddr.newRegAddr(-2));
-                node.instList.add(mv_inst);
-                CFGInst this_inst = new CFGInst(CFGInst.InstType.op_wpara);
+                CFGInst this_inst = node.startNode.addInst(CFGInst.InstType.op_wpara);
                 this_inst.addOperand(CFGInstAddr.newRegAddr(-2));
                 this_inst.addOperand(CFGInstAddr.newImmAddr(0));
-                node.instList.add(this_inst);
-                CFGInst cons_inst = new CFGInst(CFGInst.InstType.op_call);
+                CFGInst cons_inst = node.startNode.addInst(CFGInst.InstType.op_call);
                 cons_inst.addOperand(CFGInstAddr.newLabelAddr("_class_"+node.type.className + "._init"));
-                node.instList.add(cons_inst);
             }
             else {
                 node.instAddr = CFGInstAddr.newRegAddr(-2);
             }
+            node.endNode = node.startNode;
         }
-        wrapExprNode(node);
         //array of class = array of point
     }
 
-    @Override
-    public void visitTypeNode(ASTTypeNode node) {
-            //output
-    }
 
     private boolean deserveInline(String funcName){
-        return false;
-       /* if (!funcDeclMap.containsKey(funcName)) return false;
+        boolean openInline = false;
+        if (!openInline) return false;
+        if (!funcDeclMap.containsKey(funcName)) return false;
         ASTFuncDeclNode node = funcDeclMap.get(funcName);
-        //if use global variable
         if (node.isMember) return false;
         int cnt;
+        useGlobal = false;
         if (operationCount.containsKey(funcName)) cnt = operationCount.get(funcName);
         else {
             cnt = countOperations(node);
             operationCount.put(funcName,cnt);
         }
-        if (cnt > inlineMaxOperations) return false;
+        if (cnt > inlineMaxOperations || useGlobal) return false;
         if (inlineParamStack.size() >= inlineMaxDepth) return false;
-        return true;*/
+        return true;
     }
     private int countOperations(ASTExprNode node){
         if (node == null || node.nodeType == ASTNodeType.e_empty) return 0;
         if (node instanceof ASTCreatorNode) return node.resultType.arrayDim;
-        if (node instanceof ASTPrimNode) return 1;
+        if (node instanceof ASTPrimNode) {
+            if (node.nodeType == ASTNodeType.p_id && node.instAddr.a_type != CFGInstAddr.addrType.a_reg)
+                useGlobal = true;
+            return 0;
+        }
         int cnt = 0;
         for (ASTExprNode i: node.exprList) cnt += countOperations(i);
         return cnt + 1;
@@ -963,7 +953,7 @@ public class CFGBuilder extends ASTBaseVisitor{
     }
     private int countOperations(ASTFuncDeclNode node) {
         int cnt = 0;
-        for (ASTStmtNode i: node.stmtList) cnt += countOperations(i);
+        for (ASTStmtNode i: node.funcBody.stmtList) cnt += countOperations(i);
         return cnt;
     }
 }

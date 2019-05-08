@@ -429,12 +429,11 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
-global _class_older.solveAge
+global _func_f
 global main
-global _str_1
 
 SECTION .text
-_class_older.solveAge:
+_func_f:
 	push	rbx
 	push	r12
 	push	r13
@@ -444,104 +443,27 @@ _class_older.solveAge:
 	mov	rbp, rsp
 	sub	rsp, 32
 	mov	qword [rbp-8H], rdi
-	mov	qword [rbp-10H], 1
-_Label_123:
-	cmp	qword [rbp-10H], 100
-	jge	_Label_24
-_Label_30:
-	mov	r12, qword [rbp-10H]
-	add	r12, 1
-	mov	qword [rbp-18H], r12
-_Label_119:
-	cmp	qword [rbp-18H], 100
-	jge	_Label_32
-_Label_40:
-	mov	r12, qword [rbp-18H]
-	add	r12, 1
-	mov	r15, r12
-_Label_115:
-	cmp	r15, 100
-	jge	_Label_42
-_Label_111:
-	mov	r12, qword [rbp-10H]
-	sub	r12, qword [rbp-10H]
-	add	r12, qword [rbp-10H]
-	add	r12, qword [rbp-18H]
-	sub	r12, qword [rbp-18H]
-	add	r12, qword [rbp-18H]
+	mov	r12, 0
+	mov	r15, 0
+_Label_50:
+	cmp	r15, qword [rbp-8H]
+	jge	_Label_21
+_Label_32:
 	add	r12, r15
-	sub	r12, r15
-	mov	r14, r12
-	add	r14, r15
-	mov	r12, 100
-	mov	rax, r12
-	cqo
-	imul	qword [rbp-10H]
-	mov	r12, rax
-	mov	r13, 10
-	mov	rax, r13
-	cqo
-	imul	qword [rbp-18H]
-	mov	r13, rax
-	add	r12, r13
-	mov	r13, r12
-	add	r13, r15
-	mov	r12, r14
-	mov	rax, r12
-	cqo
-	imul	r13
-	mov	r12, rax
-	mov	r13, 1926
+	mov	r13, r15
+	sub	r13, 1
+	mov	r14, qword [rbp-8H]
+	and	r14, r13
+	xor	r12, r14
+	mov	r13, 10000
 	mov	rax, r12
 	cqo
 	idiv	r13
 	mov	r12, rdx
-	cmp	r12, 0
-	jne	_Label_50
-_Label_79:
-	mov	r12, qword [rbp-10H]
-	sub	r12, qword [rbp-10H]
-	add	r12, qword [rbp-10H]
-	add	r12, qword [rbp-18H]
-	sub	r12, qword [rbp-18H]
-	add	r12, qword [rbp-18H]
-	add	r12, r15
-	sub	r12, r15
-	mov	r14, r12
-	add	r14, r15
-	mov	r12, 100
+	add	r15, 1
+	jmp	_Label_50
+_Label_21:
 	mov	rax, r12
-	cqo
-	imul	qword [rbp-10H]
-	mov	r12, rax
-	mov	r13, 10
-	mov	rax, r13
-	cqo
-	imul	qword [rbp-18H]
-	mov	r13, rax
-	add	r12, r13
-	mov	r13, r12
-	add	r13, r15
-	mov	r12, r14
-	mov	rax, r12
-	cqo
-	imul	r13
-	mov	r12, rax
-	mov	r10, qword [rbp-8H]
-	mov	qword [r10], r12
-_Label_50:
-	mov	r12, r15
-	inc	r15
-	jmp	_Label_115
-_Label_42:
-	mov	r12, qword [rbp-18H]
-	inc	qword [rbp-18H]
-	jmp	_Label_119
-_Label_32:
-	mov	r12, qword [rbp-10H]
-	inc	qword [rbp-10H]
-	jmp	_Label_123
-_Label_24:
 	add	rsp, 32
 	pop	rbp
 	pop	r15
@@ -553,24 +475,49 @@ _Label_24:
 main:
 	push	rbp
 	mov	rbp, rsp
-	mov	rdi, 8
-	call	malloc
-	mov	r12, rax
+	mov	r15, 0
+	mov	r14, 0
+_Label_105:
+	cmp	r14, 90000000
+	jge	_Label_66
+_Label_75:
+	mov	r13, 0
+_Label_101:
+	cmp	r13, 10
+	jge	_Label_74
+_Label_97:
+	cmp	r14, 89999999
+	jl	_Label_82
+_Label_93:
+	cmp	r13, 9
+	jl	_Label_82
+_Label_83:
+	mov	r12, r14
+	sal	r12, 3
 	mov	rdi, r12
-	call	_class_older.solveAge
-	mov	r13, rax
-	cmp	qword [r12], 10000
-	jle	_Label_131
-_Label_134:
-	mov	rdi, _str_1
-	call	_lib_println
-_Label_131:
+	call	_func_f
+	mov	r12, rax
+	add	r15, r12
+_Label_82:
+	mov	r12, r13
+	inc	r13
+	jmp	_Label_101
+_Label_74:
+	mov	r12, r14
+	inc	r14
+	jmp	_Label_105
+_Label_66:
+_Label_113:
+	mov	rdi, r15
+	call	_lib_printlnInt
 	mov	rax, 0
 	pop	rbp
 	ret
+_Label_111:
+	mov	rdi, r15
+	call	_lib_toString
+	mov	rbx, rax
 
 SECTION .data
-_str_1:
-	db	65H, 74H, 65H, 72H, 6EH, 61H, 6CH, 21H, 00H
 
 SECTION .bss
