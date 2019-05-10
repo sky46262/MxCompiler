@@ -119,9 +119,10 @@ char* _lib_strcat(const char *s1, const char *s2) {
     return ret;
 }
 
-int _lib_strcmp(const char *s1, const char *s2) {
+long long _lib_strcmp(const char *s1, const char *s2) {
     return strcmp(s1, s2);
 }
+
 
 long long* _lib_alloc(long long rem, long long *dims) {
     long long dim = *dims;

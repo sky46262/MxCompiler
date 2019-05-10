@@ -269,11 +269,6 @@ public class CFGBuilder extends ASTBaseVisitor{
             case e_bneg:
                 type = CFGInst.InstType.op_not;
                 break;
-            case e_land:
-            case e_lor:
-            case e_not:
-                //logical expression  nothing to do
-                break;
             case e_inc_p:{
                 CFGInst inc_inst = new CFGInst(CFGInst.InstType.op_inc);
                 inc_inst.addOperand(node.exprList.get(0).instAddr);
@@ -316,6 +311,11 @@ public class CFGBuilder extends ASTBaseVisitor{
                 wrapExprNode(node);
                 return;
             }
+            case e_land:
+            case e_lor:
+            case e_not:
+                //logical expression  nothing to do
+                break;
             case e_ne:
             case e_eq:
             case e_lt:
@@ -323,8 +323,8 @@ public class CFGBuilder extends ASTBaseVisitor{
             case e_gt:
             case e_ge:
             {
+                //todo
                 switch (node.nodeType){
-
                     case e_eq:
                         type = CFGInst.InstType.op_eq;
                         break;
@@ -343,6 +343,7 @@ public class CFGBuilder extends ASTBaseVisitor{
                     case e_lt:
                         type = CFGInst.InstType.op_lt;
                         break;
+                    default:
                 }
                 if (SymbolType.strSymbolType.equals(node.exprList.get(0).resultType)){
                     CFGInst s1_inst = new CFGInst(CFGInst.InstType.op_wpara);
@@ -351,8 +352,8 @@ public class CFGBuilder extends ASTBaseVisitor{
                     CFGInst s2_inst = new CFGInst(CFGInst.InstType.op_wpara);
                     s2_inst.addOperand(node.exprList.get(1).instAddr);
                     s2_inst.addOperand(CFGInstAddr.newImmAddr(1));
-                    node.instList.add(s1_inst);
                     node.instList.add(s2_inst);
+                    node.instList.add(s1_inst);
                     CFGInst call_inst = new CFGInst(CFGInst.InstType.op_call);
                     call_inst.addOperand(CFGInstAddr.newLabelAddr("_lib_strcmp"));//use the lib
                     node.instList.add(call_inst);
@@ -487,16 +488,32 @@ public class CFGBuilder extends ASTBaseVisitor{
                         flag = 1;
                         ptAddr = node.exprList.get(0).exprList.get(0).instAddr;
                     }
+                    node.startNode = node.exprList.get(0).startNode;
+                    CFGNode last = node.exprList.get(0).endNode;
                     if (node.exprList.size() > 1) {
                         Vector<ASTExprNode> exprList = node.exprList.get(1).exprList;
+                        Vector<CFGInstAddr> paramList = new Vector<>();
                         for (ASTExprNode i : exprList) {
-                            visitExpr(i);
-                            node.instList.addAll(i.instList);
+                            if (SymbolType.boolSymbolType.equals(i.resultType) && !(i instanceof ASTPrimNode)){
+                                //logical assign
+                                CFGNode tmp = cfg.addNode();
+                                CFGInstAddr tmpAddr = CFGInstAddr.newRegAddr();
+                                genBoolExprNode(tmpAddr, i, tmp);
+                                paramList.add(tmpAddr);
+                                last.linkTo(i.startNode);
+                                last = tmp;
+                            }
+                            else {
+                                visitExpr(i);
+                                paramList.add(i.instAddr);
+                                last.linkTo(i.startNode);
+                                last = i.endNode;
+                            }
                         }
-                        for (int i = exprList.size() - 1; i >= 0; i--) {
-                            ASTExprNode j = exprList.get(i);
+                        for (int i = paramList.size() - 1; i >= 0; i--) {
+                            CFGInstAddr j = paramList.get(i);
                             CFGInst inst = new CFGInst(CFGInst.InstType.op_wpara);
-                            inst.addOperand(j.instAddr);
+                            inst.addOperand(j);
                             inst.addOperand(CFGInstAddr.newImmAddr(i + flag));
                             node.instList.add(inst);
                         }
@@ -519,7 +536,9 @@ public class CFGBuilder extends ASTBaseVisitor{
                     mv_inst.addOperand(CFGInstAddr.newRegAddr(-2));
                     node.instList.add(mv_inst);
                     node.instAddr = ret_addr;
-                    wrapExprNode(node);
+                    node.endNode = cfg.addNode();
+                    node.endNode.addInst(node.instList);
+                    last.linkTo(node.endNode);
                 }
                 return;
             case e_asgn:{
@@ -741,7 +760,7 @@ public class CFGBuilder extends ASTBaseVisitor{
     }
 
     @Override
-    public void visitPrimNode(ASTPrimNode node) {
+    public void visitPrimNode(ASTPrimNode node){
         switch (node.nodeType){
             case p_bool:
             case p_int:
@@ -838,6 +857,8 @@ public class CFGBuilder extends ASTBaseVisitor{
                 this_inst.addOperand(CFGInstAddr.newRegAddr(-2));
                 this_inst.addOperand(CFGInstAddr.newImmAddr(0));
                 node.instList.add(this_inst);
+                CFGProcess callee = cfg.getProc("_class_"+node.type.className + "._init");
+                callee.isCallee = true;
                 CFGInst cons_inst = new CFGInst(CFGInst.InstType.op_call);
                 cons_inst.addOperand(CFGInstAddr.newLabelAddr("_class_"+node.type.className + "._init"));
                 node.instList.add(cons_inst);
