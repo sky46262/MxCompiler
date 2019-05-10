@@ -464,10 +464,10 @@ main:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jne	_Label_42
+	jne	_Label_43
+_Label_42:
+	mov	r12, 1
 _Label_41:
-	mov	r12, 1
-_Label_40:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -487,10 +487,10 @@ _Label_40:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	je	_Label_51
-_Label_50:
+	je	_Label_53
+_Label_52:
 	mov	r12, 1
-_Label_49:
+_Label_51:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -510,10 +510,10 @@ _Label_49:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jge	_Label_60
-_Label_59:
+	jge	_Label_63
+_Label_62:
 	mov	r12, 1
-_Label_58:
+_Label_61:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -533,10 +533,10 @@ _Label_58:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jle	_Label_69
-_Label_68:
+	jle	_Label_73
+_Label_72:
 	mov	r12, 1
-_Label_67:
+_Label_71:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -556,10 +556,10 @@ _Label_67:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jg	_Label_78
-_Label_77:
+	jg	_Label_83
+_Label_82:
 	mov	r12, 1
-_Label_76:
+_Label_81:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -579,10 +579,10 @@ _Label_76:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jl	_Label_87
-_Label_86:
+	jl	_Label_93
+_Label_92:
 	mov	r12, 1
-_Label_85:
+_Label_91:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -616,10 +616,10 @@ _Label_85:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jne	_Label_99
-_Label_98:
+	jne	_Label_106
+_Label_105:
 	mov	r12, 1
-_Label_97:
+_Label_104:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -639,33 +639,10 @@ _Label_97:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	je	_Label_108
-_Label_107:
-	mov	r12, 1
-_Label_106:
-	mov	rdi, r12
-	call	_func_printBool
-	mov	r12, rax
-	mov	rsi, r15
-	mov	rdi, r14
-	push	rcx
-	push	rdx
-	push	r8
-	push	r9
-	push	rsi
-	push	rdi
-	call	_lib_strcmp
-	pop	rdi
-	pop	rsi
-	pop	r9
-	pop	r8
-	pop	rdx
-	pop	rcx
-	cmp	rax, 0
-	jge	_Label_117
-_Label_116:
-	mov	r12, 1
+	je	_Label_116
 _Label_115:
+	mov	r12, 1
+_Label_114:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -685,7 +662,7 @@ _Label_115:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jle	_Label_126
+	jge	_Label_126
 _Label_125:
 	mov	r12, 1
 _Label_124:
@@ -708,10 +685,10 @@ _Label_124:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jg	_Label_135
-_Label_134:
+	jle	_Label_136
+_Label_135:
 	mov	r12, 1
-_Label_133:
+_Label_134:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -731,10 +708,33 @@ _Label_133:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jl	_Label_144
-_Label_143:
+	jg	_Label_146
+_Label_145:
 	mov	r12, 1
-_Label_142:
+_Label_144:
+	mov	rdi, r12
+	call	_func_printBool
+	mov	r12, rax
+	mov	rsi, r15
+	mov	rdi, r14
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_strcmp
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	cmp	rax, 0
+	jl	_Label_156
+_Label_155:
+	mov	r12, 1
+_Label_154:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -768,10 +768,10 @@ _Label_142:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jne	_Label_156
-_Label_155:
+	jne	_Label_169
+_Label_168:
 	mov	r12, 1
-_Label_154:
+_Label_167:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -791,10 +791,10 @@ _Label_154:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	je	_Label_165
-_Label_164:
+	je	_Label_179
+_Label_178:
 	mov	r12, 1
-_Label_163:
+_Label_177:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -814,10 +814,10 @@ _Label_163:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jge	_Label_174
-_Label_173:
+	jge	_Label_189
+_Label_188:
 	mov	r12, 1
-_Label_172:
+_Label_187:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -837,10 +837,10 @@ _Label_172:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jle	_Label_183
-_Label_182:
+	jle	_Label_199
+_Label_198:
 	mov	r12, 1
-_Label_181:
+_Label_197:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -860,10 +860,10 @@ _Label_181:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jg	_Label_192
-_Label_191:
+	jg	_Label_209
+_Label_208:
 	mov	r12, 1
-_Label_190:
+_Label_207:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	r12, rax
@@ -883,70 +883,70 @@ _Label_190:
 	pop	rdx
 	pop	rcx
 	cmp	rax, 0
-	jl	_Label_201
-_Label_200:
+	jl	_Label_219
+_Label_218:
 	mov	r12, 1
-_Label_199:
+_Label_217:
 	mov	rdi, r12
 	call	_func_printBool
 	mov	rbx, rax
 	mov	rax, 0
 	pop	rbp
 	ret
-_Label_201:
+_Label_219:
 	mov	r12, 0
-	jmp	_Label_199
-_Label_192:
+	jmp	_Label_217
+_Label_209:
 	mov	r12, 0
-	jmp	_Label_190
-_Label_183:
+	jmp	_Label_207
+_Label_199:
 	mov	r12, 0
-	jmp	_Label_181
-_Label_174:
+	jmp	_Label_197
+_Label_189:
 	mov	r12, 0
-	jmp	_Label_172
-_Label_165:
+	jmp	_Label_187
+_Label_179:
 	mov	r12, 0
-	jmp	_Label_163
+	jmp	_Label_177
+_Label_169:
+	mov	r12, 0
+	jmp	_Label_167
 _Label_156:
 	mov	r12, 0
 	jmp	_Label_154
-_Label_144:
+_Label_146:
 	mov	r12, 0
-	jmp	_Label_142
-_Label_135:
+	jmp	_Label_144
+_Label_136:
 	mov	r12, 0
-	jmp	_Label_133
+	jmp	_Label_134
 _Label_126:
 	mov	r12, 0
 	jmp	_Label_124
-_Label_117:
+_Label_116:
 	mov	r12, 0
-	jmp	_Label_115
-_Label_108:
+	jmp	_Label_114
+_Label_106:
 	mov	r12, 0
-	jmp	_Label_106
-_Label_99:
+	jmp	_Label_104
+_Label_93:
 	mov	r12, 0
-	jmp	_Label_97
-_Label_87:
+	jmp	_Label_91
+_Label_83:
 	mov	r12, 0
-	jmp	_Label_85
-_Label_78:
+	jmp	_Label_81
+_Label_73:
 	mov	r12, 0
-	jmp	_Label_76
-_Label_69:
+	jmp	_Label_71
+_Label_63:
 	mov	r12, 0
-	jmp	_Label_67
-_Label_60:
+	jmp	_Label_61
+_Label_53:
 	mov	r12, 0
-	jmp	_Label_58
-_Label_51:
+	jmp	_Label_51
+_Label_43:
 	mov	r12, 0
-	jmp	_Label_49
-_Label_42:
-	mov	r12, 0
-	jmp	_Label_40
+	jmp	_Label_41
 
 SECTION .data
 _str_1:
