@@ -429,246 +429,1846 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
+global _func_max
+global _class_Node.copy
+global _class_Node.init
+global _class_Node.judge
+global _class_Node.push_up
+global _class_Node.addtag_ch
+global _class_Node.addtag_ro
+global _class_Node.push_down
+global _class_Node.rot
+global _class_Node.rotto
+global _class_splay_tree._init
+global _class_splay_tree.build
+global _class_splay_tree.build_tree
+global _class_splay_tree.find
+global _class_splay_tree.dfs
+global _class_splay_tree.del
+global _class_splay_tree.change
+global _class_splay_tree.rol
+global _class_splay_tree.getsum
+global _class_splay_tree.getMax
+global _func_equ
+global _func_merge
 global main
 global _static_init
-global _global_a
-global _global_str
+global _global_INF
+global _global_nMax
+global _global_n
+global _global_m
+global _global_id_cnt
+global _global_din
+global _global_sp
+global _global_dintree
 global _str_1
+global _global_char_ID
 global _str_2
 global _str_3
-global _str_4
-global _str_5
-global _str_6
-global _str_7
-global _str_8
-global _str_9
-global _str_10
 
 SECTION .text
+_func_max:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r13, rdi
+	mov	r12, rsi
+	cmp	r13, r12
+	jle	_Label_49
+_Label_51:
+	mov	rax, r13
+_Label_44:
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_49:
+	mov	rax, r12
+	jmp	_Label_44
+_class_Node.copy:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	mov	r14, rsi
+	mov	r12, qword [r14]
+	mov	qword [r15], r12
+	mov	r12, qword [r14+8H]
+	mov	qword [r15+8H], r12
+	mov	r12, qword [r14+10H]
+	mov	qword [r15+10H], r12
+	mov	r12, qword [r14+18H]
+	mov	qword [r15+18H], r12
+	mov	r12, qword [r14+20H]
+	mov	qword [r15+20H], r12
+	mov	r12, qword [r14+28H]
+	mov	qword [r15+28H], r12
+	mov	r12, qword [r14+30H]
+	mov	qword [r15+30H], r12
+	mov	r12, qword [r14+38H]
+	mov	qword [r15+38H], r12
+	mov	r12, qword [r14+40H]
+	mov	qword [r15+40H], r12
+	mov	r12, qword [r14+48H]
+	mov	qword [r15+48H], r12
+	mov	r12, qword [r14+50H]
+	mov	r13, qword [r12+8H]
+	mov	r12, qword [r15+50H]
+	mov	qword [r12+8H], r13
+	mov	r12, qword [r14+50H]
+	mov	r12, qword [r12+10H]
+	mov	r13, qword [r15+50H]
+	mov	qword [r13+10H], r12
+	mov	r12, qword [r14+58H]
+	mov	qword [r15+58H], r12
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_Node.init:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	r14, rdi
+	mov	r12, rsi
+	mov	r13, rdx
+	mov	qword [r14], r13
+	mov	qword [r14+10H], 1
+	mov	qword [r14+20H], 0
+	mov	qword [r14+30H], 0
+	mov	qword [r14+28H], 0
+	mov	qword [r14+18H], r12
+	mov	qword [r14+8H], r12
+	mov	qword [r14+38H], r12
+	mov	qword [r14+40H], r12
+	mov	qword [r14+48H], r12
+	mov	qword [rbp-8H], 2
+	lea	rax, [rbp-8H]
+	mov	rsi, rax
+	mov	rdi, 1
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_alloc
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	qword [r14+50H], rax
+	mov	r12, qword [r14+50H]
+	mov	qword [r12+8H], 0
+	mov	r12, qword [r14+50H]
+	mov	qword [r12+10H], 0
+	mov	qword [r14+58H], 0
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_Node.judge:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r13, rdi
+	mov	r12, rsi
+	mov	rsi, r12
+	mov	r12, qword [r13+50H]
+	mov	rdi, qword [r12+8H]
+	call	_func_equ
+	mov	rbx, rax
+	cmp	rbx, 1
+	jne	_Label_202
+_Label_204:
+	mov	rax, 0
+_Label_197:
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_202:
+	mov	rax, 1
+	jmp	_Label_197
+_class_Node.push_up:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	r15, rdi
+	mov	qword [r15+10H], 1
+	mov	r12, qword [r15+8H]
+	mov	qword [r15+18H], r12
+	mov	r14, 0
+_Label_255:
+	cmp	r14, 2
+	jge	_Label_223
+_Label_251:
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+r14*8+8H], 0
+	je	_Label_229
+_Label_237:
+	mov	r13, qword [r15+10H]
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+r14*8+8H]
+	add	r13, qword [r12+10H]
+	mov	qword [r15+10H], r13
+	mov	r13, qword [r15+18H]
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+r14*8+8H]
+	add	r13, qword [r12+18H]
+	mov	qword [r15+18H], r13
+_Label_229:
+	inc	r14
+	jmp	_Label_255
+_Label_223:
+	mov	r12, qword [r15+8H]
+	mov	qword [r15+38H], r12
+	mov	r12, qword [r15+8H]
+	mov	qword [r15+40H], r12
+	mov	r12, qword [r15+8H]
+	mov	qword [r15+48H], r12
+	mov	r14, qword [r15+8H]
+	mov	r10, qword [r15+8H]
+	mov	qword [rbp-8H], r10
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+8H], 0
+	je	_Label_269
+_Label_275:
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+8H]
+	mov	r12, qword [r12+38H]
+	mov	qword [r15+38H], r12
+	mov	r13, r14
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+8H]
+	add	r13, qword [r12+18H]
+	mov	r14, r13
+	mov	rsi, 0
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+8H]
+	mov	rdi, qword [r12+40H]
+	call	_func_max
+	mov	r12, rax
+	add	qword [rbp-8H], r12
+_Label_269:
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+10H], 0
+	je	_Label_301
+_Label_307:
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+10H]
+	mov	r12, qword [r12+40H]
+	mov	qword [r15+40H], r12
+	mov	r13, qword [rbp-8H]
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+10H]
+	add	r13, qword [r12+18H]
+	mov	qword [rbp-8H], r13
+	mov	rsi, 0
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+10H]
+	mov	rdi, qword [r12+38H]
+	call	_func_max
+	mov	r12, rax
+	add	r14, r12
+_Label_301:
+	mov	rsi, r14
+	mov	rdi, qword [r15+38H]
+	call	_func_max
+	mov	r12, rax
+	mov	qword [r15+38H], r12
+	mov	rsi, qword [rbp-8H]
+	mov	rdi, qword [r15+40H]
+	call	_func_max
+	mov	r12, rax
+	mov	qword [r15+40H], r12
+	mov	r14, 0
+_Label_372:
+	cmp	r14, 2
+	jge	_Label_347
+_Label_368:
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+r14*8+8H], 0
+	je	_Label_353
+_Label_362:
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+r14*8+8H]
+	mov	rsi, qword [r12+48H]
+	mov	rdi, qword [r15+48H]
+	call	_func_max
+	mov	r12, rax
+	mov	qword [r15+48H], r12
+_Label_353:
+	inc	r14
+	jmp	_Label_372
+_Label_347:
+	mov	r13, qword [r15+8H]
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+8H], 0
+	je	_Label_375
+_Label_386:
+	mov	rsi, 0
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+8H]
+	mov	rdi, qword [r12+40H]
+	call	_func_max
+	mov	r12, rax
+	add	r13, r12
+_Label_375:
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+10H], 0
+	je	_Label_393
+_Label_404:
+	mov	rsi, 0
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+10H]
+	mov	rdi, qword [r12+38H]
+	call	_func_max
+	mov	r12, rax
+	add	r13, r12
+_Label_393:
+	mov	rsi, r13
+	mov	rdi, qword [r15+48H]
+	call	_func_max
+	mov	r12, rax
+	mov	qword [r15+48H], r12
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_Node.addtag_ch:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r13, rdi
+	mov	r14, rsi
+	mov	qword [r13+8H], r14
+	mov	r12, qword [r13+10H]
+	mov	rax, r12
+	cqo
+	imul	r14
+	mov	r12, rax
+	mov	qword [r13+18H], r12
+	cmp	r14, 0
+	jl	_Label_431
+_Label_440:
+	mov	r12, qword [r13+18H]
+	mov	qword [r13+38H], r12
+	mov	r12, qword [r13+18H]
+	mov	qword [r13+40H], r12
+	mov	r12, qword [r13+18H]
+	mov	qword [r13+48H], r12
+_Label_428:
+	mov	qword [r13+20H], 1
+	mov	qword [r13+28H], r14
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_431:
+	mov	qword [r13+38H], r14
+	mov	qword [r13+40H], r14
+	mov	qword [r13+48H], r14
+	jmp	_Label_428
+_class_Node.addtag_ro:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	mov	r12, qword [r15+50H]
+	mov	r14, qword [r12+8H]
+	mov	r12, qword [r15+50H]
+	mov	r13, qword [r12+10H]
+	mov	r12, qword [r15+50H]
+	mov	qword [r12+8H], r13
+	mov	r12, qword [r15+50H]
+	mov	qword [r12+10H], r14
+	mov	r12, qword [r15+38H]
+	mov	r13, qword [r15+40H]
+	mov	qword [r15+38H], r13
+	mov	qword [r15+40H], r12
+	mov	r12, qword [r15+30H]
+	xor	r12, 1
+	mov	qword [r15+30H], r12
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_Node.push_down:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r14, rdi
+	cmp	qword [r14+20H], 1
+	jne	_Label_496
+_Label_497:
+	mov	r13, 0
+_Label_522:
+	cmp	r13, 2
+	jge	_Label_499
+_Label_518:
+	mov	r12, qword [r14+50H]
+	cmp	qword [r12+r13*8+8H], 0
+	je	_Label_505
+_Label_512:
+	mov	rsi, qword [r14+28H]
+	mov	r12, qword [r14+50H]
+	mov	rdi, qword [r12+r13*8+8H]
+	call	_class_Node.addtag_ch
+	mov	r12, rax
+_Label_505:
+	inc	r13
+	jmp	_Label_522
+_Label_499:
+	mov	qword [r14+20H], 0
+_Label_496:
+	cmp	qword [r14+30H], 1
+	jne	_Label_530
+_Label_531:
+	mov	r13, 0
+_Label_555:
+	cmp	r13, 2
+	jge	_Label_533
+_Label_551:
+	mov	r12, qword [r14+50H]
+	cmp	qword [r12+r13*8+8H], 0
+	je	_Label_539
+_Label_545:
+	mov	r12, qword [r14+50H]
+	mov	rdi, qword [r12+r13*8+8H]
+	call	_class_Node.addtag_ro
+	mov	r12, rax
+_Label_539:
+	inc	r13
+	jmp	_Label_555
+_Label_533:
+	mov	qword [r14+30H], 0
+_Label_530:
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_Node.rot:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	qword [rbp-8H], rdi
+	mov	r11, qword [rbp-8H]
+	mov	r15, qword [r11+58H]
+	mov	rsi, qword [rbp-8H]
+	mov	rdi, r15
+	call	_class_Node.judge
+	mov	r12, rax
+	mov	r14, r12
+	mov	r12, r14
+	xor	r12, 1
+	mov	r10, qword [rbp-8H]
+	mov	r13, qword [r10+50H]
+	mov	r13, qword [r13+r12*8+8H]
+	mov	r12, qword [r15+50H]
+	mov	qword [r12+r14*8+8H], r13
+	mov	r12, r14
+	xor	r12, 1
+	mov	r11, qword [rbp-8H]
+	mov	r13, qword [r11+50H]
+	mov	qword [r13+r12*8+8H], r15
+	mov	r12, qword [r15+50H]
+	cmp	qword [r12+r14*8+8H], 0
+	je	_Label_589
+_Label_596:
+	mov	r12, qword [r15+50H]
+	mov	r12, qword [r12+r14*8+8H]
+	mov	qword [r12+58H], r15
+_Label_589:
+	mov	r12, qword [r15+58H]
+	mov	r10, qword [rbp-8H]
+	mov	qword [r10+58H], r12
+	mov	r11, qword [rbp-8H]
+	mov	qword [r15+58H], r11
+	mov	r10, qword [rbp-8H]
+	cmp	qword [r10+58H], 0
+	je	_Label_612
+_Label_622:
+	mov	rsi, r15
+	mov	r11, qword [rbp-8H]
+	mov	rdi, qword [r11+58H]
+	call	_class_Node.judge
+	mov	r13, rax
+	mov	r10, qword [rbp-8H]
+	mov	r12, qword [r10+58H]
+	mov	r12, qword [r12+50H]
+	mov	r11, qword [rbp-8H]
+	mov	qword [r12+r13*8+8H], r11
+_Label_612:
+	mov	rdi, r15
+	call	_class_Node.push_up
+	mov	rbx, rax
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_Node.rotto:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	r15, rdi
+	mov	qword [rbp-8H], rsi
+_Label_651:
+	mov	rsi, qword [rbp-8H]
+	mov	rdi, qword [r15+58H]
+	call	_func_equ
+	mov	r12, rax
+	cmp	r12, 1
+	jne	_Label_640
+_Label_636:
+	mov	rdi, r15
+	call	_class_Node.push_up
+	mov	r12, rax
+	cmp	qword [r15+58H], 0
+	je	_Label_682
+_Label_686:
+	mov	rdi, qword [r15+58H]
+	call	_class_Node.push_up
+	mov	rbx, rax
+_Label_682:
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_640:
+	mov	r14, qword [r15+58H]
+	mov	rsi, qword [rbp-8H]
+	mov	rdi, qword [r14+58H]
+	call	_func_equ
+	mov	r12, rax
+	cmp	r12, 1
+	jne	_Label_641
+_Label_643:
+	mov	rdi, r15
+	call	_class_Node.rot
+	mov	r12, rax
+	jmp	_Label_651
+_Label_641:
+	mov	rsi, r14
+	mov	rdi, qword [r14+58H]
+	call	_class_Node.judge
+	mov	r13, rax
+	mov	rsi, r15
+	mov	rdi, r14
+	call	_class_Node.judge
+	mov	r12, rax
+	cmp	r13, r12
+	jne	_Label_653
+_Label_659:
+	mov	rdi, r14
+	call	_class_Node.rot
+	mov	r12, rax
+	mov	rdi, r15
+	call	_class_Node.rot
+	mov	r12, rax
+	jmp	_Label_651
+_Label_653:
+	mov	rdi, r15
+	call	_class_Node.rot
+	mov	r12, rax
+	mov	rdi, r15
+	call	_class_Node.rot
+	mov	r12, rax
+	jmp	_Label_651
+_class_splay_tree._init:
+	push	rbp
+	mov	rbp, rsp
+	mov	r12, rdi
+	mov	qword [r12], 0
+	pop	rbp
+	ret
+_class_splay_tree.build:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 64
+	mov	qword [rbp-8H], rdi
+	mov	qword [rbp-10H], rsi
+	mov	r14, rdx
+	mov	r15, rcx
+	mov	qword [rbp-18H], r8
+	mov	r12, r15
+	add	r12, qword [rbp-18H]
+	sar	r12, 1
+	mov	qword [rbp-20H], r12
+	mov	rdi, 96
+	call	malloc
+	mov	r13, rax
+	inc	qword [rel _global_id_cnt]
+	mov	rdx, qword [rel _global_id_cnt]
+	mov	r12, qword [rel _global_din]
+	mov	r10, qword [rbp-20H]
+	mov	rsi, qword [r12+r10*8+8H]
+	mov	rdi, r13
+	call	_class_Node.init
+	mov	r12, rax
+	mov	rsi, r13
+	mov	rdi, qword [rbp-10H]
+	call	_class_Node.copy
+	mov	r12, rax
+	mov	r11, qword [rbp-10H]
+	mov	qword [r11+58H], r14
+	cmp	r15, qword [rbp-20H]
+	jge	_Label_735
+_Label_741:
+	mov	rdi, 96
+	call	malloc
+	mov	r10, qword [rbp-10H]
+	mov	r12, qword [r10+50H]
+	mov	qword [r12+8H], rax
+	inc	qword [rel _global_id_cnt]
+	mov	rdx, qword [rel _global_id_cnt]
+	mov	rsi, 0
+	mov	r11, qword [rbp-10H]
+	mov	r12, qword [r11+50H]
+	mov	rdi, qword [r12+8H]
+	call	_class_Node.init
+	mov	r12, rax
+	mov	r12, qword [rbp-20H]
+	sub	r12, 1
+	mov	r8, r12
+	mov	rcx, r15
+	mov	rdx, qword [rbp-10H]
+	mov	r10, qword [rbp-10H]
+	mov	r12, qword [r10+50H]
+	mov	rsi, qword [r12+8H]
+	mov	rdi, qword [rbp-8H]
+	call	_class_splay_tree.build
+	mov	r12, rax
+_Label_735:
+	mov	r11, qword [rbp-20H]
+	cmp	qword [rbp-18H], r11
+	jle	_Label_767
+_Label_773:
+	mov	rdi, 96
+	call	malloc
+	mov	r10, qword [rbp-10H]
+	mov	r12, qword [r10+50H]
+	mov	qword [r12+10H], rax
+	inc	qword [rel _global_id_cnt]
+	mov	rdx, qword [rel _global_id_cnt]
+	mov	rsi, 0
+	mov	r11, qword [rbp-10H]
+	mov	r12, qword [r11+50H]
+	mov	rdi, qword [r12+10H]
+	call	_class_Node.init
+	mov	r12, rax
+	mov	r12, qword [rbp-20H]
+	add	r12, 1
+	mov	r8, qword [rbp-18H]
+	mov	rcx, r12
+	mov	rdx, qword [rbp-10H]
+	mov	r10, qword [rbp-10H]
+	mov	r12, qword [r10+50H]
+	mov	rsi, qword [r12+10H]
+	mov	rdi, qword [rbp-8H]
+	call	_class_splay_tree.build
+	mov	r12, rax
+_Label_767:
+	mov	rdi, qword [rbp-10H]
+	call	_class_Node.push_up
+	mov	rbx, rax
+	add	rsp, 64
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.build_tree:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r13, rdi
+	mov	r14, rsi
+	mov	r15, rdx
+	mov	rdi, 96
+	call	malloc
+	mov	qword [r13], rax
+	inc	qword [rel _global_id_cnt]
+	mov	rdx, qword [rel _global_id_cnt]
+	mov	rsi, 0
+	mov	rdi, qword [r13]
+	call	_class_Node.init
+	mov	r12, rax
+	mov	r8, r15
+	mov	rcx, r14
+	mov	rdx, 0
+	mov	rsi, qword [r13]
+	mov	rdi, r13
+	call	_class_splay_tree.build
+	mov	rbx, rax
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.find:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	r12, rdi
+	mov	qword [rbp-8H], rsi
+	mov	r14, qword [r12]
+	mov	r15, 0
+	mov	r12, qword [r14+50H]
+	cmp	qword [r12+8H], 0
+	je	_Label_836
+_Label_845:
+	mov	r12, qword [r14+50H]
+	mov	r12, qword [r12+8H]
+	mov	r12, qword [r12+10H]
+	add	r12, 1
+	mov	r13, r12
+_Label_883:
+	mov	r12, r15
+	add	r12, r13
+	cmp	r12, qword [rbp-8H]
+	je	_Label_853
+_Label_878:
+	mov	r12, r15
+	add	r12, r13
+	cmp	qword [rbp-8H], r12
+	jge	_Label_860
+_Label_872:
+	mov	r12, qword [r14+50H]
+	mov	r14, qword [r12+8H]
+_Label_855:
+	mov	rdi, r14
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	r12, qword [r14+50H]
+	cmp	qword [r12+8H], 0
+	je	_Label_886
+_Label_895:
+	mov	r12, qword [r14+50H]
+	mov	r12, qword [r12+8H]
+	mov	r12, qword [r12+10H]
+	add	r12, 1
+	mov	r13, r12
+	jmp	_Label_883
+_Label_886:
+	mov	r13, 1
+	jmp	_Label_883
+_Label_860:
+	add	r15, r13
+	mov	r12, qword [r14+50H]
+	mov	r14, qword [r12+10H]
+	jmp	_Label_855
+_Label_853:
+	mov	rax, r14
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_Label_836:
+	mov	r13, 1
+	jmp	_Label_883
+_class_splay_tree.dfs:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	mov	r14, rsi
+	mov	r13, 0
+_Label_941:
+	cmp	r13, 2
+	jge	_Label_918
+_Label_937:
+	mov	r12, qword [r14+50H]
+	cmp	qword [r12+r13*8+8H], 0
+	je	_Label_924
+_Label_930:
+	mov	r12, qword [r14+50H]
+	mov	rsi, qword [r12+r13*8+8H]
+	mov	rdi, r15
+	call	_class_splay_tree.dfs
+	mov	r12, rax
+_Label_924:
+	mov	r12, r13
+	inc	r13
+	jmp	_Label_941
+_Label_918:
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.del:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	mov	r14, rsi
+	mov	r12, rdx
+	add	r12, 1
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r13, r12
+	mov	rsi, 0
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	qword [r15], r13
+	mov	r12, r14
+	sub	r12, 1
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r13, r12
+	mov	rsi, qword [r15]
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r12, qword [r13+50H]
+	cmp	qword [r12+10H], 0
+	je	_Label_976
+_Label_982:
+	mov	r12, qword [r13+50H]
+	mov	rsi, qword [r12+10H]
+	mov	rdi, r15
+	call	_class_splay_tree.dfs
+	mov	r12, rax
+_Label_976:
+	mov	r12, qword [r13+50H]
+	mov	qword [r12+10H], 0
+	mov	rsi, 0
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	qword [r15], r13
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.change:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	qword [rbp-8H], rdi
+	mov	r14, rsi
+	mov	r12, rdx
+	mov	r15, rcx
+	add	r12, 1
+	mov	rsi, r12
+	mov	rdi, qword [rbp-8H]
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r13, r12
+	mov	rsi, 0
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r11, qword [rbp-8H]
+	mov	qword [r11], r13
+	mov	r12, r14
+	sub	r12, 1
+	mov	rsi, r12
+	mov	rdi, qword [rbp-8H]
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r13, r12
+	mov	r10, qword [rbp-8H]
+	mov	rsi, qword [r10]
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r12, qword [r13+50H]
+	mov	r13, qword [r12+10H]
+	mov	rdi, r13
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	rsi, r15
+	mov	rdi, r13
+	call	_class_Node.addtag_ch
+	mov	r12, rax
+	mov	rdi, r13
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	rsi, 0
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r11, qword [rbp-8H]
+	mov	qword [r11], r13
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.rol:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	mov	r14, rsi
+	mov	r12, rdx
+	add	r12, 1
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r13, r12
+	mov	rsi, 0
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	qword [r15], r13
+	mov	r12, r14
+	sub	r12, 1
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r13, r12
+	mov	rsi, qword [r15]
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r12, qword [r13+50H]
+	mov	r13, qword [r12+10H]
+	mov	rdi, r13
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	rdi, r13
+	call	_class_Node.addtag_ro
+	mov	r12, rax
+	mov	rdi, r13
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	rsi, 0
+	mov	rdi, r13
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	qword [r15], r13
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.getsum:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r15, rdi
+	mov	r13, rsi
+	mov	r12, rdx
+	add	r12, 1
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r14, r12
+	mov	rsi, 0
+	mov	rdi, r14
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	qword [r15], r14
+	mov	r12, r13
+	sub	r12, 1
+	mov	rsi, r12
+	mov	rdi, r15
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r14, r12
+	mov	rsi, qword [r15]
+	mov	rdi, r14
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r12, qword [r14+50H]
+	mov	r14, qword [r12+10H]
+	mov	rdi, r14
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	r13, qword [r14+18H]
+	mov	rsi, 0
+	mov	rdi, r14
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	qword [r15], r14
+	mov	rax, r13
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_class_splay_tree.getMax:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	mov	r13, rdi
+	mov	rdi, qword [r13]
+	call	_class_Node.push_down
+	mov	r12, rax
+	mov	rbx, qword [r13]
+	mov	rax, qword [rbx+48H]
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
+_func_equ:
+	push	rbp
+	mov	rbp, rsp
+	mov	r13, rdi
+	mov	r12, rsi
+	cmp	r13, 0
+	jne	_Label_1197
+_Label_1204:
+	cmp	r12, 0
+	jne	_Label_1198
+_Label_1200:
+	mov	rax, 1
+_Label_1218:
+	pop	rbp
+	ret
+_Label_1198:
+	mov	rax, 0
+	jmp	_Label_1218
+_Label_1197:
+	cmp	r12, 0
+	jne	_Label_1211
+_Label_1213:
+	mov	rax, 0
+	jmp	_Label_1218
+_Label_1211:
+	mov	r12, qword [r12]
+	cmp	qword [r13], r12
+	jne	_Label_1220
+_Label_1219:
+	mov	rax, 1
+	jmp	_Label_1218
+_Label_1220:
+	mov	rax, 0
+	jmp	_Label_1218
+_func_merge:
+	push	rbx
+	push	r12
+	push	r13
+	push	r14
+	push	r15
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	r13, rdi
+	mov	qword [rbp-8H], rsi
+	mov	r15, rdx
+	mov	r12, r13
+	add	r12, 1
+	mov	rsi, r12
+	mov	rdi, qword [rbp-8H]
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r14, r12
+	mov	rsi, 0
+	mov	rdi, r14
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r10, qword [rbp-8H]
+	mov	qword [r10], r14
+	mov	rsi, r13
+	mov	rdi, qword [rbp-8H]
+	call	_class_splay_tree.find
+	mov	r12, rax
+	mov	r14, r12
+	mov	r11, qword [rbp-8H]
+	mov	rsi, qword [r11]
+	mov	rdi, r14
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r13, qword [r15]
+	mov	r12, qword [r14+50H]
+	mov	qword [r12+10H], r13
+	mov	r12, qword [r15]
+	mov	qword [r12+58H], r14
+	mov	rsi, 0
+	mov	rdi, r14
+	call	_class_Node.rotto
+	mov	r12, rax
+	mov	r10, qword [rbp-8H]
+	mov	qword [r10], r14
+	add	rsp, 32
+	pop	rbp
+	pop	r15
+	pop	r14
+	pop	r13
+	pop	r12
+	pop	rbx
+	ret
 main:
 	push	rbp
 	mov	rbp, rsp
+	sub	rsp, 64
 	call	_static_init
-	mov	rsi, 0
-_Label_113:
-	cmp	rsi, 29
-	jg	_Label_26
-_Label_33:
-	mov	r15, 0
-	mov	r12, qword [rel _global_a]
-	mov	r12, qword [r12+rsi*8+8H]
-	mov	rdi, qword [r12+8H]
 	push	rcx
 	push	rdx
+	push	r8
+	push	r9
 	push	rsi
 	push	rdi
-	call	_lib_toString
+	call	_lib_getInt
 	pop	rdi
 	pop	rsi
+	pop	r9
+	pop	r8
 	pop	rdx
 	pop	rcx
 	mov	r12, rax
-	mov	r13, qword [rel _global_str]
-	mov	qword [r13+rsi*8+8H], r12
-	mov	r14, 0
-_Label_88:
-	cmp	r14, rsi
-	jge	_Label_47
-_Label_68:
-	mov	r12, r14
-	and	r12, 1
-	cmp	r12, 0
-	jne	_Label_53
-_Label_62:
-	mov	r13, r15
-	mov	r12, qword [rel _global_a]
-	mov	r12, qword [r12+rsi*8+8H]
-	add	r13, qword [r12+8H]
-	mov	r15, r13
-_Label_53:
-	mov	r12, r14
-	and	r12, 1
-	cmp	r12, 1
-	jne	_Label_69
-_Label_78:
-	mov	r13, r15
-	mov	r12, qword [rel _global_a]
-	mov	r12, qword [r12+rsi*8+8H]
-	add	r13, qword [r12+0F0H]
-	mov	r15, r13
-_Label_69:
-	mov	r12, r14
-	inc	r14
-	jmp	_Label_88
-_Label_47:
-	mov	rdi, _str_1
+	mov	qword [rel _global_n], r12
 	push	rcx
 	push	rdx
+	push	r8
+	push	r9
 	push	rsi
 	push	rdi
-	call	_lib_print
+	call	_lib_getInt
 	pop	rdi
 	pop	rsi
+	pop	r9
+	pop	r8
 	pop	rdx
 	pop	rcx
-	mov	rdi, _str_2
+	mov	r12, rax
+	mov	qword [rel _global_m], r12
+	mov	rdi, 8
+	call	malloc
+	mov	r12, rax
+	mov	rdi, rax
+	call	_class_splay_tree._init
+	mov	qword [rel _global_sp], r12
+	mov	rdi, 8
+	call	malloc
+	mov	r12, rax
+	mov	rdi, rax
+	call	_class_splay_tree._init
+	mov	qword [rel _global_dintree], r12
+	mov	r12, qword [rel _global_INF]
+	neg	r12
+	mov	r13, qword [rel _global_din]
+	mov	qword [r13+8H], r12
+	mov	r13, qword [rel _global_n]
+	add	r13, 1
+	mov	r12, qword [rel _global_INF]
+	neg	r12
+	mov	r14, qword [rel _global_din]
+	mov	qword [r14+r13*8+8H], r12
+	mov	qword [rbp-8H], 1
+_Label_1339:
+	mov	r11, qword [rel _global_n]
+	cmp	qword [rbp-8H], r11
+	jg	_Label_1324
+_Label_1335:
 	push	rcx
 	push	rdx
+	push	r8
+	push	r9
 	push	rsi
 	push	rdi
-	call	_lib_print
+	call	_lib_getInt
 	pop	rdi
 	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r13, qword [rel _global_din]
+	mov	r10, qword [rbp-8H]
+	mov	qword [r13+r10*8+8H], r12
+	mov	r12, qword [rbp-8H]
+	inc	qword [rbp-8H]
+	jmp	_Label_1339
+_Label_1324:
+	mov	r12, qword [rel _global_n]
+	add	r12, 1
+	mov	rdx, r12
+	mov	rsi, 0
+	mov	rdi, qword [rel _global_sp]
+	call	_class_splay_tree.build_tree
+	mov	r12, rax
+	mov	qword [rbp-8H], 1
+_Label_1591:
+	mov	r11, qword [rel _global_m]
+	cmp	qword [rbp-8H], r11
+	jg	_Label_1352
+_Label_1359:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getString
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	qword [rbp-10H], r12
+	mov	rsi, 0
+	mov	rdi, qword [rbp-10H]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r13, rax
+	mov	rsi, 0
+	mov	rdi, qword [rel _global_char_ID]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	cmp	r13, r12
+	jne	_Label_1364
+_Label_1366:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	qword [rbp-20H], r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r15, r12
+	mov	r14, 1
+_Label_1396:
+	cmp	r14, r15
+	jg	_Label_1381
+_Label_1392:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r13, qword [rel _global_din]
+	mov	qword [r13+r14*8+8H], r12
+	inc	r14
+	jmp	_Label_1396
+_Label_1381:
+	mov	rdx, r15
+	mov	rsi, 1
+	mov	rdi, qword [rel _global_dintree]
+	call	_class_splay_tree.build_tree
+	mov	r12, rax
+	mov	r12, qword [rbp-20H]
+	add	r12, 1
+	mov	rdx, qword [rel _global_dintree]
+	mov	rsi, qword [rel _global_sp]
+	mov	rdi, r12
+	call	_func_merge
+	mov	r12, rax
+_Label_1364:
+	mov	rsi, 0
+	mov	rdi, qword [rbp-10H]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r13, rax
+	mov	rsi, 1
+	mov	rdi, qword [rel _global_char_ID]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	cmp	r13, r12
+	jne	_Label_1422
+_Label_1424:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r15, r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r14, r12
+	mov	r13, r15
+	add	r13, 1
+	mov	r12, r15
+	add	r12, r14
+	mov	rdx, r12
+	mov	rsi, r13
+	mov	rdi, qword [rel _global_sp]
+	call	_class_splay_tree.del
+	mov	r12, rax
+_Label_1422:
+	mov	rsi, 0
+	mov	rdi, qword [rbp-10H]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	cmp	r12, 82
+	jne	_Label_1457
+_Label_1459:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r15, r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r14, r12
+	mov	r13, r15
+	add	r13, 1
+	mov	r12, r15
+	add	r12, r14
+	mov	rdx, r12
+	mov	rsi, r13
+	mov	rdi, qword [rel _global_sp]
+	call	_class_splay_tree.rol
+	mov	r12, rax
+_Label_1457:
+	mov	rsi, 0
+	mov	rdi, qword [rbp-10H]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	cmp	r12, 71
+	jne	_Label_1501
+_Label_1490:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r15, r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r13, r12
+	cmp	r13, 0
+	jle	_Label_1504
+_Label_1518:
+	mov	r14, r15
+	add	r14, 1
+	mov	r12, r15
+	add	r12, r13
+	mov	rdx, r12
+	mov	rsi, r14
+	mov	rdi, qword [rel _global_sp]
+	call	_class_splay_tree.getsum
+	mov	r12, rax
+	mov	rdi, r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_printlnInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+_Label_1501:
+	mov	rsi, 0
+	mov	rdi, qword [rbp-10H]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	cmp	r12, 77
+	jne	_Label_1532
+_Label_1579:
+	mov	rsi, 2
+	mov	rdi, qword [rbp-10H]
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_str_ord
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	cmp	r12, 75
+	jne	_Label_1542
+_Label_1544:
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r15, r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	qword [rbp-18H], r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_getInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
+	mov	r12, rax
+	mov	r14, r12
+	mov	r13, r15
+	add	r13, 1
+	mov	r12, r15
+	add	r12, qword [rbp-18H]
+	mov	rcx, r14
+	mov	rdx, r12
+	mov	rsi, r13
+	mov	rdi, qword [rel _global_sp]
+	call	_class_splay_tree.change
+	mov	r12, rax
+_Label_1532:
+	inc	qword [rbp-8H]
+	jmp	_Label_1591
+_Label_1542:
+	mov	rdi, qword [rel _global_sp]
+	call	_class_splay_tree.getMax
+	mov	r12, rax
+	mov	rdi, r12
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	rsi
+	push	rdi
+	call	_lib_printInt
+	pop	rdi
+	pop	rsi
+	pop	r9
+	pop	r8
 	pop	rdx
 	pop	rcx
 	mov	rdi, _str_3
 	push	rcx
 	push	rdx
+	push	r8
+	push	r9
 	push	rsi
 	push	rdi
 	call	_lib_print
 	pop	rdi
 	pop	rsi
+	pop	r9
+	pop	r8
 	pop	rdx
 	pop	rcx
-	mov	rdi, _str_4
+	jmp	_Label_1532
+_Label_1504:
+	mov	rdi, _str_2
 	push	rcx
 	push	rdx
+	push	r8
+	push	r9
 	push	rsi
 	push	rdi
 	call	_lib_print
 	pop	rdi
 	pop	rsi
+	pop	r9
+	pop	r8
 	pop	rdx
 	pop	rcx
-	mov	rdi, _str_5
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_print
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	rdi, _str_6
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_print
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	rdi, _str_7
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_print
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	rdi, _str_8
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_print
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	rdi, _str_9
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_print
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	rdi, _str_10
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_println
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	r12, rsi
-	inc	rsi
-	jmp	_Label_113
-_Label_26:
+	jmp	_Label_1501
+_Label_1352:
 	mov	rax, 0
+	add	rsp, 64
 	pop	rbp
 	ret
 _static_init:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 32
-	mov	qword [rbp-8H], 30
-	mov	qword [rbp-10H], 30
+	mov	r10, qword [rel _global_nMax]
+	mov	qword [rbp-8H], r10
 	lea	rax, [rbp-8H]
-	mov	rsi, rax
-	mov	rdi, 2
-	push	rcx
-	push	rdx
-	push	rsi
-	push	rdi
-	call	_lib_alloc
-	pop	rdi
-	pop	rsi
-	pop	rdx
-	pop	rcx
-	mov	qword [rel _global_a], rax
-	mov	qword [rbp-18H], 30
-	lea	rax, [rbp-18H]
 	mov	rsi, rax
 	mov	rdi, 1
 	push	rcx
 	push	rdx
+	push	r8
+	push	r9
 	push	rsi
 	push	rdi
 	call	_lib_alloc
 	pop	rdi
 	pop	rsi
+	pop	r9
+	pop	r8
 	pop	rdx
 	pop	rcx
-	mov	qword [rel _global_str], rax
+	mov	qword [rel _global_din], rax
+	mov	rbx, _str_1
+	mov	qword [rel _global_char_ID], rbx
 	add	rsp, 32
 	pop	rbp
 	ret
 
 SECTION .data
+_global_INF:
+	dq	1000000000
+_global_nMax:
+	dq	4000010
+_global_id_cnt:
+	dq	0
 _str_1:
-	db	73H, 74H, 72H, 31H, 00H
+	db	49H, 44H, 00H
 _str_2:
-	db	73H, 74H, 72H, 32H, 00H
+	db	30H, 0AH, 00H
 _str_3:
-	db	73H, 74H, 72H, 33H, 00H
-_str_4:
-	db	73H, 74H, 72H, 34H, 00H
-_str_5:
-	db	73H, 74H, 72H, 35H, 00H
-_str_6:
-	db	73H, 74H, 72H, 36H, 00H
-_str_7:
-	db	73H, 74H, 72H, 37H, 00H
-_str_8:
-	db	73H, 74H, 72H, 38H, 00H
-_str_9:
-	db	73H, 74H, 72H, 39H, 00H
-_str_10:
-	db	73H, 74H, 72H, 31H, 30H, 00H
+	db	0AH, 00H
 
 SECTION .bss
-_global_a:
+_global_n:
 	resw	8
-_global_str:
+_global_m:
+	resw	8
+_global_din:
+	resw	8
+_global_sp:
+	resw	8
+_global_dintree:
+	resw	8
+_global_char_ID:
 	resw	8

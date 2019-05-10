@@ -7,34 +7,10 @@
     <list default="true" id="4fe3f4b9-db08-40b6-903b-f68b908e050a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.mx" beforeDir="false" afterPath="$PROJECT_DIR$/main.mx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/backend/GlobalRegAllocator$RegPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/backend/GlobalRegAllocator$RegPair.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/backend/GlobalRegAllocator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/backend/GlobalRegAllocator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/backend/NASMBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/backend/NASMBuilder$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/backend/NASMBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/backend/NASMBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/AST/ASTExprNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/AST/ASTExprNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/CFGBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/CFGBuilder$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/CFGBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/CFGBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/IR/CFG.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/IR/CFG.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/IR/CFGInstAddr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/frontend/IR/CFGInstAddr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/CFGReducer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/CFGReducer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/DataFlowAnalyzer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/DataFlowAnalyzer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/DataFlowAnalyzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/DataFlowAnalyzer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/InterferenceGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/InterferenceGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/info/InstInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/info/InstInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/info/RegInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/compiler/com/company/optimization/info/RegInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/AST/ASTExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/AST/ASTExprNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/IR/CFG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/optimization/CFGReducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/optimization/CFGReducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/optimization/info/InstInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/optimization/info/InstInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/optimization/info/RegInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/optimization/info/RegInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.asm" beforeDir="false" afterPath="$PROJECT_DIR$/test.asm" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -66,7 +42,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="175">
               <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -78,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.asm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="194" column="31" lean-forward="true" selection-start-line="194" selection-start-column="31" selection-end-line="194" selection-end-column="31" />
+            <state relative-caret-position="279">
+              <caret line="63" column="22" selection-end-line="2274" />
             </state>
           </provider>
         </entry>
@@ -87,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.mx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1301">
-              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+            <state>
+              <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -96,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="532">
               <caret line="123" column="5" lean-forward="true" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="5" />
               <folding>
                 <element signature="method#visitLogicalExprNode#0;class#CFGBuilder#0" />
@@ -195,10 +171,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+            <state relative-caret-position="-665">
+              <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1846#2967#1" />
                 <element signature="e#4419#4420#0" expanded="true" />
                 <element signature="e#4506#4507#0" expanded="true" />
               </folding>
@@ -209,8 +186,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="-199">
+              <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
               <folding>
                 <element signature="method#visitCFG#0;class#NASMBuilder#0" />
                 <element signature="method#visitCFGNode#0;class#NASMBuilder#0" />
@@ -231,7 +208,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-456">
               <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -243,7 +220,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1948">
+            <state relative-caret-position="-306">
               <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -278,14 +255,12 @@
       <find>shl</find>
       <find>rsi, rax</find>
       <find>rsi</find>
-      <find>alloc</find>
       <find>22</find>
       <find>_alloc</find>
       <find>usedCalleeSaveRegs</find>
       <find>rbp</find>
       <find>curCalleeSavedReg</find>
       <find>usedCallerSaveRegs</find>
-      <find>21</find>
       <find>_lib_alloc</find>
       <find>push</find>
       <find>_lib_getInt</find>
@@ -293,6 +268,8 @@
       <find>rdx</find>
       <find>lea</find>
       <find>r12</find>
+      <find>21</find>
+      <find>alloc</find>
     </findStrings>
     <replaceStrings>
       <replace>expression</replace>
@@ -353,11 +330,11 @@
         <option value="$PROJECT_DIR$/src/com/company/frontend/IR/CFGInstAddr.java" />
         <option value="$PROJECT_DIR$/src/com/company/optimization/info/InstInfo.java" />
         <option value="$PROJECT_DIR$/src/com/company/optimization/info/RegInfo.java" />
-        <option value="$PROJECT_DIR$/test.asm" />
         <option value="$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java" />
         <option value="$PROJECT_DIR$/../EM-Compiler-master/src/com/evensgn/emcompiler/backend/NASMTransformer.java" />
         <option value="$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java" />
         <option value="$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java" />
+        <option value="$PROJECT_DIR$/test.asm" />
         <option value="$PROJECT_DIR$/main.mx" />
         <option value="$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
@@ -491,7 +468,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557480119390" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557482011169" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -614,12 +591,12 @@
       <workItem from="1557114997485" duration="24433000" />
       <workItem from="1557192528004" duration="19029000" />
       <workItem from="1557295710395" duration="33660000" />
-      <workItem from="1557453347432" duration="21463000" />
+      <workItem from="1557453347432" duration="23353000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="425137000" />
+    <option name="totallyTimeSpent" value="427027000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -644,7 +621,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.5804196" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.2902098" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.30769232" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.2972028" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.13986014" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -756,12 +733,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java</url>
-          <line>318</line>
-          <properties />
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java</url>
           <line>103</line>
@@ -1742,20 +1713,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1948">
-          <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+        <state relative-caret-position="-456">
+          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/InterferenceGraph.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/optimization/DataFlowAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
+        <state relative-caret-position="-306">
+          <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1764,8 +1735,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/backend/NASMBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="-199">
+          <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
           <folding>
             <element signature="method#visitCFG#0;class#NASMBuilder#0" />
             <element signature="method#visitCFGNode#0;class#NASMBuilder#0" />
@@ -1782,23 +1753,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-665">
+          <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1846#2967#1" />
+            <element signature="e#4419#4420#0" expanded="true" />
+            <element signature="e#4506#4507#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.mx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1301">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        <state>
+          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.asm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="194" column="31" lean-forward="true" selection-start-line="194" selection-start-column="31" selection-end-line="194" selection-end-column="31" />
+        <state relative-caret-position="279">
+          <caret line="63" column="22" selection-end-line="2274" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/frontend/CFGBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="532">
           <caret line="123" column="5" lean-forward="true" selection-start-line="123" selection-start-column="5" selection-end-line="123" selection-end-column="5" />
           <folding>
             <element signature="method#visitLogicalExprNode#0;class#CFGBuilder#0" />
@@ -1893,21 +1877,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/backend/GlobalRegAllocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4419#4420#0" expanded="true" />
-            <element signature="e#4506#4507#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="175">
           <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />

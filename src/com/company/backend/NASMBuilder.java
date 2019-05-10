@@ -26,7 +26,7 @@ public class NASMBuilder {
     private int[] calleeSaveReg = {17, 12, 13, 14, 15, 21};
     private Stack<Integer> curCallerSavedReg = new Stack<>();
     //for lib
-    private int[] callerSaveReg = {18, 19, 22, 23};
+    private int[] callerSaveReg = {18, 19, 8, 9, 22, 23};
     private int curStackOffset = 0;
 
     private HashSet<Integer> visitFlag = new HashSet<>();
