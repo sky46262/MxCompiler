@@ -429,95 +429,246 @@ L_021:
         db 25H, 64H, 0AH, 00H
 L_022:
         db 25H, 73H, 00H
-global _func_f
 global main
+global _static_init
+global _global_a
+global _global_str
+global _str_1
+global _str_2
+global _str_3
+global _str_4
+global _str_5
+global _str_6
+global _str_7
+global _str_8
+global _str_9
+global _str_10
 
 SECTION .text
-_func_f:
-	push	rbx
-	push	r12
-	push	r13
-	push	r14
-	push	r15
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 32
-	mov	qword [rbp-8H], rdi
-	mov	r12, 0
-	mov	r15, 0
-_Label_50:
-	cmp	r15, qword [rbp-8H]
-	jge	_Label_21
-_Label_32:
-	add	r12, r15
-	mov	r13, r15
-	sub	r13, 1
-	mov	r14, qword [rbp-8H]
-	and	r14, r13
-	xor	r12, r14
-	mov	r13, 10000
-	mov	rax, r12
-	cqo
-	idiv	r13
-	mov	r12, rdx
-	add	r15, 1
-	jmp	_Label_50
-_Label_21:
-	mov	rax, r12
-	add	rsp, 32
-	pop	rbp
-	pop	r15
-	pop	r14
-	pop	r13
-	pop	r12
-	pop	rbx
-	ret
 main:
 	push	rbp
 	mov	rbp, rsp
+	call	_static_init
+	mov	rsi, 0
+_Label_113:
+	cmp	rsi, 29
+	jg	_Label_26
+_Label_33:
 	mov	r15, 0
-	mov	r14, 0
-_Label_105:
-	cmp	r14, 90000000
-	jge	_Label_66
-_Label_75:
-	mov	r13, 0
-_Label_101:
-	cmp	r13, 10
-	jge	_Label_74
-_Label_97:
-	cmp	r14, 89999999
-	jl	_Label_82
-_Label_93:
-	cmp	r13, 9
-	jl	_Label_82
-_Label_83:
-	mov	r12, r14
-	sal	r12, 3
-	mov	rdi, r12
-	call	_func_f
+	mov	r12, qword [rel _global_a]
+	mov	r12, qword [r12+rsi*8+8H]
+	mov	rdi, qword [r12+8H]
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_toString
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
 	mov	r12, rax
-	add	r15, r12
-_Label_82:
-	mov	r12, r13
-	inc	r13
-	jmp	_Label_101
-_Label_74:
+	mov	r13, qword [rel _global_str]
+	mov	qword [r13+rsi*8+8H], r12
+	mov	r14, 0
+_Label_88:
+	cmp	r14, rsi
+	jge	_Label_47
+_Label_68:
+	mov	r12, r14
+	and	r12, 1
+	cmp	r12, 0
+	jne	_Label_53
+_Label_62:
+	mov	r13, r15
+	mov	r12, qword [rel _global_a]
+	mov	r12, qword [r12+rsi*8+8H]
+	add	r13, qword [r12+8H]
+	mov	r15, r13
+_Label_53:
+	mov	r12, r14
+	and	r12, 1
+	cmp	r12, 1
+	jne	_Label_69
+_Label_78:
+	mov	r13, r15
+	mov	r12, qword [rel _global_a]
+	mov	r12, qword [r12+rsi*8+8H]
+	add	r13, qword [r12+0F0H]
+	mov	r15, r13
+_Label_69:
 	mov	r12, r14
 	inc	r14
-	jmp	_Label_105
-_Label_66:
-_Label_113:
-	mov	rdi, r15
-	call	_lib_printlnInt
+	jmp	_Label_88
+_Label_47:
+	mov	rdi, _str_1
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_2
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_3
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_4
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_5
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_6
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_7
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_8
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_9
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_print
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	rdi, _str_10
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_println
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	r12, rsi
+	inc	rsi
+	jmp	_Label_113
+_Label_26:
 	mov	rax, 0
 	pop	rbp
 	ret
-_Label_111:
-	mov	rdi, r15
-	call	_lib_toString
-	mov	rbx, rax
+_static_init:
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 32
+	mov	qword [rbp-8H], 30
+	mov	qword [rbp-10H], 30
+	lea	rax, [rbp-8H]
+	mov	rsi, rax
+	mov	rdi, 2
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_alloc
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	qword [rel _global_a], rax
+	mov	qword [rbp-18H], 30
+	lea	rax, [rbp-18H]
+	mov	rsi, rax
+	mov	rdi, 1
+	push	rcx
+	push	rdx
+	push	rsi
+	push	rdi
+	call	_lib_alloc
+	pop	rdi
+	pop	rsi
+	pop	rdx
+	pop	rcx
+	mov	qword [rel _global_str], rax
+	add	rsp, 32
+	pop	rbp
+	ret
 
 SECTION .data
+_str_1:
+	db	73H, 74H, 72H, 31H, 00H
+_str_2:
+	db	73H, 74H, 72H, 32H, 00H
+_str_3:
+	db	73H, 74H, 72H, 33H, 00H
+_str_4:
+	db	73H, 74H, 72H, 34H, 00H
+_str_5:
+	db	73H, 74H, 72H, 35H, 00H
+_str_6:
+	db	73H, 74H, 72H, 36H, 00H
+_str_7:
+	db	73H, 74H, 72H, 37H, 00H
+_str_8:
+	db	73H, 74H, 72H, 38H, 00H
+_str_9:
+	db	73H, 74H, 72H, 39H, 00H
+_str_10:
+	db	73H, 74H, 72H, 31H, 30H, 00H
 
 SECTION .bss
+_global_a:
+	resw	8
+_global_str:
+	resw	8

@@ -13,7 +13,7 @@ public class ASTExprNode extends ASTStmtNode{
     public SymbolType resultType = null;
     public CFGNode toNode = null;// the node of symbol(function, identifier, member)
     public CFGInstAddr instAddr = null; //the address of dest
-    //public Vector<CFGInst> instList = new Vector<>(); //the list of CFGInst of expression
+    public Vector<CFGInst> instList = new Vector<>(); //the list of CFGInst of expression
 
 
     public ASTExprNode(Position pos, ASTNodeType type, Vector<ASTExprNode> v){

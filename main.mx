@@ -1,49 +1,70 @@
-int f(int n) {
-    int i;
-    int res = 0;
-    for (i = 0; i < n; i = i + 1) {
-        res = res + i ^ n & (i - 1);
-        res = res % 10000;
-    }
-    return res;
-}
-
+int[][] a=new int[30][30];
+string[] str=new string[30];
 int main()
 {
-    int i;
-    int j;
-    int k;
-    int ans = 0;
-    for (i = 0; i < 90000000; i++) {
-        for (j = 0; j < 10; j++){
-            if (i >= 89999999) {
-                if (j >= 9){
-                    ans = ans + f(i * 8);
-                }
-            }
-        }
-    }
-    println(toString(ans));
+	int i;
+	int j;
+	for(i=0;i<=29;i++)
+	{
+		int sum=0;
+		str[i]=toString(a[i][0]);
+		for(j=0;j<i;j++)
+		{
+			if((j & 1)==0) sum=sum+a[i][0];
+			if((j & 1)==1) sum=sum+a[i][29];
+		}
+		println("str1"+"str2"+"str3"+"str4"+"str5"+"str6"+"str7"+"str8"+"str9"+"str10");
 
-    return 0;
+	}
+	return 0;
 }
+
+
+
 
 /*!! metadata:
 === comment ===
-侯博涵
-=== is_public ===
-True
+codegen-515030910640-wuyiran.txt
+=== input ===
+
 === assert ===
 output
 === timeout ===
-12.0
-=== input ===
-
-=== phase ===
-optim pretest
+0.1
 === output ===
-3132
-=== exitcode ===
-0
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+str1str2str3str4str5str6str7str8str9str10
+=== phase ===
+codegen extended
+=== is_public ===
+True
 
 !!*/

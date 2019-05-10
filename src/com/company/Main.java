@@ -58,6 +58,7 @@ public class Main {
         }*/
         new CFGBuilder(cfg).visitCompilationUnitNode(cu);
         new CFGReducer(cfg);
+        new CFGReducer(cfg);
 
         new NASMAdapter(cfg);//adapt twice ???
 

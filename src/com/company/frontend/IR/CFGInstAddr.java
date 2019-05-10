@@ -95,6 +95,9 @@ public class CFGInstAddr {
         CFGInstAddr newAddr = new CFGInstAddr(addrType.a_reg, 0,0,0, idx);
         return newAddr;
     }
+    public static int getRegSize(){
+        return regCnt;
+    }
 
    //lit3,lit4,addr1,addr2
     //addr1 + addr2 * lit3 + lit4

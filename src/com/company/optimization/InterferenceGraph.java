@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class InterferenceGraph {
-    public HashMap<Integer, RegInfo> map = new HashMap<Integer, RegInfo>();
+    public HashMap<Integer, RegInfo> map = new HashMap<>();
 
     private HashSet<Integer> visitFlag = new HashSet<>();
     public InterferenceGraph(CFGProcess proc){
@@ -29,13 +29,13 @@ public class InterferenceGraph {
             last_inst = inst;
 
             if (inst.op == CFGInst.InstType.op_mov && inst.operands.get(1).a_type == CFGInstAddr.addrType.a_reg)
-                liveNow.remove(inst.info.usedReg);
-            if (inst.info.defReg != 0){
-                for (Integer t : liveNow) {
-                    addEdge(inst.info.defReg, t);
+                liveNow.removeAll(inst.info.usedReg);
+                for (Integer defReg : inst.info.defReg) {
+                    for (Integer t : liveNow) {
+                        addEdge(defReg, t);
+                    }
                 }
-            }
-            liveNow.remove(inst.info.defReg);
+            liveNow.removeAll(inst.info.defReg);
             liveNow.addAll(inst.info.usedReg);
         }
 

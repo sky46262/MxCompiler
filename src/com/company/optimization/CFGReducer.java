@@ -10,7 +10,7 @@ public class CFGReducer {
     private CFG cfg;
     private HashSet<Integer> visitFlag = new HashSet<>();
     private Stack<CFGNode> visitStack = new Stack<>();
-    private boolean isGlobal;
+    private boolean isGlobal = false;
     public CFGReducer(CFG _cfg){
         cfg = _cfg;
         visitCFG();

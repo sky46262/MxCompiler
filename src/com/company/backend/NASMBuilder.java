@@ -12,7 +12,9 @@ public class NASMBuilder {
 
     private Vector<NASMInst> instList = new Vector<>();
 
-    private int[] availableReg = {17,12, 13, 14, 15};
+    //16 RAX 19 RDX 20 RSP 21 RBP
+    //except rsp rbp r10 r11 rax
+    private int[] availableReg = {17, 12, 13, 14, 15, 23, 22, 19, 18, 8,9};
     private int[] parameterReg = {23, 22, 19, 18, 8, 9};
     private int parameterStackOffset = 0;
 
@@ -22,8 +24,9 @@ public class NASMBuilder {
 
     private Stack<Integer> curCalleeSavedReg = new Stack<>();
     private int[] calleeSaveReg = {17, 12, 13, 14, 15, 21};
-    //private Stack<Integer> curCallerSavedReg = new Stack<>();
-    //private int[] callerSaveReg = {16, 18, 19, 8, 9, 10, 11, 22, 23};
+    private Stack<Integer> curCallerSavedReg = new Stack<>();
+    //for lib
+    private int[] callerSaveReg = {18, 19, 22, 23};
     private int curStackOffset = 0;
 
     private HashSet<Integer> visitFlag = new HashSet<>();
@@ -198,10 +201,19 @@ public class NASMBuilder {
                 else genNASMInst(getNASMOp(op), a1, a2);
                 break;
             case op_call:
+                if (opr1.a_type == CFGInstAddr.addrType.a_label && opr1.strLit.startsWith("_lib_")){
+                    for (int i : callerSaveReg) {
+                        curCallerSavedReg.push(i);
+                    }
+                    pushCallerSavedReg();
+                }
                 genNASMInst(getNASMOp(op), a1, a2);
                 if (parameterStackOffset > 0){
                     genNASMInst(NASMInst.InstType.ADD, new NASMRegAddr(20, NASMWordType.QWORD), new NASMImmAddr(parameterStackOffset));
                     parameterStackOffset = 0;
+                }
+                if (opr1.a_type == CFGInstAddr.addrType.a_label && opr1.strLit.startsWith("_lib_")){
+                    popCallerSavedReg();
                 }
                 break;
                 default:
@@ -228,7 +240,7 @@ public class NASMBuilder {
         }
     }
 
-    /*private void pushCallerSavedReg() {
+    private void pushCallerSavedReg() {
         for (Integer i : curCallerSavedReg) {
             genNASMInst(NASMInst.InstType.PUSH, new NASMRegAddr(new NASMReg(i, NASMWordType.QWORD)), null);
         }
@@ -240,7 +252,6 @@ public class NASMBuilder {
             genNASMInst(NASMInst.InstType.POP, new NASMRegAddr(new NASMReg(i, NASMWordType.QWORD)), null);
         }
     }
-    */
 
     private NASMAddr getNASMAddr(CFGInstAddr opr, NASMWordType wt){
         if (opr == null) return null;

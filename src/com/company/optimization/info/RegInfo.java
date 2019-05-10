@@ -10,7 +10,9 @@ public class RegInfo {
     public VarInfo varInfo;
 
     public RegInfo(int t){
+        if (t <= CFGInstAddr.getRegSize())
         varInfo = CFGInstAddr.regList.get(t-1).info;
+        else varInfo = new VarInfo();
     }
     public int getDegree() {
         return toNodes.size();

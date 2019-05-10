@@ -9,6 +9,7 @@ public class CFG {
     public Vector<CFGProcess> processList = new Vector<>();
     public CFGNode entryNode = null;
 
+
     public CFG(){}
 
     public void addNode(CFGNode node) {nodes.add(node);}

@@ -3,27 +3,36 @@ package com.company.backend;
 import com.company.frontend.IR.*;
 import com.company.optimization.InterferenceGraph;
 import com.company.optimization.info.RegInfo;
-import java.util.Comparator;
 import java.util.*;
 
 public class GlobalRegAllocator {
     private CFG cfg;
     private HashSet<Integer> visitFlag = new HashSet<>();
-    private static int curChroma = 4;
+    private static int curChroma = 10;
+    private static int funcChroma = 4;
     HashSet<Integer> colorSet = new HashSet<>();
     private InterferenceGraph graph;
+    private int regSize = CFGInstAddr.getRegSize();
 
     public GlobalRegAllocator(CFG _cfg){
         cfg = _cfg;
-        for (int i = 1; i <= curChroma; i++) {
-            colorSet.add(i);
-        }
         visitCFG();
     }
     private void visitCFG(){
         for (CFGProcess i : cfg.processList) {
+            //not allocate callerSavedReg for function
+            //todo
+            colorSet.clear();
+            if (i.entryNode.name.equals("main"))
+                for (int j = 1; j <= curChroma; j++) {
+                    colorSet.add(j);
+                }
+            else for (int j = 1; j <= funcChroma; j++) {
+                colorSet.add(j);
+            }
             graph = new InterferenceGraph(i);
             visitInterferenceGraph(graph);
+
             visitCFGNode(i.entryNode);
         }
     }
@@ -46,6 +55,44 @@ public class GlobalRegAllocator {
         for (Map.Entry<Integer, RegInfo> entry : graph.map.entrySet()) {
             delQueue.add(new RegPair(entry.getKey(),entry.getValue()));
         }
+       for (int i = 8; i <= 23; i++){
+            RegInfo reg = graph.getNode(regSize + i);
+            switch (i){
+                case 8:
+                    reg.color = 9;
+                    break;
+                case 9:
+                    reg.color = 10;
+                    break;
+                case 12:
+                    reg.color = 1;
+                    break;
+                case 13:
+                    reg.color = 2;
+                    break;
+                case 14:
+                    reg.color = 3;
+                    break;
+                case 15:
+                    reg.color = 4;
+                    break;
+                case 23:
+                    reg.color = 5;
+                    break;
+                case 22:
+                    reg.color = 6;
+                    break;
+                case 19:
+                    reg.color = 7;
+                    break;
+                case 18:
+                    reg.color = 8;
+                    break;
+                default:
+                    reg.color = -1;
+            }
+        }
+
         while (!delQueue.isEmpty()){
             RegPair pair = delQueue.poll();
             colorNode(pair.a);
@@ -54,6 +101,9 @@ public class GlobalRegAllocator {
 
     private boolean colorNode(Integer a) {
         RegInfo r = graph.getNode(a);
+        if (r.color != 0){
+            return r.color!= -1;
+        }
         HashSet<Integer> col = new HashSet<>(colorSet);
         for (Integer i : r.toNodes) {
             RegInfo r1 = graph.getNode(i);
@@ -75,12 +125,11 @@ public class GlobalRegAllocator {
     }
     private void visitCFGInst(CFGInst inst){
         Vector<CFGInstAddr> operands = inst.operands;
-        for (int i = 0; i < operands.size(); i++){
-            CFGInstAddr addr = operands.get(i);
+        for (CFGInstAddr addr : operands) {
             assert (addr != null);
-            if (addr.a_type == CFGInstAddr.addrType.a_reg && addr.getNum() > 0){
+            if (addr.a_type == CFGInstAddr.addrType.a_reg && addr.getNum() > 0) {
                 int color = graph.getNode(addr.getNum()).color;
-               if (color >= 0)
+                if (color >= 0)
                     addr.copy(CFGInstAddr.newColoredRegAddr(color));
                 else
                     addr.copy(CFGInstAddr.newStackAddr(8));
