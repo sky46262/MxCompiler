@@ -12,7 +12,6 @@ public class CFGProcess {
     public int stackSize;
     //stackSize of process
 
-    //todo calleeSavedReg
     public CFGProcess(CFGNode _s, CFGNode _e){
         entryNode = _s;
         exitNode = _e;

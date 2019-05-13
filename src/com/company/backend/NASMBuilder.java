@@ -26,7 +26,7 @@ public class NASMBuilder {
     private int[] calleeSaveReg = {17, 12, 13, 14, 15, 21};
     private Stack<Integer> curCallerSavedReg = new Stack<>();
     //for lib
-    private int[] callerSaveReg = {18, 19, 8, 9, 22, 23};
+    private int[] callerSaveReg = {18, 19, 8, 9, 10, 11, 22, 23};
     private int curStackOffset = 0;
 
     private HashSet<Integer> visitFlag = new HashSet<>();
@@ -74,7 +74,6 @@ public class NASMBuilder {
             if (last_inst.op == CFGInst.InstType.op_jcc || last_inst.op == CFGInst.InstType.op_jmp)
                 last_inst.operands.firstElement().strLit = node.nextNodes.firstElement().name;
         }
-        //TODO
         if (curProcess != null) {
             //in the front of function
             //push register and calculate stack

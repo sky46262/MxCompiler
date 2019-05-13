@@ -8,8 +8,9 @@ import java.util.*;
 public class GlobalRegAllocator {
     private CFG cfg;
     private HashSet<Integer> visitFlag = new HashSet<>();
-    private static int curChroma = 10;
+    private static int curChroma = 10; //TODO something wrong
     private static int funcChroma = 4;
+    //limit reg of function  or push callerSavedReg
     HashSet<Integer> colorSet = new HashSet<>();
     private InterferenceGraph graph;
     private int regSize = CFGInstAddr.getRegSize();
@@ -21,7 +22,6 @@ public class GlobalRegAllocator {
     private void visitCFG(){
         for (CFGProcess i : cfg.processList) {
             //not allocate callerSavedReg for function
-            //todo
             colorSet.clear();
             if (i.entryNode.name.equals("main"))
                 for (int j = 1; j <= curChroma; j++) {

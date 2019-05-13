@@ -404,6 +404,8 @@ public class CFGBuilder extends ASTBaseVisitor{
                 wrapExprNode(node);
                 return;
             case e_call:
+                //TODO change expression to curBB
+                // or make all expression into node
                 //exprList = {functionName, paramList}
                 type = CFGInst.InstType.op_call;
                 visitExpr(node.exprList.get(0));

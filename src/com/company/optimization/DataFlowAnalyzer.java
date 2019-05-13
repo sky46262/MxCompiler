@@ -41,8 +41,6 @@ public class DataFlowAnalyzer {
             CFGInst inst = node.insts.get(i);
             if (last_inst == null)
                 for (CFGNode n : node.nextNodes){
-                    //TODO
-                    //if (n.insts.size() > 0)
                     liveOut.addAll(n.insts.get(0).info.LiveIn);
                 }
             else liveOut.addAll(last_inst.info.LiveIn);
@@ -160,6 +158,18 @@ public class DataFlowAnalyzer {
                 usedReg.add(reg1);
                 break;
             case op_call:
+                /*CFGProcess process = cfg.getProc(inst.operands.get(0).strLit);
+                int paramCnt;
+                if (process == null) {
+                    String funcName = inst.operands.get(0).strLit;
+                    if (funcName.startsWith("_lib_get")) paramCnt = 0;
+                    else if (funcName.startsWith("_lib_str_sub")) paramCnt = 3;
+                    else if (funcName.startsWith("_lib_str_ord") ||funcName.startsWith("_lib_strcat") || funcName.startsWith("_lib_strcmp") || funcName.startsWith("_lib_alloc")) paramCnt = 2;
+                    else paramCnt = 1;
+                }
+                else paramCnt = process.paramCnt;
+                for (int i = 0; i < paramCnt;i++)
+                    usedReg.add(regSize + parameterReg[i]);*/
                defReg.add(regSize + 20);
                 break;
             case op_lea:
