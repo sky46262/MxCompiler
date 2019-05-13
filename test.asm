@@ -1,12 +1,4 @@
 default rel
-
-
-
-
-
-
-default rel
-
 global _lib_newline
 global _lib_printInt
 global _lib_printlnInt
@@ -22,6 +14,7 @@ global _lib_str_parseInt
 global _lib_strcat
 global _lib_strcmp
 global _lib_alloc
+global main
 
 extern strcmp
 extern strcat
@@ -29,7 +22,6 @@ extern strcpy
 extern atol
 extern strncpy
 extern strlen
-extern sprintf
 extern __stack_chk_fail
 extern __isoc99_scanf
 extern malloc
@@ -60,7 +52,7 @@ _lib_printInt:
         mov     qword [rbp-8H], rdi
         mov     rax, qword [rbp-8H]
         mov     rsi, rax
-        lea     rdi, [rel L_006]
+        lea     rdi, [rel L_014]
         mov     eax, 0
         call    printf
         nop
@@ -75,7 +67,7 @@ _lib_printlnInt:
         mov     qword [rbp-8H], rdi
         mov     rax, qword [rbp-8H]
         mov     rsi, rax
-        lea     rdi, [rel L_007]
+        lea     rdi, [rel L_015]
         mov     eax, 0
         call    printf
         nop
@@ -120,7 +112,7 @@ _lib_getString:
         mov     qword [rbp-8H], rax
         mov     rax, qword [rbp-8H]
         mov     rsi, rax
-        lea     rdi, [rel L_008]
+        lea     rdi, [rel L_016]
         mov     eax, 0
         call    __isoc99_scanf
         mov     rax, qword [rbp-8H]
@@ -140,7 +132,7 @@ _lib_getInt:
         mov     dword [rbp-0CH], 0
         lea     rax, [rbp-0CH]
         mov     rsi, rax
-        lea     rdi, [rel L_006]
+        lea     rdi, [rel L_014]
         mov     eax, 0
         call    __isoc99_scanf
         mov     eax, dword [rbp-0CH]
@@ -157,19 +149,110 @@ L_001:  leave
 _lib_toString:
         push    rbp
         mov     rbp, rsp
-        sub     rsp, 32
-        mov     qword [rbp-18H], rdi
-        mov     edi, 256
-        call    malloc
+        sub     rsp, 96
+        mov     qword [rbp-58H], rdi
+
+
+        mov     rax, qword [fs:abs 28H]
         mov     qword [rbp-8H], rax
-        mov     rdx, qword [rbp-18H]
-        mov     rax, qword [rbp-8H]
-        lea     rsi, [rel L_006]
+        xor     eax, eax
+        mov     dword [rbp-44H], 0
+        mov     dword [rbp-40H], 0
+        cmp     qword [rbp-58H], 0
+        jns     L_002
+        mov     dword [rbp-44H], 1
+        neg     qword [rbp-58H]
+L_002:  cmp     qword [rbp-58H], 0
+        jnz     L_004
+        add     dword [rbp-40H], 1
+        mov     eax, dword [rbp-40H]
+        cdqe
+        mov     dword [rbp+rax*4-30H], 0
+        jmp     L_005
+
+L_003:  mov     rcx, qword [rbp-58H]
+        mov     rdx, qword 6666666666666667H
+        mov     rax, rcx
+        imul    rdx
+        sar     rdx, 2
+        mov     rax, rcx
+        sar     rax, 63
+        sub     rdx, rax
+        mov     rax, rdx
+        shl     rax, 2
+        add     rax, rdx
+        add     rax, rax
+        sub     rcx, rax
+        mov     rdx, rcx
+        add     dword [rbp-40H], 1
+        mov     eax, dword [rbp-40H]
+        cdqe
+        mov     dword [rbp+rax*4-30H], edx
+        mov     rcx, qword [rbp-58H]
+        mov     rdx, qword 6666666666666667H
+        mov     rax, rcx
+        imul    rdx
+        sar     rdx, 2
+        mov     rax, rcx
+        sar     rax, 63
+        sub     rdx, rax
+        mov     rax, rdx
+        mov     qword [rbp-58H], rax
+L_004:  cmp     qword [rbp-58H], 0
+        jnz     L_003
+L_005:  mov     edx, dword [rbp-40H]
+        mov     eax, dword [rbp-44H]
+        add     eax, edx
+        add     eax, 1
+        cdqe
         mov     rdi, rax
-        mov     eax, 0
-        call    sprintf
-        mov     rax, qword [rbp-8H]
-        leave
+        call    malloc
+        mov     qword [rbp-38H], rax
+        mov     edx, dword [rbp-40H]
+        mov     eax, dword [rbp-44H]
+        add     eax, edx
+        movsxd  rdx, eax
+        mov     rax, qword [rbp-38H]
+        mov     qword [rax], rdx
+        mov     edx, dword [rbp-40H]
+        mov     eax, dword [rbp-44H]
+        add     eax, edx
+        movsxd  rdx, eax
+        mov     rax, qword [rbp-38H]
+        add     rax, rdx
+        mov     byte [rax], 0
+        cmp     dword [rbp-44H], 0
+        jz      L_006
+        mov     rax, qword [rbp-38H]
+        mov     byte [rax], 45
+L_006:  mov     dword [rbp-3CH], 0
+        jmp     L_008
+
+L_007:  mov     eax, dword [rbp-40H]
+        sub     eax, dword [rbp-3CH]
+        cdqe
+        mov     eax, dword [rbp+rax*4-30H]
+        lea     ecx, [rax+30H]
+        mov     edx, dword [rbp-3CH]
+        mov     eax, dword [rbp-44H]
+        add     eax, edx
+        movsxd  rdx, eax
+        mov     rax, qword [rbp-38H]
+        add     rax, rdx
+        mov     edx, ecx
+        mov     byte [rax], dl
+        add     dword [rbp-3CH], 1
+L_008:  mov     eax, dword [rbp-3CH]
+        cmp     eax, dword [rbp-40H]
+        jl      L_007
+        mov     rax, qword [rbp-38H]
+        mov     rsi, qword [rbp-8H]
+
+
+        xor     rsi, qword [fs:abs 28H]
+        jz      L_009
+        call    __stack_chk_fail
+L_009:  leave
         ret
 
 
@@ -315,14 +398,14 @@ _lib_alloc:
         mov     rdx, qword [rbp-10H]
         mov     qword [rax], rdx
         cmp     qword [rbp-28H], 1
-        jnz     L_002
+        jnz     L_010
         mov     rax, qword [rbp-8H]
-        jmp     L_005
+        jmp     L_013
 
-L_002:  mov     dword [rbp-14H], 1
-        jmp     L_004
+L_010:  mov     dword [rbp-14H], 1
+        jmp     L_012
 
-L_003:  mov     rax, qword [rbp-30H]
+L_011:  mov     rax, qword [rbp-30H]
         lea     rdx, [rax-8H]
         mov     rax, qword [rbp-28H]
         sub     rax, 1
@@ -338,13 +421,14 @@ L_003:  mov     rax, qword [rbp-30H]
         mov     rdx, rcx
         mov     qword [rax], rdx
         add     dword [rbp-14H], 1
-L_004:  mov     eax, dword [rbp-14H]
+L_012:  mov     eax, dword [rbp-14H]
         cdqe
         cmp     qword [rbp-10H], rax
-        jge     L_003
+        jge     L_011
         mov     rax, qword [rbp-8H]
-L_005:  leave
+L_013:  leave
         ret
+
 
 
 SECTION .data
@@ -355,13 +439,13 @@ SECTION .bss
 
 SECTION .rodata
 
-L_006:
+L_014:
         db 25H, 64H, 00H
 
-L_007:
+L_015:
         db 25H, 64H, 0AH, 00H
 
-L_008:
+L_016:
         db 25H, 73H, 00H
 
 global main
@@ -376,7 +460,25 @@ main:
 	mov	qword [rel _global_y], 20
 	mov	rbx, qword [rel _global_x]
 	add	rbx, qword [rel _global_y]
-	mov	rax, rbx
+	neg	rbx
+	mov	rdi, rbx
+	push	rcx
+	push	rdx
+	push	r8
+	push	r9
+	push	r10
+	push	r11
+	push	rsi
+	push	rdi
+	call	_lib_printlnInt
+	pop	rdi
+	pop	rsi
+	pop	r11
+	pop	r10
+	pop	r9
+	pop	r8
+	pop	rdx
+	pop	rcx
 	pop	rbp
 	ret
 

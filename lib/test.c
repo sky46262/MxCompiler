@@ -60,28 +60,27 @@ int _lib_getInt() {
 }
 
 char* _lib_toString(long long num) {
-        int neg = 0, len = 0;
-        if (num < 0) {
-            neg = 1;
-            num = -num;
-        }
-        int digits[20];
-        if (num == 0) {
-            digits[++len] = 0;
-        }
-        else {
-            while (num != 0) {
-                digits[++len] = num % 10;
-                num /= 10;
-            }
-        }
-        char *str = (char*) malloc(len + neg + 1);
-        *((long*) str) = len + neg;
-        str[len + neg] = 0;
-        if (neg) str[0] = '-';
-        for (int i = 0; i < len; ++i)
-            str[i + neg] = digits[len - i] + '0';
-        return str;
+    char *str = (char*)malloc(256);
+    sprintf(str,"%d",num);
+    /*int i = 0,k = 0;*/
+    /*if (num<0) {*/
+        /*num = -num;*/
+        /*str[i++] = '-';*/
+        /*k = 1;*/
+    /*}*/
+    /*do {*/
+        /*str[i++] = '0' + num % 10;*/
+        /*num /= 10;*/
+    /*} while(num);*/
+    /*str[i] = '\0';*/
+    /*char tmp;*/
+    /*for (;k<=(i-1)>>1;++k){*/
+        /*int j = i - k - 1;*/
+        /*tmp = str[k];*/
+        /*str[k] = str[j];*/
+        /*str[j] = tmp;*/
+    /*}*/
+    return str;
 }
 
 int _lib_str_length(const char *t){
@@ -153,3 +152,4 @@ int main(){
     /*}*/
     return 0;
 }
+
