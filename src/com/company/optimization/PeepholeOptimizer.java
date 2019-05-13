@@ -27,7 +27,7 @@ public class PeepholeOptimizer {
             CFGInst next_inst = null, nnext_inst = null;
             if (i+1 < node.insts.size()) next_inst = node.insts.get(i+1);
             if (i+2 < node.insts.size()) nnext_inst = node.insts.get(i+2);
-            /*if (inst.op == CFGInst.InstType.op_mov && next_inst != null && nnext_inst != null){
+           /* if (inst.op == CFGInst.InstType.op_mov && next_inst != null && nnext_inst != null){
                 CFGInstAddr opr1 = inst.operands.get(0);
                 CFGInstAddr opr2 = inst.operands.get(1);
                 if (next_inst.operands.size() > 0 && next_inst.operands.get(0).equals(opr1) &&
@@ -35,6 +35,7 @@ public class PeepholeOptimizer {
                         && nnext_inst.operands.get(1).equals(opr1)){
                     next_inst.operands.set(0, opr2);
                     newList.add(next_inst);
+                    newList.add(inst);
                     i+=2;
                     continue;
                 }
@@ -53,10 +54,11 @@ public class PeepholeOptimizer {
                 CFGInstAddr opr1 = inst.operands.get(0);
                 CFGInstAddr opr2 = inst.operands.get(1);
                 if (opr1.a_type == CFGInstAddr.addrType.a_mem && next_inst.operands.get(1).equals(opr1)){
-                    next_inst.operands.set(0, opr2);
+                    next_inst.operands.set(1, opr2);
                 }
+                else
                 if (opr2.a_type == CFGInstAddr.addrType.a_mem && next_inst.operands.get(1).equals(opr2)){
-                    next_inst.operands.set(0, opr1);
+                    next_inst.operands.set(1, opr1);
                 }
             }
             // mov reg1 mem or mov mem reg1
