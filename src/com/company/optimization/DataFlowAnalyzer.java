@@ -95,7 +95,7 @@ public class DataFlowAnalyzer {
             {
                 int num = inst.operands.get(1).getNum();
                 if (num <6){
-                    usedReg.add(regSize + parameterReg[num]);
+                    //usedReg.add(regSize + parameterReg[num]);
                     defReg.add(regSize + parameterReg[num]);
                 }
             }
@@ -158,7 +158,7 @@ public class DataFlowAnalyzer {
                 usedReg.add(reg1);
                 break;
             case op_call:
-                /*CFGProcess process = cfg.getProc(inst.operands.get(0).strLit);
+                CFGProcess process = cfg.getProc(inst.operands.get(0).strLit);
                 int paramCnt;
                 if (process == null) {
                     String funcName = inst.operands.get(0).strLit;
@@ -169,7 +169,7 @@ public class DataFlowAnalyzer {
                 }
                 else paramCnt = process.paramCnt;
                 for (int i = 0; i < paramCnt;i++)
-                    usedReg.add(regSize + parameterReg[i]);*/
+                    usedReg.add(regSize + parameterReg[i]);
                defReg.add(regSize + 20);
                 break;
             case op_lea:
