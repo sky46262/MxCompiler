@@ -8,7 +8,7 @@ import java.util.*;
 public class GlobalRegAllocator {
     private CFG cfg;
     private HashSet<Integer> visitFlag = new HashSet<>();
-    private static int curChroma = 4; //todo there are still some problems
+    private static int curChroma = 10; //todo there are still some problems
     private static int funcChroma = 4;
     //limit reg of function  or push callerSavedReg
     HashSet<Integer> colorSet = new HashSet<>();
