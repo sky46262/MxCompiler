@@ -364,41 +364,61 @@ L_007:
 L_008:
         db 25H, 73H, 00H
 
+global _func_a
 global main
-global _static_init
-global _global_a
 
 SECTION .text
+_func_a:
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 128
+	mov	r12, rdi
+	mov	qword [rbp-8H], rsi
+	mov	qword [rbp-10H], rdx
+	mov	qword [rbp-18H], rcx
+	mov	r14, r8
+	mov	r15, r9
+	mov	r13, qword [rbp+10H]
+	add	r12, qword [rbp-8H]
+	add	r12, qword [rbp-10H]
+	add	r12, qword [rbp-18H]
+	add	r12, r14
+	add	r12, r15
+	add	r12, r13
+	add	r12, qword [rbp+18H]
+	add	r12, qword [rbp+20H]
+	add	r12, qword [rbp+28H]
+	add	r12, qword [rbp+30H]
+	add	r12, qword [rbp+38H]
+	add	r12, qword [rbp+40H]
+	add	r12, qword [rbp+48H]
+	add	r12, qword [rbp+50H]
+	mov	rax, r12
+	add	rsp, 128
+	pop	rbp
+	ret
 main:
 	push	rbp
 	mov	rbp, rsp
-	sub	rsp, 32
-	call	_static_init
-	mov	qword [rbp-8H], 4
-	lea	rax, [rbp-8H]
-	mov	rsi, rax
+	push	15
+	push	14
+	push	13
+	push	12
+	push	11
+	push	10
+	push	9
+	push	8
+	push	7
+	mov	r9, 6
+	mov	r8, 5
+	mov	rcx, 4
+	mov	rdx, 3
+	mov	rsi, 2
 	mov	rdi, 1
-	push	rcx
-	push	rdx
-	push	r8
-	push	r9
-	push	r10
-	push	r11
-	push	rsi
-	push	rdi
-	call	_lib_alloc
-	pop	rdi
-	pop	rsi
-	pop	r11
-	pop	r10
-	pop	r9
-	pop	r8
-	pop	rdx
-	pop	rcx
+	call	_func_a
+	add	rsp, 72
 	mov	rbx, rax
-	mov	qword [rbx+18H], 2
-	mov	qword [rel _global_a], rbx
-	mov	rdi, qword [rbx+18H]
+	mov	rdi, rbx
 	push	rcx
 	push	rdx
 	push	r8
@@ -417,41 +437,9 @@ main:
 	pop	rdx
 	pop	rcx
 	mov	rax, 0
-	add	rsp, 32
-	pop	rbp
-	ret
-_static_init:
-	push	rbp
-	mov	rbp, rsp
-	sub	rsp, 32
-	mov	qword [rbp-8H], 4
-	lea	rax, [rbp-8H]
-	mov	rsi, rax
-	mov	rdi, 1
-	push	rcx
-	push	rdx
-	push	r8
-	push	r9
-	push	r10
-	push	r11
-	push	rsi
-	push	rdi
-	call	_lib_alloc
-	pop	rdi
-	pop	rsi
-	pop	r11
-	pop	r10
-	pop	r9
-	pop	r8
-	pop	rdx
-	pop	rcx
-	mov	qword [rel _global_a], rax
-	add	rsp, 32
 	pop	rbp
 	ret
 
 SECTION .data
 
 SECTION .bss
-_global_a:
-	resw	8

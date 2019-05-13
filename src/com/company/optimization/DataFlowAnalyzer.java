@@ -168,6 +168,7 @@ public class DataFlowAnalyzer {
                     else paramCnt = 1;
                 }
                 else paramCnt = process.paramCnt;
+                if (paramCnt > 6) paramCnt = 6;
                 for (int i = 0; i < paramCnt;i++)
                     usedReg.add(regSize + parameterReg[i]);
                defReg.add(regSize + 20);
