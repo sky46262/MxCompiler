@@ -27,19 +27,21 @@ public class PeepholeOptimizer {
             CFGInst next_inst = null, nnext_inst = null;
             if (i+1 < node.insts.size()) next_inst = node.insts.get(i+1);
             if (i+2 < node.insts.size()) nnext_inst = node.insts.get(i+2);
-           /* if (inst.op == CFGInst.InstType.op_mov && next_inst != null && nnext_inst != null){
+            if (inst.op == CFGInst.InstType.op_mov && next_inst != null && nnext_inst != null){
                 CFGInstAddr opr1 = inst.operands.get(0);
                 CFGInstAddr opr2 = inst.operands.get(1);
-                if (next_inst.operands.size() > 0 && next_inst.operands.get(0).equals(opr1) &&
+                if (next_inst.operands.size() > 0 && opr2.a_type == CFGInstAddr.addrType.a_reg && next_inst.operands.get(0).equals(opr1) &&
                     nnext_inst.op == CFGInst.InstType.op_mov && nnext_inst.operands.get(0).equals(opr2)
                         && nnext_inst.operands.get(1).equals(opr1)){
                     next_inst.operands.set(0, opr2);
                     newList.add(next_inst);
-                    newList.add(inst);
+                    //newList.add(inst);
+                    //todo
+                    //idk if need to add
                     i+=2;
                     continue;
                 }
-            }*/
+            }
             // mov opr1 opr2
             // xxx opr1
             // mov opr2 opr1

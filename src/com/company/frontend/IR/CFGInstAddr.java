@@ -130,5 +130,12 @@ public class CFGInstAddr {
             return info.constValue;
         else return 0;
     }
-
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(a_type.toString().toLowerCase()).append(' ');
+        builder.append(lit1).append(' ').append(lit2).append(' ').append(lit3).append(' ').append(lit4);
+        builder.append(' ').append(strLit);
+        return builder.toString();
+    }
 }
